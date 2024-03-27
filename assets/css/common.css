@@ -7,6 +7,10 @@
   font-style: normal;
   src: url(https://example.com/material-symbols.woff) format('woff');
 }
+.material-symbols-outlined{font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0,'opsz' 40;color:#555;}
+/* 참고 : https://fonts.google.com/icons 
+https://developers.google.com/fonts/docs/material_symbols?hl=ko */
+
 
 /* fonts */
 @font-face {
