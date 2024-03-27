@@ -1,0 +1,3 @@
+https://github.com/orioncactus/pretendard/tree/main/packages/pretendard/dist/web/static/woff2
+
+https://cactus.tistory.com/306
