@@ -110,11 +110,11 @@ select::-ms-expand{display:none;}
 }
 
 /* checkbox, radio 이미지형 */
-input[type='radio'],
-input[type='checkbox']{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+/* input[type='radio'],
+input[type='checkbox']{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;} */
 
 /* input textarea focus */
-input[type='text'], input[type='password'], textarea{transition:all 0.1s ease-in-out !important;}
+/* input[type='text'], input[type='password'], textarea{transition:all 0.1s ease-in-out !important;} */
 /* input[type='text']:focus, input[type='password']:focus,textarea:focus{border:2px solid #555 !important;} */
 
 /* placeholder, focus */
