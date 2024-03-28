@@ -15,55 +15,55 @@ https://developers.google.com/fonts/docs/material_symbols?hl=ko */
 /* fonts */
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-Thin.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-Thin.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-Thin.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Thin.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Thin.woff") format("woff"), url("../../assets/fonts/Pretendard-Thin.ttf") format("truetype");
   font-weight: 100;
   font-style: normal;
 }  
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-ExtraLight.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-ExtraLight.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-ExtraLight.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-ExtraLight.woff2") format("woff2"), url("../../assets/fonts/Pretendard-ExtraLight.woff") format("woff"), url("../../assets/fonts/Pretendard-ExtraLight.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }  
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-Light.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-Light.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-Light.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Light.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Light.woff") format("woff"), url("../../assets/fonts/Pretendard-Light.ttf") format("truetype");
   font-weight: 350;
   font-style: normal;
 }  
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-Regular.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-Regular.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-Regular.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Regular.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Regular.woff") format("woff"), url("../../assets/fonts/Pretendard-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }  
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-Medium.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-Medium.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-Medium.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Medium.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Medium.woff") format("woff"), url("../../assets/fonts/Pretendard-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-SemiBold.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-SemiBold.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-SemiBold.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-SemiBold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-SemiBold.woff") format("woff"), url("../../assets/fonts/Pretendard-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-Bold.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-Bold.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-Bold.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Bold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Bold.woff") format("woff"), url("../../assets/fonts/Pretendard-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-ExtraBold.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-ExtraBold.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-ExtraBold.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-ExtraBold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-ExtraBold.woff") format("woff"), url("../../assets/fonts/Pretendard-ExtraBold.ttf") format("truetype");
   font-weight: 800;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard';
-  src: url("../sudoku/assets/fonts/Pretendard-Black.woff2") format("woff2"), url("../sudoku/assets/fonts/Pretendard-Black.woff") format("woff"), url("../sudoku/assets/fonts/Pretendard-Black.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Black.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Black.woff") format("woff"), url("../../assets/fonts/Pretendard-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
 }
@@ -71,7 +71,7 @@ https://developers.google.com/fonts/docs/material_symbols?hl=ko */
 /* reset */
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
-body{font-family:'Pretendard', '맑은 고딕', 'malgun gothic', 'Apple SD Gothic Neo', 'Apple SD 산돌고딕 Neo', 'Microsoft NeoGothic', sans-serif;font-size:100%;font-weight:500;color:var(--gray555);line-height:1.5;word-wrap:break-word;word-break:keep-all;-webkit-text-size-adjust:none;-ms-text-size-adjust:100%;text-size-adjust:none;}
+body{font-family:'Pretendard', '맑은 고딕', 'malgun gothic', 'Apple SD Gothic Neo', 'Apple SD 산돌고딕 Neo', 'Microsoft NeoGothic', sans-serif;font-size:100%;font-weight:500;color:var(--gray555);line-height:1;word-wrap:break-word;word-break:keep-all;-webkit-text-size-adjust:none;-ms-text-size-adjust:100%;text-size-adjust:none;}
 
 /* basic tags selector */
 img{max-width:100%;height:auto;vertical-align:middle;}
@@ -115,7 +115,7 @@ input[type='checkbox']{position:absolute;width:1px;height:1px;padding:0;margin:-
 
 /* input textarea focus */
 input[type='text'], input[type='password'], textarea{transition:all 0.1s ease-in-out !important;}
-input[type='text']:focus, input[type='password']:focus,textarea:focus{border:2px solid #555 !important;}
+/* input[type='text']:focus, input[type='password']:focus,textarea:focus{border:2px solid #555 !important;} */
 
 /* placeholder, focus */
 ::placeholder{font-size:inherit;color:#999;letter-spacing:-0.0375em;opacity:1;}
@@ -131,67 +131,16 @@ input[type='text']:focus:-ms-input-placeholder{visibility:hidden}
 
 /* 폰트칼라 */
 :root {
-  /* color */
-  --primary:#00A0DF;
-  --secondary:#38384F;
-  --point:#CE4A00;
-  --gray222:#222;
+  --primary:#009856;
+  --secondary:#F5F3BB;
+  --point:#DF2935;
+  --gray222:#161414;
   --gray555:#555;
   --gray999:#999;
   --grayddd:#ddd;
   --grayeee:#eee;
-  --gray:#F1F3F5;
   --white:#fff;
   --black:#000;
-
-  /* font size */
-  --size6:0.333rem;
-  --size8:0.444rem;
-  --size10:0.556rem;
-  --size12:0.667rem;
-  --size14:0.778rem;
-  --size15:0.833rem;
-  --size16:0.889rem;
-  --size18:1rem;
-  --size20:1.111rem;
-  --size22:1.222rem;
-  --size24:1.333rem;
-  --size26:1.444rem;
-  --size28:1.556rem;
-  --size30:1.667rem;
-  --size32:1.778rem;
-  --size34:1.889rem;
-  --size36:2rem;
-  --size38:2.111rem;
-  --size40:2.222rem;
-  --size42:2.333rem;
-  --size44:2.444rem;
-  --size48:2.667rem;
-  --size50:2.778rem;
-  --size52:2.889rem;
-  --size56:3.111rem;
-  --size60:3.333rem;
-  --size64:3.556rem;
-  --size70:3.889rem;
-  --size72:4rem;
-  --size76:4.222rem;
-  --size80:4.444rem;
-  --size86:4.778rem;
-  --size90:5rem;
-  --size100:5.556rem;
-  --size110:6.111rem;
-  --size120:6.667rem;
-  --size130:7.222rem;
-  --size140:7.778rem;
-  --size150:8.333rem;
-  --size160:8.889rem;
-  --size180:10rem;
-  --size200:11.111rem;
-  --size220:12.222rem;
-  --size240:13.333rem;
-  --size260:14.444rem;
-  --size280:15.556rem;
-  --size300:16.667rem;
 }
 
 html {
