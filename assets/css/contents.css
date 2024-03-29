@@ -26,6 +26,9 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 .place-wrap input{position:absolute;width:100%;height:100%;text-align:center;font-size:6vw;font-weight:600;color:var(--gray555);line-height:0;caret-color:transparent;z-index:2;}
 .place-wrap input[type='text']:focus{background:var(--primary);transition-duration:0.2s;}
+.place-wrap input:focus-visible{background:var(--primary);transition-duration:0.2s;}
+
+.active{background:var(--primary)}
 
 .place-wrap input:read-only{background:var(--white);}
 .place-wrap input:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);color:var(--white);transition:all 0.2s ease;}
