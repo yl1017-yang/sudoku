@@ -2,11 +2,10 @@
 var buttons = document.querySelectorAll('.btn-number');
 
 buttons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        var value = button.textContent.trim().split(' ')[0];
-        var index = parseInt(button.textContent.trim().split(' ')[1]);
-        var input = document.getElementById('cell-' + index).querySelector('input');
+  button.addEventListener('click', function() {
+      var value = button.textContent.trim().split(' ')[0];
+      var input = button.parentNode.nextElementSibling.querySelector('input');
 
-        input.value = value;
-    });
+      input.value = value;
+  });
 });
