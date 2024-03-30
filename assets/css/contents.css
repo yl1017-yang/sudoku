@@ -45,15 +45,15 @@ html, body, .sudoku-wrap{min-height:100%;}
 /* 화면 애니메이션 */
 .animation-box{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;}
 .animation-box > div{position:absolute;top:0;left:0;width:100%;height:10vw;background:linear-gradient(90deg, #009856,#F5F3BB);background-size:100% 100%;}
-.animation-box .box1{top:0;animation-delay:0.8s !important;}
-.animation-box .box2{top:10vw;animation-delay:0.7s !important;}
-.animation-box .box3{top:20vw;animation-delay:0.6s !important;}
-.animation-box .box4{top:30vw;animation-delay:0.5s !important;}
+.animation-box .box1{top:0;animation-delay:0s !important;}
+.animation-box .box2{top:10vw;animation-delay:0.1s !important;}
+.animation-box .box3{top:20vw;animation-delay:0.2s !important;}
+.animation-box .box4{top:30vw;animation-delay:0.3s !important;}
 .animation-box .box5{top:40vw;animation-delay:0.4s !important;}
-.animation-box .box6{top:50vw;animation-delay:0.3s !important;}
-.animation-box .box7{top:60vw;animation-delay:0.2s !important;}
-.animation-box .box8{top:70vw;animation-delay:0.1s !important;}
-.animation-box .box9{top:80vw;animation-delay:0s !important;}
+.animation-box .box6{top:50vw;animation-delay:0.5s !important;}
+.animation-box .box7{top:60vw;animation-delay:0.6s !important;}
+.animation-box .box8{top:70vw;animation-delay:0.7s !important;}
+.animation-box .box9{top:80vw;animation-delay:0.8s !important;}
 
 .animation-box .motion{animation:fade 0.4s 0s ease-in-out both;}
 @keyframes fade {

@@ -13,7 +13,7 @@ https://developers.google.com/fonts/docs/material_symbols?hl=ko */
 
 
 /* fonts */
-@font-face {
+/* @font-face {
   font-family: 'Pretendard';
   src: url("../../assets/fonts/Pretendard-Thin.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Thin.woff") format("woff"), url("../../assets/fonts/Pretendard-Thin.ttf") format("truetype");
   font-weight: 100;
@@ -36,26 +36,26 @@ https://developers.google.com/fonts/docs/material_symbols?hl=ko */
   src: url("../../assets/fonts/Pretendard-Regular.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Regular.woff") format("woff"), url("../../assets/fonts/Pretendard-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
-}  
+}   */
 @font-face {
   font-family: 'Pretendard';
-  src: url("../../assets/fonts/Pretendard-Medium.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Medium.woff") format("woff"), url("../../assets/fonts/Pretendard-Medium.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Medium.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard';
-  src: url("../../assets/fonts/Pretendard-SemiBold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-SemiBold.woff") format("woff"), url("../../assets/fonts/Pretendard-SemiBold.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-SemiBold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: 'Pretendard';
-  src: url("../../assets/fonts/Pretendard-Bold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Bold.woff") format("woff"), url("../../assets/fonts/Pretendard-Bold.ttf") format("truetype");
+  src: url("../../assets/fonts/Pretendard-Bold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
 }
-@font-face {
+/* @font-face {
   font-family: 'Pretendard';
   src: url("../../assets/fonts/Pretendard-ExtraBold.woff2") format("woff2"), url("../../assets/fonts/Pretendard-ExtraBold.woff") format("woff"), url("../../assets/fonts/Pretendard-ExtraBold.ttf") format("truetype");
   font-weight: 800;
@@ -66,7 +66,7 @@ https://developers.google.com/fonts/docs/material_symbols?hl=ko */
   src: url("../../assets/fonts/Pretendard-Black.woff2") format("woff2"), url("../../assets/fonts/Pretendard-Black.woff") format("woff"), url("../../assets/fonts/Pretendard-Black.ttf") format("truetype");
   font-weight: 900;
   font-style: normal;
-}
+} */
 
 /* reset */
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
@@ -109,10 +109,6 @@ select::-ms-expand{display:none;}
 	.ios-os select,.ios-os textarea{-webkit-appearance: none;-moz-appearance: none;appearance: none;border-radius:0;}
 }
 
-/* checkbox, radio 이미지형 */
-/* input[type='radio'],
-input[type='checkbox']{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;} */
-
 /* input textarea focus */
 /* input[type='text'], input[type='password'], textarea{transition:all 0.1s ease-in-out !important;} */
 /* input[type='text']:focus, input[type='password']:focus,textarea:focus{border:2px solid #555 !important;} */
@@ -144,6 +140,5 @@ input[type='text']:focus:-ms-input-placeholder{visibility:hidden}
 }
 
 html {
-  /* font-size: 125%; */ /* 20px */
   font-size: 100% !important; /* 16px */
 }
