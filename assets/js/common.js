@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   window.insertNumber = function(number) {
-      // 마지막으로 포커스된 input이 있고, 수정 가능한 상태인지 확인합니다.
       if (lastFocused && !lastFocused.readOnly) {
           lastFocused.value = number;
       }
