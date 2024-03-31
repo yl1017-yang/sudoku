@@ -99,7 +99,7 @@ input[type='text']:focus:-ms-input-placeholder{visibility:hidden}
 /* 폰트칼라 */
 :root {
   --primary:#00a85f;
-  --secondary:#e4e197;
+  --secondary:#F5F3BB;
   --third:#f2f1e4;
   --point:#DF2935;
   --gray222:#161414;
