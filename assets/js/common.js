@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   let lastFocused;
-  const inputs = document.querySelectorAll('.cell input');
+  const inputs = document.querySelectorAll('.row > .cell > input');
 
   inputs.forEach(input => {
       input.addEventListener('focus', function() {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             input.classList.remove('highlight');
         });
 
-        document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+        document.querySelectorAll(`.row > .cell > input[data-row="${row}"]`).forEach(input => {
             input.classList.add('highlight');
         });
 
