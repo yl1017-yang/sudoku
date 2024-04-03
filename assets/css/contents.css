@@ -27,7 +27,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap input[type='text']:focus{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 .place-wrap input:focus-visible{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 
-.place-wrap input:read-only{color:var(--gray555);}
+.place-wrap input:read-only{color:var(--gray555);cursor:not-allowed;}
 .place-wrap input:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}
 
 .highlight{background:var(--third);transition-duration:0.2s;}
