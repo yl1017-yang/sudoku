@@ -1,8 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
-  let lastFocused;
-  const inputs = document.querySelectorAll('.row > .cell > input');
 
-  inputs.forEach(input => {
+var uiSet = function() {
+    let lastFocused;
+    const inputs = document.querySelectorAll('.cell input');
+
+    inputs.forEach(input => {
       input.addEventListener('focus', function() {
         
         const row = this.getAttribute('data-row');
@@ -12,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             input.classList.remove('highlight');
         });
 
-        document.querySelectorAll(`.row > .cell > input[data-row="${row}"]`).forEach(input => {
+        document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
             input.classList.add('highlight');
         });
 
@@ -22,11 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         lastFocused = this;
       });
-  });
+    });
 
-  window.insertNumber = function(number) {
+    window.insertNumber = function(number) {
       if (lastFocused && !lastFocused.readOnly) {
           lastFocused.value = number;
       }
-  }
-});
+    } 
+}
