@@ -9,43 +9,56 @@ document.addEventListener('DOMContentLoaded', function() {
     // 2차 배열 생성 9 x 9. 총 81개 필요
     arr = create2DArray(9, 9);
 
-    console.log("arr = ",arr);
+    //console.log("arr = ",arr);
 
     // 배열에 랜덤한 숫자 넣기.
     var v1;
     var v2;
-    var v3;
-    var v4; 
 
+    console.log("arr[0].lenth = ",arr[0].length);
+
+    for(var n = 0;n< arr[0].length;n++){
+      while (1) {
+        var v2 = random(1,9);
+        //console.log("v2 = ",v2);
+        if(!isContain(arr[0],v2)) {
+          //console.log("isContain = false ");
+          arr[0][n] = v2;
+          break;
+        }
+      }
+    }
+    /*
     v1 = random(1,9);
     arr[0][0] = v1; 
 
     while (1) {
       var v2 = random(1,9);
-      if(v1 != v2) {
-         arr[0][1] = v2; 
+      if(!isContain(arr[0]),v2) {
+        arr[0][1] = v2;
         break;
       }
     }
 
     while (1) {
-      var v3 = random(1,9);
-      if(v1 != v2 
-        && v1 != v3)
+      var v2 = random(1,9);
+      if(!isContain(arr[0]),v2) {
+        arr[0][2] = v2;
         break;
+      }
     }
 
     while (1) {
-      var v4 = random(1,9);
-      if(v1 != v2 
-        && v1 != v3
-        && v1 != v4)
+      var v2 = random(1,9);
+      if(!isContain(arr[0]),v2) {
+        arr[0][3] = v2;
         break;
+      }
     }
-
-    console.log("v1 = ",v1);
-    console.log("v2 = ",v2);
-    console.log("v3 = ",v3);
+    */
+    //console.log("v1 = ",v1);
+    //console.log("v2 = ",v2);
+    //console.log("v3 = ",v3);
 
     console.log("arr = ",arr);
   });
@@ -65,8 +78,14 @@ function random(min, max) {
 }
 
 // 어레이에 속해있는지 체크
-function isContain(array) {
-  
+function isContain(array,v) {
+  for (var i = 0; i < array.length; i++) {
+    //console.log("v = ",v);
+    //console.log("array = ",array);
+    if(v == array[i]) 
+      return true;
+  }
+  return false
 }
 
 
