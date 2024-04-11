@@ -6,85 +6,255 @@ document.addEventListener('DOMContentLoaded', function() {
     // ui 설정
     uiSet();
 
-    // 0~2 row
+    for(var n=0;n<1000;n++) {
+      if(setRandomArray())
+      break;
+    }
+  });
+
+function setRandomArray() {
+
+    // 추후 개선이 필요하다.***
+    // 하나씩 만들어본다.
+    // 만들때 체크조건은 3가지이다. 
+    // 1. 열에서 공통된게 있는지
+    // 2. 줄에서 공통된게 있는지
+    // 3. 박스 (9개) 에서 공통된게 있는지
 
     total_array = create2DArray(9,9); 
 
-    var s_col = 0;
-    var e_col = 3;
-    var s_row = 0;
-    var e_row = 3; 
+    var box_s_row = 0;
+    var box_e_row = 2;
+    var box_s_col = 0;
+    var box_e_col = 2;
 
-    setArray(total_array,s_row,e_row,s_col,e_col);
+    //setBoxArray(box_s_row,box_e_row,box_s_col,box_e_col);
 
-    s_col +=  3;
-    e_col +=  3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    s_col +=  3;
-    e_col +=  3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    // 3~5 row
-
-    s_col = 0;
-    e_col = 3;
-    s_row += 3;
-    e_row += 3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    s_col +=  3;
-    e_col +=  3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    s_col +=  3;
-    e_col +=  3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    // 6~8 row
-
-    s_col = 0;
-    e_col = 3;
-    s_row += 3;
-    e_row += 3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    s_col +=  3;
-    e_col +=  3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    s_col +=  3;
-    e_col +=  3;
-
-    setArray(total_array,s_row,e_row,s_col,e_col);
-
-    console.log("total_arr = ",total_array);
-  });
-
-  function setArray(array
-                    ,s_row
-                    ,e_row
-                    ,s_col
-                    ,e_col) {
-
-    var random_array = createRandomArray(9);
-
-    index = 0;
-    for(var n=s_row;n<e_row;n++) {
-      for(var i=s_col;i<e_col;i++) {
-        array[n][i] = random_array[index++];   
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
       }
     }
 
-  }
+    box_s_row = 0;
+    box_e_row = 2;
+    box_s_col = 3;
+    box_e_col = 5;
 
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+    
+    box_s_row = 0;
+    box_e_row = 2;
+    box_s_col = 6;
+    box_e_col = 8;
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+
+    box_s_row = 3;
+    box_e_row = 5;
+    box_s_col = 0;
+    box_e_col = 2;
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+
+    box_s_row = 3;
+    box_e_row = 5;
+    box_s_col = 3;
+    box_e_col = 5;
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+
+    box_s_row = 3;
+    box_e_row = 5;
+    box_s_col = 6;
+    box_e_col = 8;
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+
+    box_s_row = 6;
+    box_e_row = 8;
+    box_s_col = 0;
+    box_e_col = 2;
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+
+    box_s_row = 6;
+    box_e_row = 8;
+    box_s_col = 3;
+    box_e_col = 5;
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+
+    box_s_row = 6;
+    box_e_row = 8;
+    box_s_col = 6;
+    box_e_col = 8;
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+    
+    console.log("total_array = ",total_array);
+
+    return true;
+}  
+
+function setBoxArray(box_s_row,
+                     box_e_row,
+                     box_s_col,
+                     box_e_col) {
+
+    for(var n=box_s_row;n<=box_e_row;n++) {
+      for(var i=box_s_col;i<=box_e_col;i++) {
+        if(!setArray(total_array
+          ,n
+          ,i
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col))
+          return false;
+      }
+    }
+}
+
+function setArray(array
+    ,row
+    ,col
+    ,box_s_row
+    ,box_e_row
+    ,box_s_col
+    ,box_e_col) {
+
+      var random_array1 = createRandomArray(9);
+
+      for(var n=0;n<random_array1.length;n++) {
+        var v= random_array1[n];
+
+        var b1 = isContainRow(array,row,v);
+        var b2 = isContainCol(array,col,v);
+        var b3 = isContainBox(array
+          ,box_s_row
+          ,box_e_row
+          ,box_s_col
+          ,box_e_col
+          ,v );
+
+        //console.log("----");  
+        //console.log("v = " + v + " ,b1 = ",b1);
+        //console.log("v = " + v + " ,b2 = ",b2);
+        //console.log("v = " + v + " ,b3 = ",b3);
+        //console.log("----");
+  
+        // 열, 박스 체크
+        if(!isContainRow(array,row,v)
+          &&!isContainCol(array,col,v)
+          && !isContainBox(array
+                          ,box_s_row
+                          ,box_e_row
+                          ,box_s_col
+                          ,box_e_col
+                          ,v )) {
+          array[row][col] = v;
+          return true;
+          //break;
+        }
+      }
+      return false;
+}
 
 // 1부터 9까지 랜덤하게 숫자를 생성해 어레이에 넣는다. 각각은 고유하다.  
 function createRandomArray(size) {
@@ -128,6 +298,45 @@ function isContain(array,v) {
       return true;
   }
   return false
+}
+
+// 2차 어레이에서 줄에 같은값이 있는지 체크
+function isContainRow(array,row,v) {
+
+  for(var n=0;n<9;n++) {
+    var row_v= total_array[row][n];
+
+    if( v == row_v ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// 2차 어레이에서 열에 같은 값이 있는지 체크
+function isContainCol(array,col,v) {
+
+  for(var n=0;n<9;n++) {
+    var col_v= total_array[n][col];
+
+    if( v == col_v ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// 박스에서 체크
+function isContainBox(array,s_row,e_row,s_col,e_col,v) {
+  for(var n=s_row;n<=e_row;n++) {
+    for(var i=s_col;i<=e_col;i++) {
+      var box_v = array[n][i];
+      if( v == box_v ) {
+        return true;
+      }
+    }
+  }
+   return false;
 }
 
 
