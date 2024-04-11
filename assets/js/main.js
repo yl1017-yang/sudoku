@@ -1,67 +1,109 @@
 
-var arr;
+var total_array;
 
 document.addEventListener('DOMContentLoaded', function() {
     
     // ui 설정
     uiSet();
 
-    // 2차 배열 생성 9 x 9. 총 81개 필요
-    arr = create2DArray(9, 9);
+    // 0~2 row
 
-    //console.log("arr = ",arr);
+    total_array = create2DArray(9,9); 
 
-    // 배열에 랜덤한 숫자 넣기.
-    var v1;
-    var v2;
+    var s_col = 0;
+    var e_col = 3;
+    var s_row = 0;
+    var e_row = 3; 
 
-    console.log("arr[0].lenth = ",arr[0].length);
+    setArray(total_array,s_row,e_row,s_col,e_col);
 
-    for(var n = 0;n< arr[0].length;n++){
-      while (1) {
-        var v2 = random(1,9);
-        //console.log("v2 = ",v2);
-        if(!isContain(arr[0],v2)) {
-          //console.log("isContain = false ");
-          arr[0][n] = v2;
-          break;
-        }
-      }
-    }
-    /*
-    v1 = random(1,9);
-    arr[0][0] = v1; 
+    s_col +=  3;
+    e_col +=  3;
 
-    while (1) {
-      var v2 = random(1,9);
-      if(!isContain(arr[0]),v2) {
-        arr[0][1] = v2;
-        break;
-      }
-    }
+    setArray(total_array,s_row,e_row,s_col,e_col);
 
-    while (1) {
-      var v2 = random(1,9);
-      if(!isContain(arr[0]),v2) {
-        arr[0][2] = v2;
-        break;
-      }
-    }
+    s_col +=  3;
+    e_col +=  3;
 
-    while (1) {
-      var v2 = random(1,9);
-      if(!isContain(arr[0]),v2) {
-        arr[0][3] = v2;
-        break;
-      }
-    }
-    */
-    //console.log("v1 = ",v1);
-    //console.log("v2 = ",v2);
-    //console.log("v3 = ",v3);
+    setArray(total_array,s_row,e_row,s_col,e_col);
 
-    console.log("arr = ",arr);
+    // 3~5 row
+
+    s_col = 0;
+    e_col = 3;
+    s_row += 3;
+    e_row += 3;
+
+    setArray(total_array,s_row,e_row,s_col,e_col);
+
+    s_col +=  3;
+    e_col +=  3;
+
+    setArray(total_array,s_row,e_row,s_col,e_col);
+
+    s_col +=  3;
+    e_col +=  3;
+
+    setArray(total_array,s_row,e_row,s_col,e_col);
+
+    // 6~8 row
+
+    s_col = 0;
+    e_col = 3;
+    s_row += 3;
+    e_row += 3;
+
+    setArray(total_array,s_row,e_row,s_col,e_col);
+
+    s_col +=  3;
+    e_col +=  3;
+
+    setArray(total_array,s_row,e_row,s_col,e_col);
+
+    s_col +=  3;
+    e_col +=  3;
+
+    setArray(total_array,s_row,e_row,s_col,e_col);
+
+    console.log("total_arr = ",total_array);
   });
+
+  function setArray(array
+                    ,s_row
+                    ,e_row
+                    ,s_col
+                    ,e_col) {
+
+    var random_array = createRandomArray(9);
+
+    index = 0;
+    for(var n=s_row;n<e_row;n++) {
+      for(var i=s_col;i<e_col;i++) {
+        array[n][i] = random_array[index++];   
+      }
+    }
+
+  }
+
+
+// 1부터 9까지 랜덤하게 숫자를 생성해 어레이에 넣는다. 각각은 고유하다.  
+function createRandomArray(size) {
+
+  var random_array = new Array(size);
+
+  // 1부터 9까지 숫자를 생성한다. 포함되지않게.
+  for(var n = 0;n< random_array.length;n++){
+    while (1) {
+      var v = random(1,size);
+      if(!isContain(random_array,v)) {
+        random_array[n] = v;
+        break;
+      }
+    }
+  }
+
+  return random_array;
+}  
   
 // 2 차 배열 생성
 function create2DArray(rows, columns) {
