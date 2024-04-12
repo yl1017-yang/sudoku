@@ -1,5 +1,5 @@
 
-//var total_array;
+var total_array;
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function setRandomArray() {
 
   var array = create2DArray(9,9); 
-  for(var n=0;n<1000;n++) {
+  for(var n=0;n<10000;n++) {
     if(fnSetRandomArray(array)){
       console.log("success count = ",n);
       break;
@@ -22,6 +22,24 @@ function setRandomArray() {
 
   console.log("array = ",array);
 
+  total_array = create2DArray(9,9); 
+
+  for (var n=0;n<9;n++) {
+    for (var i=0;i<9;i++) {
+
+
+      var obj = new Object();
+      obj.num = array[n][i];  // 숫자
+      obj.input = -1; // 입렵값
+
+      var ran = random(1,3);
+      obj.isVisible = ran != 1 ? true : false; // 보이는 여부
+
+      total_array[n][i] = obj;
+    }  
+  }
+
+  console.log("total_array = ",total_array);
 }
 
 function fnSetRandomArray(array) {
