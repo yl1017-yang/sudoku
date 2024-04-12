@@ -25,166 +25,22 @@ function setRandomArray() {
 
     var box_s_row = 0;
     var box_e_row = 2;
-    var box_s_col = 0;
-    var box_e_col = 2;
 
-    //setBoxArray(box_s_row,box_e_row,box_s_col,box_e_col);
+    for(var n=0;n<3;n++) {
 
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
+      var box_s_col = 0;
+      var box_e_col = 2;
+
+      for(var i=0;i<3;i++) {
+        if(!setBoxArray(box_s_row,box_e_row,box_s_col,box_e_col))
           return false;
+
+        box_s_col += 3;
+        box_e_col += 3;  
       }
-    }
 
-    box_s_row = 0;
-    box_e_row = 2;
-    box_s_col = 3;
-    box_e_col = 5;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
-    }
-    
-    box_s_row = 0;
-    box_e_row = 2;
-    box_s_col = 6;
-    box_e_col = 8;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
-    }
-
-    box_s_row = 3;
-    box_e_row = 5;
-    box_s_col = 0;
-    box_e_col = 2;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
-    }
-
-    box_s_row = 3;
-    box_e_row = 5;
-    box_s_col = 3;
-    box_e_col = 5;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
-    }
-
-    box_s_row = 3;
-    box_e_row = 5;
-    box_s_col = 6;
-    box_e_col = 8;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
-    }
-
-    box_s_row = 6;
-    box_e_row = 8;
-    box_s_col = 0;
-    box_e_col = 2;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
-    }
-
-    box_s_row = 6;
-    box_e_row = 8;
-    box_s_col = 3;
-    box_e_col = 5;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
-    }
-
-    box_s_row = 6;
-    box_e_row = 8;
-    box_s_col = 6;
-    box_e_col = 8;
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
-        if(!setArray(total_array
-          ,n
-          ,i
-          ,box_s_row
-          ,box_e_row
-          ,box_s_col
-          ,box_e_col))
-          return false;
-      }
+      box_s_row += 3;
+      box_e_row += 3;
     }
     
     console.log("total_array = ",total_array);
@@ -209,6 +65,7 @@ function setBoxArray(box_s_row,
           return false;
       }
     }
+    return true;
 }
 
 function setArray(array
