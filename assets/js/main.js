@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 랜덤 어레이를 생성한다.
     setRandomArray();
+
+    // 스도쿠 div에 데이타를 세팅한다.
+    setData();
 });
 
 function setRandomArray() {
@@ -29,7 +32,7 @@ function setRandomArray() {
 
 
       var obj = new Object();
-      obj.num = array[n][i];  // 숫자
+      obj.value = array[n][i];  // 숫자
       obj.input = -1; // 입렵값
 
       var ran = random(1,3);
@@ -41,6 +44,28 @@ function setRandomArray() {
 
   console.log("total_array = ",total_array);
 }
+
+function setData() {
+
+  for (var row=0;row<9;row++) {
+    for (var col=0;col<9;col++) {
+
+      document.querySelectorAll(`.cell input[data-row="${row}"]`) .forEach(input => {
+        var data_col = input.getAttribute('data-col');
+        if(data_col == col ) {
+          console.log("input = ",input );
+          var obj = total_array[row][col];
+          if(obj.isVisible)
+            input.value = total_array[row][col].value;
+          else {
+            input.value = "";
+          }
+        }      
+      });  
+    }
+  }
+}
+
 
 function fnSetRandomArray(array) {
 
