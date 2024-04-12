@@ -6,9 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ui 설정
     uiSet();
 
-    for(var n=0;n<1000;n++) {
-      if(setRandomArray())
-      break;
+    for(var n=0;n<10000;n++) {
+      if(setRandomArray()){
+        console.log("success count = ",n);
+        break;
+      }
     }
   });
 
