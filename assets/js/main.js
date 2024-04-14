@@ -1,4 +1,5 @@
 
+
 var total_array;
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -16,9 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
 function setRandomArray() {
 
   var array = create2DArray(9,9); 
-  for(var n=0;n<10000;n++) {
+  for(var n=1;n<10000;n++) {
     if(fnSetRandomArray(array)){
-      console.log("success count = ",n);
+      console.log("fnSetRandomArray success th = ",n);
       break;
     }
   }
@@ -27,22 +28,46 @@ function setRandomArray() {
 
   total_array = create2DArray(9,9); 
 
-  for (var n=0;n<9;n++) {
-    for (var i=0;i<9;i++) {
+  for(var n=1;n<10000;n++) {
+    if(fnSetMask(total_array, array)){
+      console.log("fnSetMask success th = ",n);
+      break;
+    }
+  }
 
+  console.log("total_array = ",total_array);
+ 
+}
+
+function fnSetMask(array, srcArray) {
+  for (var row=0;row<9;row++) {
+    for (var col=0;col<9;col++) {
 
       var obj = new Object();
-      obj.value = array[n][i];  // 숫자
-      obj.input = -1; // 입렵값
+      obj.value = srcArray[row][col];  // 숫자
+      obj.input = -1; // 입력값
 
       var ran = random(1,3);
       obj.isVisible = ran != 1 ? true : false; // 보이는 여부
 
-      total_array[n][i] = obj;
+      array[row][col] = obj;
+
+      // 마스크 유효성을 체크한다.
+      /*
+      if(!isContainRow(array,row,v)
+          &&!isContainCol(array,col,v)
+          && !isContainBox(array
+                          ,box_s_row
+                          ,box_e_row
+                          ,box_s_col
+                          ,box_e_col
+                          ,v )) {
+        //array[row][col] = v; //obj;  // =v;
+        return false;                  
+      }*/
     }  
   }
-
-  console.log("total_array = ",total_array);
+  return true;
 }
 
 function setData() {
@@ -172,7 +197,7 @@ function setArray(array
                           ,box_s_col
                           ,box_e_col
                           ,v )) {
-          var obj = new Object();
+          //var obj = new Object();
           //obj.num = v;  // 숫자
           //obj.input = -1; // 입렵값
 
