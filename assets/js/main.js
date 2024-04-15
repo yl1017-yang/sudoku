@@ -1,16 +1,15 @@
 
-
 var total_array;
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ui 설정
+    // ui 설정(설아)
     uiSet();
 
-    // 랜덤 어레이를 생성한다.
+    // 랜덤 어레이를 생성한다.(알베르토)
     setRandomArray();
 
-    // 스도쿠 div에 데이타를 세팅한다.
+    // 스도쿠 div에 데이타를 세팅한다.(알베르토)
     setData();
 });
 
@@ -98,23 +97,26 @@ function fnSetMask(array) {
   return true;
 }
 
+
 function setData() {
 
-  for (var row=0;row<9;row++) {
-    for (var col=0;col<9;col++) {
+  for (var row = 0; row < 9; row++) {
+    for (var col = 0; col < 9; col++) {
 
-      document.querySelectorAll(`.cell input[data-row="${row}"]`) .forEach(input => {
+      document.querySelectorAll(`.cell input[data-row="${row}"]`) .forEach(input => {        
         var data_col = input.getAttribute('data-col');
         if(data_col == col ) {
           //console.log("input = ",input );
           var obj = total_array[row][col];
-          if(obj.isVisible)
+          if(obj.isVisible) {            
             input.value = total_array[row][col].value;
-          else {
+            input.setAttribute('readonly', true);
+          } else {
             input.value = "";
+            input.removeAttribute('readonly');
           }
-        }      
-      });  
+        }
+      });
     }
   }
 }
