@@ -26,12 +26,30 @@ function setRandomArray() {
 
   console.log("array = ",array);
 
-  total_array = create2DArray(9,9); 
+  var mask_array = create2DArray(9,9); 
 
-  for(var n=1;n<10000;n++) {
-    if(fnSetMask(total_array, array)){
+  for(var n=1;n<1000;n++) {
+    if(fnSetMask(mask_array)){
       console.log("fnSetMask success th = ",n);
       break;
+    }
+  }
+
+  console.log("mask_array = ",mask_array);
+
+  total_array = create2DArray(9,9); 
+
+  for (var row=0;row<9;row++) {
+    for (var col=0;col<9;col++) {
+
+      var obj = new Object();
+      obj.value = array[row][col];  // 숫자
+      obj.input = -1; // 입력값
+
+
+      obj.isVisible = mask_array[row][col] == 1 ? true : false; // 보이는 여부
+
+      total_array[row][col] = obj;
     }
   }
 
@@ -39,33 +57,43 @@ function setRandomArray() {
  
 }
 
-function fnSetMask(array, srcArray) {
+function fnSetMask(array) {
+
+  initArray(array,9,9,-1);
+  
   for (var row=0;row<9;row++) {
     for (var col=0;col<9;col++) {
 
-      var obj = new Object();
-      obj.value = srcArray[row][col];  // 숫자
-      obj.input = -1; // 입력값
+      var ran = random(0,5);
 
-      var ran = random(1,3);
-      obj.isVisible = ran != 1 ? true : false; // 보이는 여부
+      var v = ran == 0 ? 0 : 1; 
 
-      array[row][col] = obj;
+      array[row][col] = v;
 
-      // 마스크 유효성을 체크한다.
-      /*
-      if(!isContainRow(array,row,v)
-          &&!isContainCol(array,col,v)
-          && !isContainBox(array
+      //console.log("row = ",row);
+      //console.log("col = ",col);
+
+      var box_s_row = parseInt(row / 3) * 3;
+      var box_e_row = box_s_row + 2;
+      var box_s_col = parseInt(col / 3) * 3;
+      var box_e_col = box_s_col + 2;
+
+      //console.log("box_s_row = ",box_s_row);
+      //console.log("box_e_row = ",box_e_row);
+      //console.log("box_s_col = ",box_s_col);
+      //console.log("box_e_col = ",box_e_col);
+
+      if(isSameRow(array,row,1)
+          ||isSameCol(array,col,1)
+          ||isSameBox(array
                           ,box_s_row
                           ,box_e_row
                           ,box_s_col
                           ,box_e_col
-                          ,v )) {
-        //array[row][col] = v; //obj;  // =v;
-        return false;                  
-      }*/
-    }  
+                          ,1 )) {
+          return false;
+        }
+      }
   }
   return true;
 }
@@ -78,7 +106,7 @@ function setData() {
       document.querySelectorAll(`.cell input[data-row="${row}"]`) .forEach(input => {
         var data_col = input.getAttribute('data-col');
         if(data_col == col ) {
-          console.log("input = ",input );
+          //console.log("input = ",input );
           var obj = total_array[row][col];
           if(obj.isVisible)
             input.value = total_array[row][col].value;
@@ -166,27 +194,11 @@ function setArray(array
     ,box_s_col
     ,box_e_col) {
 
-      var random_array1 = createRandomArray(9);
+      var random_array1 = createRandomArray(9,1,9);
 
       for(var n=0;n<random_array1.length;n++) {
         var v= random_array1[n];
 
-        /*
-        var b1 = isContainRow(array,row,v);
-        var b2 = isContainCol(array,col,v);
-        var b3 = isContainBox(array
-                              ,box_s_row
-                              ,box_e_row
-                              ,box_s_col
-                              ,box_e_col
-                              ,v );
-
-        console.log("----");  
-        console.log("v = " + v + " ,b1 = ",b1);
-        console.log("v = " + v + " ,b2 = ",b2);
-        console.log("v = " + v + " ,b3 = ",b3);
-        console.log("----");
-        */
 
         // 열, 박스 체크
         if(!isContainRow(array,row,v)
@@ -197,30 +209,23 @@ function setArray(array
                           ,box_s_col
                           ,box_e_col
                           ,v )) {
-          //var obj = new Object();
-          //obj.num = v;  // 숫자
-          //obj.input = -1; // 입렵값
 
-          //var ran = random(1,3);
-          //obj.isVisible = ran != 1 ? true : false; // 보이는 여부
-
-          array[row][col] = v; //obj;  // =v;
+          array[row][col] = v; 
           return true;
-          //break;
         }
       }
       return false;
 }
 
 // 1부터 9까지 랜덤하게 숫자를 생성해 어레이에 넣는다. 각각은 고유하다.  
-function createRandomArray(size) {
+function createRandomArray(size,min,max) {
 
   var random_array = new Array(size);
 
   // 1부터 9까지 숫자를 생성한다. 포함되지않게.
   for(var n = 0;n< random_array.length;n++){
     while (1) {
-      var v = random(1,size);
+      var v = random(min,max);
       if(!isContain(random_array,v)) {
         random_array[n] = v;
         break;
@@ -245,11 +250,9 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// 어레이에 속해있는지 체크
+// 1차 어레이에 속해있는지 체크
 function isContain(array,v) {
   for (var i = 0; i < array.length; i++) {
-    //console.log("v = ",v);
-    //console.log("array = ",array);
     if(v == array[i]) 
       return true;
   }
@@ -282,7 +285,7 @@ function isContainCol(array,col,v) {
   return false;
 }
 
-// 박스에서 체크
+// 박스에 같은 값이 있는지 체크
 function isContainBox(array,s_row,e_row,s_col,e_col,v) {
   for(var n=s_row;n<=e_row;n++) {
     for(var i=s_col;i<=e_col;i++) {
@@ -293,6 +296,45 @@ function isContainBox(array,s_row,e_row,s_col,e_col,v) {
     }
   }
    return false;
+}
+
+// 2차 어레이에서 줄에 값이 모두 같은지 체크
+function isSameRow(array,row,v) {
+
+  for(var n=0;n<9;n++) {
+    var row_v= array[row][n];
+
+    if( v != row_v ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// 2차 어레이에서 열에 값이 모두 같은지 체크
+function isSameCol(array,col,v) {
+
+  for(var n=0;n<9;n++) {
+    var col_v= array[n][col];
+
+    if( v != col_v ) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// 박스에 값이 모두 같은지 체크
+function isSameBox(array,s_row,e_row,s_col,e_col,v) {
+  for(var n=s_row;n<=e_row;n++) {
+    for(var i=s_col;i<=e_col;i++) {
+      var box_v = array[n][i];
+      if( v != box_v ) {
+        return false;
+      }
+    }
+  }
+   return true;
 }
 
 
