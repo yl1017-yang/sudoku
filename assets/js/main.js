@@ -69,9 +69,6 @@ function fnSetMask(array) {
 
       array[row][col] = v;
 
-      //console.log("row = ",row);
-      //console.log("col = ",col);
-
       var box_s_row = parseInt(row / 3) * 3;
       var box_e_row = box_s_row + 2;
       var box_s_col = parseInt(col / 3) * 3;
@@ -96,7 +93,6 @@ function fnSetMask(array) {
   }
   return true;
 }
-
 
 function setData() {
 
@@ -134,40 +130,22 @@ function fnSetRandomArray(array) {
     // 어레이 초기화
     initArray(array,9,9,-1);
 
-    var box_s_row = 0;
-    var box_e_row = 2;
-
-    for(var n=0;n<3;n++) {
-
-      var box_s_col = 0;
-      var box_e_col = 2;
-
-      for(var i=0;i<3;i++) {
-        if(!setBoxArray(array,box_s_row,box_e_row,box_s_col,box_e_col))
-          return false;
-
-        box_s_col += 3;
-        box_e_col += 3;  
-      }
-
-      box_s_row += 3;
-      box_e_row += 3;
-    }
-    
-    return true;
-}  
-
-function setBoxArray(array
-                     ,box_s_row
-                     ,box_e_row
-                     ,box_s_col
-                     ,box_e_col) {
-
-    for(var n=box_s_row;n<=box_e_row;n++) {
-      for(var i=box_s_col;i<=box_e_col;i++) {
+    for (var row=0;row<9;row++) {
+      for (var col=0;col<9;col++) {
+  
+        var box_s_row = parseInt(row / 3) * 3;
+        var box_e_row = box_s_row + 2;
+        var box_s_col = parseInt(col / 3) * 3;
+        var box_e_col = box_s_col + 2;
+  
+        //console.log("box_s_row = ",box_s_row);
+        //console.log("box_e_row = ",box_e_row);
+        //console.log("box_s_col = ",box_s_col);
+        //console.log("box_e_col = ",box_e_col);
+  
         if(!setArray(array
-          ,n
-          ,i
+          ,row
+          ,col
           ,box_s_row
           ,box_e_row
           ,box_s_col
@@ -175,14 +153,14 @@ function setBoxArray(array
           return false;
       }
     }
-    //console.log("array = ",array);
+
     return true;
-}
+}  
 
 // 어레이 초기화
 function initArray(array,row,col,initValue) {
-  for (var n=0;n<9;n++) {
-    for (var i=0;i<9;i++) {
+  for (var n=0;n<row;n++) {
+    for (var i=0;i<col;i++) {
       array[n][i] = -1;
     }  
   }
