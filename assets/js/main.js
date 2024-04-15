@@ -13,6 +13,17 @@ document.addEventListener('DOMContentLoaded', function() {
     setData();
 });
 
+function isValidNumber(row,col,v) {
+  
+  console.log("ValidNumber = ",total_array[row][col].value); 
+  console.log("v = ",v); 
+
+  if(v == total_array[row][col].value) 
+    return true;
+  else
+    return false;
+}
+
 function setRandomArray() {
 
   var array = create2DArray(9,9); 
@@ -178,7 +189,6 @@ function setArray(array
 
       for(var n=0;n<random_array1.length;n++) {
         var v= random_array1[n];
-
 
         // 열, 박스 체크
         if(!isContainRow(array,row,v)
