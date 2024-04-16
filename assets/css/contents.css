@@ -35,16 +35,14 @@ html, body, .sudoku-wrap{min-height:100%;}
 .highlight{background:var(--third);transition-duration:0.2s;}
 
 /* 정답모션 */
-.row:has(.answer){transition:all 0.5s ease;background:#0084cb;color:#fff;}
-.row .cell .answer{animation:fade 0.5s ease;}
+.row:has(.answer){transition:all 0.4s ease;background:#11acff;color:#fff;}
+.row .cell .answer{animation:fade 0.4s ease;}
 @keyframes fade {
   0%, 100% {
     opacity: 0;
-    /* background:#b84949; */
   }
   50% {
     opacity: 1;
-    /* background:#0084cb; */
   }
 }
 
