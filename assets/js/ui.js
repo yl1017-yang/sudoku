@@ -36,9 +36,9 @@ var uiSet = function() {
         lastFocused.value = number;
 
         if(isValidNumber(row,col,number)) {
-          lastFocused.style.color = "#0000ff"; 
+          lastFocused.style.color = "#00a85f"; 
         } else {
-          lastFocused.style.color = "#ff0000";   
+          lastFocused.style.color = "#DF2935";   
         }
     }
   } 
