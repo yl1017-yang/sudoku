@@ -32,8 +32,24 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap input:read-only{color:var(--gray555);cursor:not-allowed;}
 .place-wrap input:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}
 
-.highlight{background:var(--third);}
-.dark{background:var(--third);}
+.highlight{background:var(--third);transition-duration:0.2s;}
+
+/* 정답모션 */
+.row:has(.answer){transition:all 0.5s ease;background:#0084cb;color:#fff;}
+.row .cell .answer{animation:fade 0.5s ease;}
+@keyframes fade {
+  0%, 100% {
+    opacity: 0;
+    /* background:#b84949; */
+  }
+  50% {
+    opacity: 1;
+    /* background:#0084cb; */
+  }
+}
+
+/* 오답모션 */
+.wrong-answer{border:1px solid red;}
 
 
 .footer .menu{display:flex;justify-content:space-around;margin:5vw 0;}

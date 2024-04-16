@@ -50,9 +50,13 @@ function setEvent() {
         lastFocused.value = number;
 
         if(isSameNumber(mainModel.total_array,row,col,number)) {
-          lastFocused.style.color = "#00a85f"; 
+          lastFocused.style.color = "#00cb73";
+          lastFocused.classList.add('answer');
+          lastFocused.classList.remove('wrong-answer');
         } else {
-          lastFocused.style.color = "#DF2935";   
+          lastFocused.style.color = "#DF2935";
+          lastFocused.classList.add('wrong-answer');
+          lastFocused.classList.remove('answer');
         }
     }
   } 
