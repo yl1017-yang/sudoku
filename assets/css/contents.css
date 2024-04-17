@@ -35,7 +35,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .highlight{background:var(--third);transition-duration:0.2s;}
 
 /* 정답모션 */
-.row:has(.answer){transition:all 0.4s ease;background:#11acff;color:#fff;}
+.row:has(.answer){transition:all 0.4s ease;background:#009856;color:#fff;}
 .row .cell .answer{animation:fade 0.4s ease;}
 @keyframes fade {
   0%, 100% {
@@ -47,7 +47,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 }
 
 /* 오답모션 */
-.wrong-answer{border:1px solid red;}
+.wrong-answer{}
 
 
 .footer .menu{display:flex;justify-content:space-around;margin:5vw 0;}
