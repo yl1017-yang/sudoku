@@ -47,7 +47,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 }
 
 /* 오답모션 */
-.wrong-answer{}
+.wrong-answer{background:#ffe5e7;}
 
 
 .footer .menu{display:flex;justify-content:space-around;margin:5vw 0;}
