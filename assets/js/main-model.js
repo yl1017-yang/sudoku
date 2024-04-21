@@ -47,43 +47,6 @@ var mainModel = {
      console.log("total_array = ",this.total_array); 
 
   },
-  setHideOption: function(array) {
-
-   initArray(array,9,9,-1);
-   
-   for (var row=0;row<9;row++) {
-     for (var col=0;col<9;col++) {
- 
-       var ran = random(0,5);
- 
-       var v = ran == 0 ? 0 : 1; 
- 
-       array[row][col] = v;
- 
-       var box_s_row = parseInt(row / 3) * 3;
-       var box_e_row = box_s_row + 2;
-       var box_s_col = parseInt(col / 3) * 3;
-       var box_e_col = box_s_col + 2;
- 
-       //console.log("box_s_row = ",box_s_row);
-       //console.log("box_e_row = ",box_e_row);
-       //console.log("box_s_col = ",box_s_col);
-       //console.log("box_e_col = ",box_e_col);
- 
-       if(isSameRow(array,row,1)
-           ||isSameCol(array,col,1)
-           ||isSameBox(array
-                           ,box_s_row
-                           ,box_e_row
-                           ,box_s_col
-                           ,box_e_col
-                           ,1 )) {
-           return false;
-         }
-       }
-   }
-   return true;
- },
  setRandomOption : function(array) {
  
      // 추후 개선이 필요하다.***
@@ -151,6 +114,60 @@ var mainModel = {
          }
        }
        return false;
- }
-};
+ },
+ setHideOption: function(array) {
 
+  initArray(array,9,9,-1);
+  
+  for (var row=0;row<9;row++) {
+    for (var col=0;col<9;col++) {
+
+      // 옵션 
+      // 총 히든숫자는 9*9 = 81
+      // 초급 - 히든 숫자 1박스에 2개. 2*9 = 18
+      // 중급 - 히든 숫자 1박스에 2.5개. 2.5*9 = 22.5
+      // 고급 - 히든 숫자 1박스에 3개. 3*9 = 27
+      var ran = random(1,81);
+
+      //var v = ran <= 18 ? 0 : 1; 
+      var v = ran <= 27 ? 0 : 1; 
+
+      array[row][col] = v;
+
+      var box_s_row = parseInt(row / 3) * 3;
+      var box_e_row = box_s_row + 2;
+      var box_s_col = parseInt(col / 3) * 3;
+      var box_e_col = box_s_col + 2;
+
+      //console.log("box_s_row = ",box_s_row);
+      //console.log("box_e_row = ",box_e_row);
+      //console.log("box_s_col = ",box_s_col);
+      //console.log("box_e_col = ",box_e_col);
+
+      // 같은 줄이나 같은 열, 같은 박스에 히든이 없다면 false
+      // 같은 줄이나 같은 열, 같은 박스에 히든이 모두 있다면 false
+      if(isSameRow(array,row,1)
+          ||isSameCol(array,col,1)
+          ||isSameBox(array
+                          ,box_s_row
+                          ,box_e_row
+                          ,box_s_col
+                          ,box_e_col
+                          ,1 )
+          ||isSameRow(array,row,0)
+          ||isSameCol(array,col,0)
+          ||isSameBox(array
+                          ,box_s_row
+                          ,box_e_row
+                          ,box_s_col
+                          ,box_e_col
+                          ,0 )                
+                          
+                          ) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+};
