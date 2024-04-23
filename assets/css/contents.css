@@ -4,14 +4,21 @@
 html, body, .sudoku-wrap{min-height:100%;}
 .sudoku-wrap{position:fixed;overflow:hidden;}
 
+/* 버튼 */
+.btn-small{display:block;padding:4vw 0;}
+.btn-medium{display:block;padding:5vw 0;}
+.btn-large{display:block;padding:6vw 0;}
+.btn-primary{margin:0 1vw;border-radius:100vw;background:var(--primary);color:var(--white);font-size:4vw;text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
+.btn-point{border-radius:100vw;background:var(--point);color:var(--white);font-size:6vw;text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
+
 /* 메인화면 */
 .start{display:flex;justify-content:center;align-content:center;flex-wrap:wrap;min-height:100vh;}
 .start .start-title{width:100%;text-align:center;font-size:18vw;font-weight:700;letter-spacing:-1vw;margin:2vw 0 10vw;}
 .start .start-desc{width:100%;text-align:center;font-size:6vw;letter-spacing:-0.3vw;}
 .start .start-step{display:flex;justify-content:space-between;width:100vw;margin:0 4vw;}
-.start .start-step a{display:block;width:28vw;padding:4vw 0;margin:0 1vw;border-radius:100vw;background:var(--primary);color:var(--white);font-size:4vw;text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
+.start .start-step a{width:28vw;}
 .start .start-btn{width:100vw;margin:4vw 4vw 0;}
-.start .start-btn a{display:block;width:100%;padding:6vw 0;border-radius:100vw;background:var(--point);color:var(--white);font-size:6vw;text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
+.start .start-btn a{width:100%;}
 
 /* 스도쿠 화면 */
 .sudoku-wrap{display:flex;flex-direction:column;justify-content:space-between;width:100%;background:var(--third);padding:0 4vw;}
@@ -90,3 +97,11 @@ html, body, .sudoku-wrap{min-height:100%;}
         display: none;
     }
   }
+
+
+/* 모달팝업 */
+.modal-wrap{position:fixed;display:flex;justify-content:center;align-content:center;flex-wrap:wrap;min-height:100vh;}
+.modal-wrap .modal-inner{width:70vw;background:#fff;border-radius:5vw;}
+.modal-wrap .modal-text{font-size:5vw;text-align:center;}
+.modal-wrap .modal-btn{display:flex;}
+.modal-wrap .modal-btn a{display:block;width:100%;padding:6vw 0;border-radius:2vw;background:var(--point);color:var(--white);font-size:6vw;text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
