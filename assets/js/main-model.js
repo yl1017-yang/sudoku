@@ -10,6 +10,14 @@ var mainModel = {
   // 초기화
   init: function() {
 
+    var plevel = getParameterValue("level"); 
+    console.log("getParameterValue level  = " + plevel);
+
+    if(plevel == "")
+      this.level = 1;
+    else
+      this.level = Number(plevel);
+
     console.log("level  = " + this.level);
 
      // 랜덤 어레이 생성
