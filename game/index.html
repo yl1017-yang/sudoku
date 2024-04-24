@@ -6,14 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
   <link rel="stylesheet" href="../assets/css/common.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
-<body>  
+<body>
   <div class="sudoku-wrap">
 
-    <header class="header">
+    <!-- <header class="header">
       <div class="header-btn">
-        <a href="../game/index.html" class="material-symbols-outlined">arrow_back_ios</a>
+        <button class="material-symbols-outlined">arrow_back_ios</button>
       </div>
       <div class="header-util">
         <button class="material-symbols-outlined">open_in_new</button>
@@ -21,191 +22,26 @@
         <button class="material-symbols-outlined">invert_colors</button>
         <button class="material-symbols-outlined">settings</button>
       </div>
-    </header>
+    </header> -->
 
     <main class="container">
-      <div class="score-wrap">
-        <div class="score">점수ㆍ50</div>
-        <ul>
-          <li>실수ㆍ1/3</li>
-          <li>중급</li>
-          <li>02:59</li>
-        </ul>
+      <div class="start">
+        <p class="start-desc">나랑 스도쿠 할래?</p>
+        <h2 class="start-title">SUDOKU</h2>
+
+        <div class="start-step">
+          <a href="../game/sudoku.html?level=1" class="btn-small btn-primary">초급</a>
+          <a href="../game/sudoku.html?level=3" class="btn-small btn-primary">중급</a>
+          <a href="../game/sudoku.html?level=5" class="btn-small btn-primary">고급</a>
+        </div>
+
+        <div class="start-btn">
+          <a href="../game/sudoku.html" class="btn-point">시작하기</a>
+        </div>        
       </div>
-      <section class="place-wrap">
-        <div class="row">
-          <div class="cell"><input type="text" data-row="0" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="2" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="1" data-col="0" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="1" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="2" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="0" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="2" maxlength="1" inputmode="none"></div>
-        </div>
-
-        <div class="row">
-          <div class="cell"><input type="text" data-row="0" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="4" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="0" data-col="5" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="1" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="5" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="3" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="5" maxlength="1" inputmode="none" ></div>
-        </div>
-
-        <div class="row">
-          <div class="cell"><input type="text" data-row="0" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="8" maxlength="1" inputmode="none"></div>
-        </div>
-
-        <div class="row">
-          <div class="cell"><input type="text" data-row="3" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="2" maxlength="1" inputmode="none"></div>
-        </div>
-
-        <div class="row">
-          <div class="cell"><input type="text" data-row="3" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="5" maxlength="1" inputmode="none"></div>
-        </div>
-
-        <div class="row">
-          <div class="cell"><input type="text" data-row="3" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="8" maxlength="1" inputmode="none"></div>
-        </div>
-        
-        <div class="row">
-          <div class="cell"><input type="text" data-row="6" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="2" maxlength="1" inputmode="none"></div>
-        </div>
-
-        <div class="row">
-          <div class="cell"><input type="text" data-row="6" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="5" maxlength="1" inputmode="none"></div>
-        </div>
-
-        <div class="row">
-          <div class="cell"><input type="text" data-row="6" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="8" maxlength="1" inputmode="none"></div>
-        </div>
-
-        <div class="animation-box">
-          <div class="motion box1"></div>
-          <div class="motion box2"></div>
-          <div class="motion box3"></div>
-          <div class="motion box4"></div>
-          <div class="motion box5"></div>
-          <div class="motion box6"></div>
-          <div class="motion box7"></div>
-          <div class="motion box8"></div>
-          <div class="motion box9"></div>
-        </div>
-      </section>
     </main>
-
-    <footer class="footer">
-      <ul class="menu">
-        <li>
-          <button class="material-symbols-outlined">undo</button>
-          <span>재시작</span>
-        </li>
-        <li>
-          <button class="material-symbols-outlined">ink_eraser</button>
-          <span>지우기</span>
-        </li>
-        <li>
-          <button class="material-symbols-outlined">edit_square</button>
-          <span>연습</span>
-        </li>
-        <li>
-          <button class="material-symbols-outlined">lightbulb</button>
-          <span>힌트</span>
-        </li>
-      </ul>
-      <div class="number">
-        <button class="btn-number" onclick="insertNumber(1)">1 <span>5</span></button>
-        <button class="btn-number" onclick="insertNumber(2)">2 <span>6</span></button>
-        <button class="btn-number" onclick="insertNumber(3)">3 <span>3</span></button>
-        <button class="btn-number" onclick="insertNumber(4)">4 <span>6</span></button>
-        <button class="btn-number" onclick="insertNumber(5)">5 <span>1</span></button>
-        <button class="btn-number" onclick="insertNumber(6)">6 <span>3</span></button>
-        <button class="btn-number" onclick="insertNumber(7)">7 <span>6</span></button>
-        <button class="btn-number" onclick="insertNumber(8)">8 <span>7</span></button>
-        <button class="btn-number" onclick="insertNumber(9)">9 <span>2</span></button>
-      </div>
-    </footer>
-
-    <!-- [D] 모달팝업 : modal-wrap hidden 클랙시 추가시 안보임 -->
-    <div class="modal-wrap" style="display:none;">
-      <div class="modal-inner">
-        <p class="modal-text">게임이 끝났어요!!!!<br>다음 게임으로 진행하세요</p>
-        <div class="modal-btn">
-          <a href="#none" class="btn-small btn-gray">다음 게임</a>
-          <a href="#none" class="btn-small btn-point">끝내기</a>
-        </div>
-      </div>
-      <div class="dimmed"></div>
-    </div>
-    <!-- //[D] 모달팝업 -->
 
   </div>
 
-  <!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
-  <script type="text/javascript" src="../assets/js/array-util.js"></script>
-  <script type="text/javascript" src="../assets/js/request-util.js"></script>
-  <script type="text/javascript" src="../assets/js/main-model.js"></script>
-  <script type="text/javascript" src="../assets/js/main-view.js"></script>
 </body>
 </html>
