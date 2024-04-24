@@ -68,6 +68,7 @@ function initData() {
 }
 
 function setView() {
+
   for (var row = 0; row < 9; row++) {
     for (var col = 0; col < 9; col++) {
 
@@ -87,4 +88,19 @@ function setView() {
       });
     }
   }
+
+  hideDialog();
 }
+
+function showDialog() {
+  let div = document.querySelector('.modal-wrap');
+  //div.classList.remove('hidden').add('hidden');
+  div.style.display = 'initial';
+}
+
+function hideDialog() {
+  let div = document.querySelector('.modal-wrap');
+  //div.classList.remove('hidden').add('hidden');
+  div.style.display = 'none';
+}
+
