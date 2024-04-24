@@ -21,11 +21,20 @@ html, body, .sudoku-wrap{min-height:100%;}
 .start .start-btn{width:100vw;margin:4vw 4vw 0;}
 .start .start-btn a{width:100%;border-radius:100vw;margin:0 1vw;}
 
-/* 스도쿠 화면 */
+/* 레이아웃 */
 .sudoku-wrap{display:flex;flex-direction:column;justify-content:space-between;width:100%;background:var(--third);padding:0 4vw;}
 .header{display:flex;justify-content:space-between;align-items:center;padding:3vw 0;}
 .header .header-util span{display:inline-block;margin-left:2vw;}
 
+/* 스도쿠 화면애니 */
+.sudoku-wrap{background:linear-gradient(90deg, #fff, #dfdeb4,#f2f1e4);background-size:400% 400%;animation:gradient 30s ease infinite;}
+@keyframes gradient {
+  0% {background--position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* 스도쿠 게임 */
 .container{flex:1;}
 .score-wrap{margin:10px 0 5px;}
 .score-wrap .score{font-size:5vw;color:var(--point);font-weight:600;text-align:center;margin:5vw 0;padding:1.8vw 0;background:var(--white);border-radius:100px;box-shadow:rgba(0, 0, 0, 0.08) 4px 5px 12px;}
