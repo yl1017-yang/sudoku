@@ -157,14 +157,12 @@ function checkValueCount(array,s_row,e_row,s_col,e_col,v, min, max) {
     }
   }
 
-  //console.log("checkValueCount count = ",count);
-
-  if(count >= min && count <= max) {
-    console.log("checkValueCount count = ",count);
+  if(count >= min && count <= max) {  
+    console.log("checkValueCount success : min = " + min + " ,max = " + max + " ,count = " + count);
     return true;
   }
   else {
-    console.log("checkValueCount fail : count = ",count);
+    console.log("checkValueCount fail : count = " + count);
     return false;
   }
 }
