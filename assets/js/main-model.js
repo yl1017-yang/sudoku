@@ -145,16 +145,13 @@ var mainModel = {
 
       // 옵션 
       // 총 히든숫자는 9*9 = 81
-      // 레벨 1 - 5*3 = 15
-      // 레벨 2 - 5*4 = 20
-      // 레벨 3 - 5*5 = 25
-      // 레벨 4 - 5*6 = 30
-      // 레벨 5 - 5*7 = 35
+      // 레벨 1 - 15*1 = 15
+      // 레벨 2 - 15*2 = 30
+      // 레벨 3 - 15*3 = 45
       var ran = random(1,total_count);
 
-      var hide_max = 5 * (this.level + 2);
+      var hide_max = 15 * (this.level);
 
-      //var v = ran <= 18 ? 0 : 1; 
       var v = ran <= hide_max ? 1 : 0; 
 
       array[row][col] = v;
