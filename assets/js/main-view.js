@@ -89,18 +89,57 @@ function setView() {
     }
   }
 
-  hideDialog();
+  let div_progress = document.querySelector('#div_progress');
+  let li_mistake   = document.querySelector('#li_mistake');
+  let li_level     = document.querySelector('#li_level');
+  let li_timer     = document.querySelector('#li_timer');
+
+  var level_text = "초급";
+  if(mainModel.level == 1)
+    level_text = "초급";
+  else if(mainModel.level == 2)
+    level_text = "중급";
+  else if(mainModel.level == 3)
+    level_text = "고급";
+  
+  li_level.innerText = level_text;
+  startTime = new Date().getTime();
+
+  li_timer.innerText = "03:00";
+
+  timerIntervalId = setInterval(function(){
+    var curTime = new Date().getTime();
+    var elapsedTimeSec = Math.floor((curTime - startTime)/1000);
+    var remainTime = 180 - elapsedTimeSec;
+    
+    if(remainTime < 0)
+      remainTime = 0;
+    
+    var remainMin = Math.floor(remainTime / 60);
+    var remainSec = remainTime % 60;
+    
+    var remainMinText = remainMin < 10 ? "0" + remainMin : remainMin;
+    var remainSecText = remainSec < 10 ? "0" + remainSec : remainSec;
+
+    li_timer.innerText = remainMinText + ":" + remainSecText;
+
+    if(remainTime == 0) {
+      clearInterval(timerIntervalId);
+    }
+
+  },1000);
 }
 
-function showDialog() {
+var startTime = 0;
+var timerIntervalId;
+
+function showModal() {
   let div = document.querySelector('.modal-wrap');
-  //div.classList.remove('hidden').add('hidden');
   div.style.display = 'initial';
 }
 
-function hideDialog() {
+function hideModal() {
   let div = document.querySelector('.modal-wrap');
-  //div.classList.remove('hidden').add('hidden');
   div.style.display = 'none';
 }
 
