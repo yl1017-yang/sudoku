@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setEvent() {
 
+  // 숫자판 포커스 이벤트
   let lastFocused;
   const inputs = document.querySelectorAll('.cell input');
 
@@ -39,6 +40,7 @@ function setEvent() {
     });
   });
 
+  // 숫자판 입력 이벤트
   window.insertNumber = function(number) {
     if (lastFocused && !lastFocused.readOnly) {
 
@@ -53,13 +55,55 @@ function setEvent() {
           lastFocused.style.color = "#00cb73";
           lastFocused.classList.add('answer');
           lastFocused.classList.remove('wrong-answer');
+
+          mainModel.total_array[row][col].isHidden = false;
+          lastFocused.setAttribute('readonly', true);
+
+          // 히든된 숫자 카운트를 세팅한다.
+          setHiddenNumberCount();
+
+          // 진행도를 세팅한다.
+          setProgress();
+
+          // 모두 맞췄다면    
+          var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
+          if(total_hidden == 0) {
+            showModal("게임이 끝났어요!!!!\다음 게임으로 진행하세요"
+                    ,function(){window.location.reload()}
+                    ,function(){hideModal()});
+          }   
+
         } else {
           lastFocused.style.color = "#DF2935";
           lastFocused.classList.add('wrong-answer');
           lastFocused.classList.remove('answer');
+
+          // 실수 횟수를 세팅한다.
+          mainModel.incorrect_count++;
+          setMistake();
+
+          if(mainModel.incorrect_count> mainModel.incorrect_max_count) {
+            showModal("실수를 너무 많이 했어요!!!!\n다시 하시겠어요?"
+            ,function(){window.location.reload()}
+            ,function(){hideModal()});
+          }
         }
     }
   } 
+
+  // 리로드 버튼 이벤트
+  document.querySelector('#btn_reload').onclick = function(){
+    window.location.reload();
+  };
+
+  // 지우기 버튼 이벤트
+  document.querySelector('#btn_erase').onclick = function(){
+     
+    if (lastFocused && !lastFocused.readOnly) {
+      lastFocused.value = "";
+    }   
+  };
+
 }
 
 function initData() {
@@ -69,6 +113,45 @@ function initData() {
 
 function setView() {
 
+  // 숫자 박스 세팅
+  setNumberBox();
+
+  // 실수횟수를 세팅한다.
+  setMistake();
+
+  // 레벨을 세팅한다.
+  setLevel();
+  
+  // 타이머를 세팅한다.
+  setTimer();
+
+  // 히든된 숫자 카운트를 세팅한다.
+  setHiddenNumberCount();
+
+  // 진행도를 세팅한다.
+  setProgress();
+
+  // 하단 남은 숫자 개수 보여주기
+  setHiddenNumberCount();
+
+}
+
+function showModal(msg,ok_listner,cancel_listner) {
+  let div = document.querySelector('.modal-wrap');
+  div.classList.remove("hidden");
+
+  document.querySelector('.modal-wrap .modal-text').innerText = msg;
+  document.querySelector('.modal-wrap .btn-gray').onclick = ok_listner;
+  document.querySelector('.modal-wrap .btn-point').onclick = cancel_listner;
+}
+
+function hideModal() {
+  let div = document.querySelector('.modal-wrap');
+  div.classList.add("hidden");
+}
+
+// 숫자 박스를 세팅한다.
+function setNumberBox() {
   for (var row = 0; row < 9; row++) {
     for (var col = 0; col < 9; col++) {
 
@@ -77,7 +160,7 @@ function setView() {
         if(data_col == col ) {
           //console.log("input = ",input );
           var obj = mainModel.total_array[row][col];
-          if(obj.isVisible) {            
+          if(!obj.isHidden) {            
             input.value = mainModel.total_array[row][col].value;
             input.setAttribute('readonly', true);
           } else {
@@ -88,21 +171,28 @@ function setView() {
       });
     }
   }
+}
 
-  let div_progress = document.querySelector('#div_progress');
-  let li_mistake   = document.querySelector('#li_mistake');
-  let li_level     = document.querySelector('#li_level');
-  let li_timer     = document.querySelector('#li_timer');
+function setHiddenNumberCount() {
 
-  var level_text = "초급";
-  if(mainModel.level == 1)
-    level_text = "초급";
-  else if(mainModel.level == 2)
-    level_text = "중급";
-  else if(mainModel.level == 3)
-    level_text = "고급";
-  
-  li_level.innerText = level_text;
+   for (var i=1;i<=9;i++) {
+      document.querySelector('#sp_remain_num_' + i).innerText = getHiddenNumberCountInArray(mainModel.total_array,0,9,0,9,i);
+   }
+}
+
+function setProgress() {
+
+  var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
+  //console.log("total_hidden=",total_hidden);
+  document.querySelector('#div_progress').innerText 
+      = "진행도 " + (100 - Math.floor(total_hidden/mainModel.init_hidden_count*100)) + "%";
+}
+
+var startTime = 0;
+var timerIntervalId;
+
+function setTimer() {
+
   startTime = new Date().getTime();
 
   li_timer.innerText = "03:00";
@@ -121,6 +211,7 @@ function setView() {
     var remainMinText = remainMin < 10 ? "0" + remainMin : remainMin;
     var remainSecText = remainSec < 10 ? "0" + remainSec : remainSec;
 
+    let li_timer     = document.querySelector('#li_timer');
     li_timer.innerText = remainMinText + ":" + remainSecText;
 
     if(remainTime == 0) {
@@ -130,16 +221,21 @@ function setView() {
   },1000);
 }
 
-var startTime = 0;
-var timerIntervalId;
+function setLevel() {
+  let li_level     = document.querySelector('#li_level');
 
-function showModal() {
-  let div = document.querySelector('.modal-wrap');
-  div.style.display = 'initial';
+  var level_text = "초급";
+  if(mainModel.level == 1)
+    level_text = "초급";
+  else if(mainModel.level == 2)
+    level_text = "중급";
+  else if(mainModel.level == 3)
+    level_text = "고급";
+  
+  li_level.innerText = level_text;
 }
 
-function hideModal() {
-  let div = document.querySelector('.modal-wrap');
-  div.style.display = 'none';
+function setMistake() {
+  let li_mistake     = document.querySelector('#li_mistake');
+  li_mistake.innerText =  "실수ㆍ" + mainModel.incorrect_count + "/" + mainModel.incorrect_max_count;
 }
-
