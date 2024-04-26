@@ -17,7 +17,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .start .start-title{width:100%;text-align:center;font-size:18vw;font-weight:700;letter-spacing:-1vw;margin:2vw 0 10vw;}
 .start .start-desc{width:100%;text-align:center;font-size:6vw;letter-spacing:-0.3vw;}
 .start .start-step{display:flex;justify-content:space-between;width:100vw;margin:0 4vw;}
-.start .start-step a{width:28vw;border-radius:100vw;}
+.start .start-step a{width:28vw;border-radius:100vw;margin:0 1vw}
 .start .start-btn{width:100vw;margin:4vw 4vw 0;}
 .start .start-btn a{width:100%;border-radius:100vw;margin:0 1vw;}
 
