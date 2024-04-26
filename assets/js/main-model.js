@@ -7,6 +7,12 @@ var mainModel = {
   total_array:{},
   // 레벨
   level:1,
+  // 초기 히든갯수
+  init_hidden_count:0,
+  // 틀린갯수
+  incorrect_count:0,
+  // 틀린갯수
+  incorrect_max_count:5,
   // 초기화
   init: function() {
 
@@ -34,21 +40,21 @@ var mainModel = {
 
      console.log("array = ",array);
  
-     // 하이드 어레이 생성
-     var hideArratTryMaxCnt = 1000;
-     var hide_array = create2DArray(9,9); 
-     for(var n=1;n<=hideArratTryMaxCnt;n++) {
-       if(this.setHideOption(hide_array)){
-         console.log("setHideOption success th = ",n);
+     // 히든 어레이 생성
+     var hiddenArratTryMaxCnt = 1000;
+     var hidden_array = create2DArray(9,9); 
+     for(var n=1;n<=hiddenArratTryMaxCnt;n++) {
+       if(this.setHiddenOption(hidden_array)){
+         console.log("setHiddenOption success th = ",n);
          break;
        }
-       if(n== hideArratTryMaxCnt)
-        console.log("setHideOption fail");
+       if(n== hiddenArratTryMaxCnt)
+        console.log("setHiddenOption fail");
      }
  
-     console.log("hide_array = ",hide_array);
+     console.log("hidden_array = ",hidden_array);
  
-     // 랜덤어레이와 하이드어레이를 결합해 최종 어레이 생성
+     // 랜덤어레이와 히든어레이를 결합해 최종 어레이 생성
      this.total_array = create2DArray(9,9); 
      for (var row=0;row<9;row++) {
        for (var col=0;col<9;col++) {
@@ -57,7 +63,7 @@ var mainModel = {
          obj.value = array[row][col];  // 숫자
          obj.input = -1; // 입력값
  
-         obj.isVisible = hide_array[row][col] == 1 ? false : true; // 보이는 여부
+         obj.isHidden = hidden_array[row][col] == 1 ? true : false; // 히든 여부
  
          this.total_array[row][col] = obj;
        }
@@ -134,7 +140,8 @@ var mainModel = {
        }
        return false;
  },
- setHideOption: function(array) {
+ // 히든 옵션 세팅
+ setHiddenOption: function(array) {
 
   initArray(array,9,9,-1);
   
@@ -166,8 +173,8 @@ var mainModel = {
       //console.log("box_s_col = ",box_s_col);
       //console.log("box_e_col = ",box_e_col);
 
-      // 같은 줄이나 같은 열, 같은 박스에 하이드가 없다면 false
-      // 같은 줄이나 같은 열, 같은 박스에 하이드가 모두 있다면 false
+      // 같은 줄이나 같은 열, 같은 박스에 히든이 없다면 false
+      // 같은 줄이나 같은 열, 같은 박스에 히든이 모두 있다면 false
       if(isSameRow(array,row,0)
           ||isSameCol(array,col,0)
           ||isSameBox(array
@@ -191,10 +198,19 @@ var mainModel = {
       }
     }
     
-    // 어레이에 총 히든이 몇개 있는지 체크한다.
-    if(!checkValueCount(array,0,9,0,9,1,hide_max,hide_max+5)) {
-        return false;
+    // 어레이에 총 숨김이 몇개 있는지 체크한다.
+    var hiddenMin = hide_max;
+    var hiddenMax = hide_max + 5;
+    var count = getNumberCountInArray(array,0,9,0,9,1);
+  
+    if(count >= hiddenMin && count <= hiddenMax) {
+      this.init_hidden_count = count;  
+      console.log("checkValueCount success : min = " + hiddenMin + " ,max = " + hiddenMax + " ,count = " + count);    
     }
+    else {
+      console.log("checkValueCount fail : count = " + count);
+      return false;
+    } 
 
     return true;
   }
