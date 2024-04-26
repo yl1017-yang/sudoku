@@ -14,7 +14,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 /* 메인화면 */
 .start{display:flex;justify-content:center;align-content:center;flex-wrap:wrap;min-height:100vh;}
-.start .start-title{width:100%;text-align:center;font-size:18vw;font-weight:700;letter-spacing:-1vw;margin:2vw 0 10vw;}
+.start .start-title{width:100%;text-align:center;font-size:17vw;font-weight:700;line-height:20vw;margin:0 0 10vw;}
 .start .start-desc{width:100%;text-align:center;font-size:6vw;letter-spacing:-0.3vw;}
 .start .start-step{display:flex;justify-content:space-between;width:100vw;margin:0 4vw;}
 .start .start-step a{width:28vw;border-radius:100vw;margin:0 1vw}
