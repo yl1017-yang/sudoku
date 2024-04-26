@@ -142,11 +142,8 @@ function isSameBox(array,s_row,e_row,s_col,e_col,v) {
   return true;
 }
 
-// 값이 있는 총 횟수를 체크한다.
-function checkValueCount(array,s_row,e_row,s_col,e_col,v, min, max) {
-  //console.log("checkValueCount start");
-  //console.log("checkValueCount min = " + min);
-  //console.log("checkValueCount max = " + max);
+// 어레이안에 들어있는 숫자 갯수를 가져온다.
+function getNumberCountInArray(array,s_row,e_row,s_col,e_col,v) {
   var count = 0;
   for(var n=s_row;n<e_row;n++) {
     for(var i=s_col;i<e_col;i++) {
@@ -156,13 +153,33 @@ function checkValueCount(array,s_row,e_row,s_col,e_col,v, min, max) {
       }
     }
   }
+  return count; 
+}
 
-  if(count >= min && count <= max) {  
-    console.log("checkValueCount success : min = " + min + " ,max = " + max + " ,count = " + count);
-    return true;
+// 어레이안에 들어있는 히든이 되어 있는 숫자 갯수를 가져온다.
+function getHiddenNumberCountInArray(array,s_row,e_row,s_col,e_col,v) {
+  var count = 0;
+  for(var n=s_row;n<e_row;n++) {
+    for(var i=s_col;i<e_col;i++) {
+      var array_v = array[n][i];
+      if(array_v.isHidden && array_v.value == v) {
+        count++;
+      }
+    }
   }
-  else {
-    console.log("checkValueCount fail : count = " + count);
-    return false;
+  return count; 
+}
+
+// 어레이안에 들어있는 히든 여부 갯수를 가져온다.
+function getHiddenCountInArray(array,s_row,e_row,s_col,e_col) {
+  var count = 0;
+  for(var n=s_row;n<e_row;n++) {
+    for(var i=s_col;i<e_col;i++) {
+      var array_v = array[n][i];
+      if(array_v.isHidden) {
+        count++;
+      }
+    }
   }
+  return count; 
 }
