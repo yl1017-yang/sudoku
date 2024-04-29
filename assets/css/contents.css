@@ -26,7 +26,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .header{display:flex;justify-content:space-between;align-items:center;padding:3vw 0;}
 .header .header-util span{display:inline-block;margin-left:2vw;}
 
-/* 스도쿠 화면애니 */
+/* 스도쿠 배경화면 애니메이션 */
 .sudoku-wrap{background:linear-gradient(90deg, #fff, #dfdeb4,#f2f1e4);background-size:400% 400%;animation:gradient 30s ease infinite;}
 @keyframes gradient {
   0% {background--position: 0% 50%;}
@@ -44,6 +44,11 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap{position:relative;display:flex;flex-wrap:wrap;width:100%;background:var(--white);box-sizing:border-box;border:2px solid var(--gray555);border-right:0;border-bottom:0;box-shadow:rgba(0, 0, 0, 0.1) 5px 7px 10px;z-index:0;}
 .place-wrap .row{position:relative;display:flex;flex-wrap:wrap;width:33.3334%;border-right:2px solid var(--gray555);border-bottom:2px solid var(--gray555);}
 .place-wrap .row .cell{position:relative;width:33.3334%;height:9.88vw;border:1px solid var(--grayddd);flex:auto;}
+
+.place-wrap .row .cell .small-number{position:absolute;width:30%;height:30%;top:0;left:0;font-size:3vw;color:var(--gray999);font-weight:700;line-height:1;text-align:center;z-index:2;}
+.place-wrap .row .cell:is(.number1,.number4,.number7){left:0 !important;}
+.place-wrap .row .cell:is(.number2,.number5,.number8){left:30% !important;}
+.place-wrap .row .cell:is(.number3,.number6,.number9){left:60% !important;}
 
 .place-wrap input[type='text']{position:absolute;width:100%;height:100%;text-align:center;font-size:6.8vw;color:var(--primary);line-height:0;caret-color:transparent;z-index:2;}
 .place-wrap input[type='text']:focus{background:var(--primary);color:var(--white);transition-duration:0.2s;}
@@ -79,7 +84,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .footer .number button{display:block;width:100%;padding:2vw 0;margin:0 0.5vw;font-size:8vw;font-weight:600;color:var(--white);background:var(--primary);border-radius:1.4vw;box-shadow:rgba(0, 0, 0, 0.1) 3px 4px 7px;}
 .footer .number button span{display:block;font-size:3.6vw;color:var(--secondary);}
 
-/* 화면 애니메이션 */
+/* 스도쿠 최초화면 애니메이션 */
 .animation-box{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;animation:fadeOut 0.8s forwards;}
 .animation-box > div{position:absolute;top:0;left:0;width:100%;height:10vw;background:linear-gradient(90deg, #009856,#F5F3BB);background-size:100% 100%;}
 .animation-box .box1{top:0;animation-delay:0s !important;}

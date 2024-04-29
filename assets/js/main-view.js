@@ -40,6 +40,19 @@ function setEvent() {
     });
   });
 
+  //연습 숫자 추가 - 2024.04.29 추가
+  const smallNumber = document.querySelectorAll('.row .cell');
+
+  smallNumber.forEach((cell, index) => {
+    for (let i = 1; i <= 9; i++) {
+      const numberDiv = document.createElement("div");
+      numberDiv.textContent = i;
+      numberDiv.classList.add("small-number");
+      numberDiv.classList.add(`number${i}`);
+      cell.appendChild(numberDiv);
+    }
+  });
+
   // 숫자판 입력 이벤트
   window.insertNumber = function(number) {
     if (lastFocused && !lastFocused.readOnly) {
@@ -68,7 +81,7 @@ function setEvent() {
           // 모두 맞췄다면    
           var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
           if(total_hidden == 0) {
-            showModal("게임이 끝났어요!!!!\다음 게임으로 진행하세요"
+            showModal("게임이 끝났어요!!!!\n다음 게임으로 진행하세요"
                     ,function(){window.location.reload()}
                     ,function(){hideModal()});
           }   

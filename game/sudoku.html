@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title></title>
+  <title>SUDOKU</title>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
@@ -25,7 +25,7 @@
 
     <main class="container">
       <div class="score-wrap">
-        <div class="score" id = "div_progress">진행도 0%</div>
+        <div class="score" id = "div_progress">진행 : 0%</div>
         <ul>
           <li id="li_mistake"></li>
           <li id="li_level"></li>
@@ -175,7 +175,7 @@
         </li>
       </ul>
       <div class="number">
-        <button class="btn-number" onclick="insertNumber(1)">1 <span id ="sp_remain_num_1" >5</span></button>
+        <button class="btn-number" onclick="insertNumber(1)">1 <span id ="sp_remain_num_1">5</span></button>
         <button class="btn-number" onclick="insertNumber(2)">2 <span id ="sp_remain_num_2">6</span></button>
         <button class="btn-number" onclick="insertNumber(3)">3 <span id ="sp_remain_num_3">3</span></button>
         <button class="btn-number" onclick="insertNumber(4)">4 <span id ="sp_remain_num_4">6</span></button>
@@ -187,8 +187,8 @@
       </div>
     </footer>
 
-    <!-- [D] 모달팝업 : modal-wrap hidden 클랙시 추가시 안보임 -->
-    <div class="modal-wrap hidden">  
+    <!-- [D] 모달팝업 : modal-wrap hidden 클래스 추가시 안보임 -->
+    <div class="modal-wrap hidden">
       <div class="modal-inner">
         <p class="modal-text">게임이 끝났어요!!!!<br>다음 게임으로 진행하세요</p>
         <div class="modal-btn">
