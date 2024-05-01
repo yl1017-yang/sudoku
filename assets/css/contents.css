@@ -45,14 +45,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap .row{position:relative;display:flex;flex-wrap:wrap;width:33.3334%;border-right:2px solid var(--gray555);border-bottom:2px solid var(--gray555);}
 .place-wrap .row .cell{position:relative;width:33.3334%;height:9.88vw;border:1px solid var(--grayddd);flex:auto;}
 
-.place-wrap .row .cell .small-number{position:absolute;width:33%;height:33%;top:0;left:0;font-size:3vw;color:var(--gray999);font-weight:700;line-height:1;text-align:center;z-index:2;}
-.place-wrap .row .cell :is(.number1,.number4,.number7){left:0;}
-.place-wrap .row .cell :is(.number2,.number5,.number8){left:30%;}
-.place-wrap .row .cell :is(.number3,.number6,.number9){left:60%;}
-.place-wrap .row .cell :is(.number4,.number5,.number6){top:30%;}
-.place-wrap .row .cell :is(.number7,.number8,.number9){top:60%;}
-
-.place-wrap input[type='text']{position:absolute;width:100%;height:100%;text-align:center;font-size:6.8vw;color:var(--primary);line-height:0;caret-color:transparent;z-index:2;}
+.place-wrap input[type='text']{position:absolute;width:100%;height:100%;text-align:center;font-size:6.8vw;color:var(--primary);line-height:0;caret-color:transparent;background:transparent;z-index:2;}
 .place-wrap input[type='text']:focus{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 .place-wrap input:focus-visible{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 
@@ -60,6 +53,15 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap input:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}
 
 .highlight{background:var(--third);transition-duration:0.2s;}
+
+/* 연습숫자 */
+.place-wrap .row .cell .small-number{position:absolute;width:33%;height:33%;top:0;left:0;font-size:3vw;color:var(--gray999);font-weight:700;text-align:center;z-index:1;}
+.place-wrap .row .cell :is(.number1,.number4,.number7){left:0;}
+.place-wrap .row .cell :is(.number2,.number5,.number8){left:30%;}
+.place-wrap .row .cell :is(.number3,.number6,.number9){left:60%;}
+.place-wrap .row .cell :is(.number4,.number5,.number6){top:30%;}
+.place-wrap .row .cell :is(.number7,.number8,.number9){top:60%;}
+
 
 /* 정답모션 */
 .row:has(.answer){transition:all 0.4s ease;background:#009856;color:#fff;}
