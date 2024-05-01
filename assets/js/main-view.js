@@ -40,21 +40,6 @@ function setEvent() {
     });
   });
 
-  //연습 숫자 추가 - 2024.04.29 추가
-  if (setHiddenNumberCount = true) {
-  const smallNumber = document.querySelectorAll('.row .cell');
-
-  smallNumber.forEach((cell, index) => {
-    for (let i = 1; i <= 9; i++) {
-      const numberDiv = document.createElement("div");
-      numberDiv.textContent = i;
-      numberDiv.classList.add("small-number");
-      numberDiv.classList.add(`number${i}`);
-      cell.appendChild(numberDiv);
-    }
-  });
-}
-
   // 숫자판 입력 이벤트
   window.insertNumber = function(number) {
     if (lastFocused && !lastFocused.readOnly) {
@@ -170,17 +155,19 @@ function setNumberBox() {
   for (var row = 0; row < 9; row++) {
     for (var col = 0; col < 9; col++) {
 
-      document.querySelectorAll(`.cell input[data-row="${row}"]`) .forEach(input => {        
+      document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
         var data_col = input.getAttribute('data-col');
         if(data_col == col ) {
           //console.log("input = ",input );
           var obj = mainModel.total_array[row][col];
-          if(!obj.isHidden) {            
+          if(!obj.isHidden) {
             input.value = mainModel.total_array[row][col].value;
             input.setAttribute('readonly', true);
+            input.parentElement.querySelectorAll('.small-number').forEach(div => div.remove()); // 연습숫자 지우기 (양 추가)
           } else {
             input.value = "";
             input.removeAttribute('readonly');
+            addSmallNumbers(input.parentElement); // 연습숫자 추가 (양 추가)
           }
         }
       });
@@ -188,9 +175,29 @@ function setNumberBox() {
   }
 }
 
+//연습 숫자 9개 추가 (양 추가)
+function addSmallNumbers(cell) {
+  const smallNumber = cell.querySelectorAll('.small-number');
+  if (smallNumber.length === 0) {
+    for (let i = 1; i <= 9; i++) {
+      const numberDiv = document.createElement("div");
+      numberDiv.textContent = i;
+      numberDiv.classList.add("small-number", `number${i}`);
+      cell.appendChild(numberDiv);
+    }
+  }
+}
+
+// 연습숫자 초기화 (양 추가)
+document.querySelectorAll('.row .cell').forEach(cell => {
+  addSmallNumbers(cell);
+});
+
+
+
 function setHiddenNumberCount() {
 
-   for (var i=1;i<=9;i++) {
+   for (var i = 1; i <= 9; i++) {
       document.querySelector('#sp_remain_num_' + i).innerText = getHiddenNumberCountInArray(mainModel.total_array,0,9,0,9,i);
    }
 }
