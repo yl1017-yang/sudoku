@@ -49,44 +49,63 @@ function setEvent() {
         var row = lastFocused.getAttribute('data-row');
         var col = lastFocused.getAttribute('data-col');
 
-        lastFocused.value = number;
+        console.log("isExamMode = ",isExamMode);
 
-        if(isSameNumber(mainModel.total_array,row,col,number)) {
-          lastFocused.style.color = "#00cb73";
-          lastFocused.classList.add('answer');
-          lastFocused.classList.remove('wrong-answer');
+        // 연습모드가 아니면
+        if(!isExamMode) {
 
-          mainModel.total_array[row][col].isHidden = false;
-          lastFocused.setAttribute('readonly', true);
+          lastFocused.value = number;
 
-          // 히든된 숫자 카운트를 세팅한다.
-          setHiddenNumberCount();
+          lastFocused.parentElement.querySelectorAll('.small-number').forEach(numdiv => {
+            numdiv.style.display = 'none';
+          });
 
-          // 진행도를 세팅한다.
-          setProgress();
+          if(isSameNumber(mainModel.total_array,row,col,number)) {
+            lastFocused.style.color = "#00cb73";
+            lastFocused.classList.add('answer');
+            lastFocused.classList.remove('wrong-answer');
 
-          // 모두 맞췄다면    
-          var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
-          if(total_hidden == 0) {
-            showModal("게임이 끝났어요!!!!\n다음 게임으로 진행하세요"
-                    ,function(){window.location.reload()}
-                    ,function(){hideModal()});
-          }   
+            mainModel.total_array[row][col].isHidden = false;
+            lastFocused.setAttribute('readonly', true);
 
-        } else {
-          lastFocused.style.color = "#DF2935";
-          lastFocused.classList.add('wrong-answer');
-          lastFocused.classList.remove('answer');
+            // 히든된 숫자 카운트를 세팅한다.
+            setHiddenNumberCount();
 
-          // 실수 횟수를 세팅한다.
-          mainModel.incorrect_count++;
-          setMistake();
+            // 진행도를 세팅한다.
+            setProgress();
 
-          if(mainModel.incorrect_count> mainModel.incorrect_max_count) {
-            showModal("실수를 너무 많이 했어요!!!!\n다시 하시겠어요?"
-            ,function(){window.location.reload()}
-            ,function(){hideModal()});
+            // 모두 맞췄다면    
+            var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
+            if(total_hidden == 0) {
+              showModal("게임이 끝났어요!!!!\n다음 게임으로 진행하세요"
+                      ,function(){window.location.reload()}
+                      ,function(){hideModal()});
+            }   
+
+          } else {
+            lastFocused.style.color = "#DF2935";
+            lastFocused.classList.add('wrong-answer');
+            lastFocused.classList.remove('answer');
+
+            // 실수 횟수를 세팅한다.
+            mainModel.incorrect_count++;
+            setMistake();
+
+            if(mainModel.incorrect_count> mainModel.incorrect_max_count) {
+              showModal("실수를 너무 많이 했어요!!!!\n다시 하시겠어요?"
+              ,function(){window.location.reload()}
+              ,function(){hideModal()});
+            }
           }
+        // 연습모드이면  
+        } else {
+
+          lastFocused.value = "";
+
+          var numdiv = lastFocused.parentElement.querySelector('.number' + number);
+          console.log("numdiv = ",numdiv);
+          numdiv.style.display = 'block';
+
         }
     }
   } 
@@ -163,37 +182,31 @@ function setNumberBox() {
           if(!obj.isHidden) {
             input.value = mainModel.total_array[row][col].value;
             input.setAttribute('readonly', true);
-            input.parentElement.querySelectorAll('.small-number').forEach(div => div.remove()); // 연습숫자 지우기 (양 추가)
           } else {
             input.value = "";
             input.removeAttribute('readonly');
-            addSmallNumbers(input.parentElement); // 연습숫자 추가 (양 추가)
           }
+
+          initExamNumbers(input.parentElement); // 연습숫자 추가 (양 추가)
         }
       });
     }
   }
 }
 
-//연습 숫자 9개 추가 (양 추가)
-function addSmallNumbers(cell) {
+//연습 숫자 9개 초기화 (양 추가)
+function initExamNumbers(cell) {
   const smallNumber = cell.querySelectorAll('.small-number');
   if (smallNumber.length === 0) {
     for (let i = 1; i <= 9; i++) {
       const numberDiv = document.createElement("div");
       numberDiv.textContent = i;
       numberDiv.classList.add("small-number", `number${i}`);
+      numberDiv.style.display = 'none';
       cell.appendChild(numberDiv);
     }
   }
 }
-
-// 연습숫자 초기화 (양 추가)
-document.querySelectorAll('.row .cell').forEach(cell => {
-  addSmallNumbers(cell);
-});
-
-
 
 function setHiddenNumberCount() {
 
@@ -260,4 +273,17 @@ function setLevel() {
 function setMistake() {
   let li_mistake     = document.querySelector('#li_mistake');
   li_mistake.innerText =  "실수ㆍ" + mainModel.incorrect_count + "/" + mainModel.incorrect_max_count;
+}
+
+var isExamMode = false;
+
+function examMode() {
+
+   if(!isExamMode) {
+     isExamMode = true;
+     document.querySelector('#btn_exammode').style.color = "#FF0000"; 
+   } else {
+     isExamMode = false;
+     document.querySelector('#btn_exammode').style.color = "#555555";
+   }
 }
