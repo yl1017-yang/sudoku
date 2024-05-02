@@ -91,7 +91,7 @@ function setEvent() {
             mainModel.incorrect_count++;
             setMistake();
 
-            if(mainModel.incorrect_count> mainModel.incorrect_max_count) {
+            if(mainModel.incorrect_count>= mainModel.incorrect_max_count) {
               showModal("실수를 너무 많이 했어요!!!!\n다시 하시겠어요?"
               ,function(){window.location.reload()}
               ,function(){hideModal()});
