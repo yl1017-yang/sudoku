@@ -21,8 +21,10 @@ var mainModel = {
 
     if(plevel == "")
       this.level = 1;
-    else
+    else {
+      plevel = plevel.replace("#none","");
       this.level = Number(plevel);
+    }
 
     console.log("level  = " + this.level);
 
