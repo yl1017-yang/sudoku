@@ -31,7 +31,7 @@ function createRandomArray(size,min,max) {
   for(var n = 0;n< random_array.length;n++){
     while (1) {
       var v = random(min,max);
-      if(!this.isContain(random_array,v)) {
+      if(this.isContain(random_array,v) == -1) {
         random_array[n] = v;
         break;
       }
@@ -55,52 +55,95 @@ function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// 1차 어레이에 속해있는지 체크
-function isContain(array,v) {
+// 1차 어레이에 같은 값이 있는지 체크
+function isContain(array,v,array_is_Object,hidden_no_check) {
   for (var i = 0; i < array.length; i++) {
-    if(v == array[i]) 
-      return true;
+    var _v; 
+    if(array_is_Object != undefined && array_is_Object) {
+      if(hidden_no_check != undefined && hidden_no_check && array[i].isHidden) 
+        _v = -1;
+      else 
+        _v = array[i].value; 
+    } 
+    else {
+      _v = array[i]; 
+    }
+    
+    if( v == _v) 
+      return i;
   }
-  return false
+  return -1;
 }
 
 // 2차 어레이에서 줄에 같은값이 있는지 체크
-function isContainRow(array,row,v) {
+function isContainRow(array,row,v,array_is_Object,hidden_no_check) {
 
   for(var n=0;n<9;n++) {
-    var row_v= array[row][n];
+    var _v;
+    if(array_is_Object != undefined && array_is_Object) {
+      if(hidden_no_check != undefined && hidden_no_check && array[row][n].isHidden) 
+        _v= -1;
+      else
+      _v = array[row][n].value;
+    } 
+    else {
+      _v= array[row][n];  
+    }
 
-    if( v == row_v ) {
-      return true;
+    if( _v == v) {
+      return n;
     }
   }
-  return false;
+  return -1;
 }
 
 // 2차 어레이에서 열에 같은 값이 있는지 체크
-function isContainCol(array,col,v) {
+function isContainCol(array,col,v,array_is_Object,hidden_no_check) {
 
   for(var n=0;n<9;n++) {
-    var col_v= array[n][col];
+    var _v;
+    if(array_is_Object != undefined && array_is_Object) {
+      if(hidden_no_check != undefined && hidden_no_check && array[n][col].isHidden) 
+        _v = -1;
+      else
+        _v = array[n][col].value;
+    } 
+    else {
+      _v = array[n][col];  
+    }
 
-    if( v == col_v ) {
-      return true;
+    if( _v == v) {
+      return n;
     }
   }
-  return false;
+  return -1;
 }
 
 // 박스에 같은 값이 있는지 체크
-function isContainBox(array,s_row,e_row,s_col,e_col,v) {
+function isContainBox(array,s_row,e_row,s_col,e_col,v,array_is_Object,hidden_no_check) {
+  
+  var obj = new Object();
+  obj.row = -1;
+  obj.col = -1;
   for(var n=s_row;n<=e_row;n++) {
     for(var i=s_col;i<=e_col;i++) {
-      var box_v = array[n][i];
-      if( v == box_v ) {
-        return true;
+      var _v;
+      if(array_is_Object != undefined && array_is_Object) {
+        if(hidden_no_check != undefined && hidden_no_check && array[n][i].isHidden) 
+          _v = -1;
+        else
+        _v = array[n][i].value;
+      } else {
+        _v= array[n][i];  
+      }
+      if( v == _v) {
+        obj.row = n;
+        obj.col = i;
+        return obj;
       }
     }
   }
-  return false;
+  return obj;
 }
 
 // 2차 어레이에서 줄에 값이 모두 같은지 체크
