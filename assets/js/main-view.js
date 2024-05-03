@@ -42,6 +42,9 @@ function setEvent() {
 
   // 숫자판 입력 이벤트
   window.insertNumber = function(number) {
+
+    initNumberBoxColor();
+
     if (lastFocused && !lastFocused.readOnly) {
 
         console.log("lastFocused=",lastFocused);
@@ -99,13 +102,50 @@ function setEvent() {
           }
         // 연습모드이면  
         } else {
+          
+          // 가로 세로 박스 체크. col과 row가 헷갈릴수 잇다. 주의!! 실질적으로 col은 X, row는 y 이다.
+          var _col = isContainRow(mainModel.total_array,row,number,true,true);
+          var _row = isContainCol(mainModel.total_array,col,number,true,true);
+          var _box = isContainBox(mainModel.total_array,row,col,number,true,true);
 
-          lastFocused.value = "";
+          console.log("number = " + number);
+          console.log("row = " + row + ",_col = " + _col);
+          console.log("_row = " + _row + ",col = " + col);
+          console.log("_box = ",_box);
+          
+          // 중복된것이 잇는지 검사한다.
+          if(_row == -1 && _col == -1 && _box.row == -1) {
+            lastFocused.value = "";
 
-          var numdiv = lastFocused.parentElement.querySelector('.number' + number);
-          console.log("numdiv = ",numdiv);
-          numdiv.style.display = 'block';
-
+            var numdiv = lastFocused.parentElement.querySelector('.number' + number);
+            console.log("numdiv = ",numdiv);
+            numdiv.style.display = 'block';  
+          } else {
+             if(_row != -1) {
+                document.querySelectorAll(`.cell input[data-row="${_row}"]`).forEach(input => {
+                  var data_col = input.getAttribute('data-col');
+                  if(data_col == col ) {
+                    input.style.color = "#0000ff";
+                  }
+                });
+             }
+             if(_col != -1) {
+                document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+                var data_col = input.getAttribute('data-col');
+                if(data_col == _col ) {
+                  input.style.color = "#0000ff";
+                }
+              });
+             }
+             if(_box.row != -1) {
+              document.querySelectorAll(`.cell input[data-row="${_box.row}"]`).forEach(input => {
+                var data_col = input.getAttribute('data-col');
+                if(data_col == _box._col ) {
+                  input.style.color = "#0000ff";
+                }
+             });
+            }
+          }
         }
     }
   } 
@@ -287,3 +327,13 @@ function examMode() {
      document.querySelector('#btn_exammode').style.color = "#555555";
    }
 }
+
+function initNumberBoxColor() {
+
+  document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+
+    input.style.color = "000000";
+  });
+}
+
+
