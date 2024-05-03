@@ -127,14 +127,15 @@ var mainModel = {
          var v= random_array1[n];
  
          // 열, 박스 체크
-         if(!isContainRow(array,row,v)
-           &&!isContainCol(array,col,v)
-           && !isContainBox(array
+         if(isContainRow(array,row,v) == -1
+           &&isContainCol(array,col,v) == -1
+           && isContainBox(array
                            ,box_s_row
                            ,box_e_row
                            ,box_s_col
                            ,box_e_col
-                           ,v )) {
+                           ,v ).row == -1
+                          ) {
  
            array[row][col] = v; 
            return true;
