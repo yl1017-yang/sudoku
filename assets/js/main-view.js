@@ -330,10 +330,12 @@ function examMode() {
 
 function initNumberBoxColor() {
 
+  /*
   document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
 
     input.style.color = "000000";
   });
+  */
 }
 
 
