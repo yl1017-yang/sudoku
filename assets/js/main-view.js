@@ -43,7 +43,7 @@ function setEvent() {
   // 숫자판 입력 이벤트
   window.insertNumber = function(number) {
 
-    initNumberBoxColor();
+    clearExamDupColor();
 
     if (lastFocused && !lastFocused.readOnly) {
 
@@ -63,10 +63,16 @@ function setEvent() {
             numdiv.style.display = 'none';
           });
 
+          // 정답을 맞추면
           if(isSameNumber(mainModel.total_array,row,col,number)) {
             lastFocused.style.color = "#00cb73";
             lastFocused.classList.add('answer');
             lastFocused.classList.remove('wrong-answer');
+
+            setTimeout(function(){
+               lastFocused.style.color = "#555";
+               lastFocused.classList.remove('answer');
+            },1000);
 
             mainModel.total_array[row][col].isHidden = false;
             lastFocused.setAttribute('readonly', true);
@@ -85,7 +91,8 @@ function setEvent() {
                       ,function(){hideModal()});
             }   
 
-          } else {
+          } // 틀렷다면 
+          else {
             lastFocused.style.color = "#DF2935";
             lastFocused.classList.add('wrong-answer');
             lastFocused.classList.remove('answer');
@@ -102,18 +109,32 @@ function setEvent() {
           }
         // 연습모드이면  
         } else {
-          
+
+          // 중복된것이 잇는지 검사한다.
           // 가로 세로 박스 체크. col과 row가 헷갈릴수 잇다. 주의!! 실질적으로 col은 X, row는 y 이다.
           var _col = isContainRow(mainModel.total_array,row,number,true,true);
           var _row = isContainCol(mainModel.total_array,col,number,true,true);
-          var _box = isContainBox(mainModel.total_array,row,col,number,true,true);
+
+          var box_arrange = mainModel.getBoxArrange(row,col);
+          box_s_row = box_arrange.s_row;
+          box_e_row = box_arrange.e_row;
+          box_s_col = box_arrange.s_col;
+          box_e_col = box_arrange.e_col;
+
+          var _box = isContainBox(mainModel.total_array
+                                  ,box_s_row
+                                  ,box_e_row
+                                  ,box_s_col
+                                  ,box_e_col
+                                  ,number
+                                  ,true
+                                  ,true);
 
           console.log("number = " + number);
           console.log("row = " + row + ",_col = " + _col);
           console.log("_row = " + _row + ",col = " + col);
           console.log("_box = ",_box);
-          
-          // 중복된것이 잇는지 검사한다.
+
           if(_row == -1 && _col == -1 && _box.row == -1) {
             lastFocused.value = "";
 
@@ -121,30 +142,10 @@ function setEvent() {
             console.log("numdiv = ",numdiv);
             numdiv.style.display = 'block';  
           } else {
-             if(_row != -1) {
-                document.querySelectorAll(`.cell input[data-row="${_row}"]`).forEach(input => {
-                  var data_col = input.getAttribute('data-col');
-                  if(data_col == col ) {
-                    input.style.color = "#0000ff";
-                  }
-                });
-             }
-             if(_col != -1) {
-                document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
-                var data_col = input.getAttribute('data-col');
-                if(data_col == _col ) {
-                  input.style.color = "#0000ff";
-                }
-              });
-             }
-             if(_box.row != -1) {
-              document.querySelectorAll(`.cell input[data-row="${_box.row}"]`).forEach(input => {
-                var data_col = input.getAttribute('data-col');
-                if(data_col == _box._col ) {
-                  input.style.color = "#0000ff";
-                }
-             });
-            }
+            var color = "#0000ff";
+            setNumberBoxColor(row,_col,color); 
+            setNumberBoxColor(_row,col,color); 
+            setNumberBoxColor(_box.row,_box.col,color); 
           }
         }
     }
@@ -328,14 +329,24 @@ function examMode() {
    }
 }
 
-function initNumberBoxColor() {
+function clearExamDupColor() {
 
-  /*
-  document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+  document.querySelectorAll(`.cell input`).forEach(input => {
 
-    input.style.color = "000000";
+    console.log("input.style.color",input.style.color);
+    if(input.style.color == "rgb(0, 0, 255)")
+      input.style.color = "#555";
   });
-  */
+}
+
+function setNumberBoxColor(row,col,color) {
+
+  document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+    var data_col = input.getAttribute('data-col');
+    if(data_col == col ) {
+      input.style.color = color;
+    }
+  });
 }
 
 
