@@ -166,15 +166,11 @@ var mainModel = {
 
       array[row][col] = v;
 
-      var box_s_row = parseInt(row / 3) * 3;
-      var box_e_row = box_s_row + 2;
-      var box_s_col = parseInt(col / 3) * 3;
-      var box_e_col = box_s_col + 2;
-
-      //console.log("box_s_row = ",box_s_row);
-      //console.log("box_e_row = ",box_e_row);
-      //console.log("box_s_col = ",box_s_col);
-      //console.log("box_e_col = ",box_e_col);
+      var box_arrange = this.getBoxArrange(row,col);
+      box_s_row = box_arrange.s_row;
+      box_e_row = box_arrange.e_row;
+      box_s_col = box_arrange.s_col;
+      box_e_col = box_arrange.e_col;
 
       // 같은 줄이나 같은 열, 같은 박스에 히든이 없다면 false
       // 같은 줄이나 같은 열, 같은 박스에 히든이 모두 있다면 false
@@ -216,5 +212,22 @@ var mainModel = {
     } 
 
     return true;
+  },
+  getBoxArrange: function(row,col) {
+
+    var box_arrange = new Object();
+
+    var box_s_row = parseInt(row / 3) * 3;
+    var box_e_row = box_s_row + 2;
+    var box_s_col = parseInt(col / 3) * 3;
+    var box_e_col = box_s_col + 2;
+
+    box_arrange.s_row = box_s_row;
+    box_arrange.e_row = box_e_row;
+    box_arrange.s_col = box_s_col;
+    box_arrange.e_col = box_e_col;
+
+    return box_arrange;
+
   }
 };
