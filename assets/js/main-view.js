@@ -142,7 +142,7 @@ function setEvent() {
             console.log("numdiv = ",numdiv);
             numdiv.style.display = 'block';  
           } else {
-            var color = "#0000ff";
+            var color = "#0047cc";
             setNumberBoxColor(row,_col,color); 
             setNumberBoxColor(_row,col,color); 
             setNumberBoxColor(_box.row,_box.col,color); 
@@ -312,7 +312,7 @@ function setLevel() {
 }
 
 function setMistake() {
-  let li_mistake     = document.querySelector('#li_mistake');
+  let li_mistake = document.querySelector('#li_mistake');
   li_mistake.innerText =  "실수ㆍ" + mainModel.incorrect_count + "/" + mainModel.incorrect_max_count;
 }
 
@@ -322,10 +322,12 @@ function examMode() {
 
    if(!isExamMode) {
      isExamMode = true;
-     document.querySelector('#btn_exammode').style.color = "#FF0000"; 
+     document.querySelector('#btn_exammode').style.color = "#DF2935";
+    //  document.querySelector('#btn_exammode').classList.add("on");
    } else {
      isExamMode = false;
-     document.querySelector('#btn_exammode').style.color = "#555555";
+     document.querySelector('#btn_exammode').style.color = "#555";
+    // document.querySelector('#btn_exammode').classList.remove("on");
    }
 }
 

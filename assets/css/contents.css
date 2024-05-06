@@ -62,6 +62,8 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap .row .cell :is(.number4,.number5,.number6){top:30%;}
 .place-wrap .row .cell :is(.number7,.number8,.number9){top:60%;}
 
+/* 연습버튼 */
+/* #btn_exammode.on{color:var(--point);} */
 
 /* 정답모션 */
 /* .row:has(.answer){transition:all 0.4s ease;background:#009856;color:#fff;} */
@@ -81,8 +83,8 @@ html, body, .sudoku-wrap{min-height:100%;}
 /* 하단 */
 .footer .menu{display:flex;justify-content:space-around;margin:5vw 0;}
 .footer .menu li{text-align:center;}
-.footer .menu button{display:block;font-size:7vw;margin-bottom:1vw;}
-.footer .menu span{font-size:3.4vw;}
+.footer .menu button{display:block;font-size:7vw;padding:2vw;}
+.footer .menu span{display:block;font-size:3.4vw;}
 
 .footer .number{display:flex;justify-content:space-between;margin:5vw 0;}
 .footer .number button{display:block;width:100%;padding:2vw 0;margin:0 0.5vw;font-size:8vw;font-weight:600;color:var(--white);background:var(--primary);border-radius:1.4vw;box-shadow:rgba(0, 0, 0, 0.1) 3px 4px 7px;}
