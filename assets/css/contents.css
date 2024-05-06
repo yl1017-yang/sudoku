@@ -11,7 +11,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .btn-gray{border-radius:3vw;background:var(--gray555);color:var(--white);text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
 .btn-primary{border-radius:3vw;background:var(--primary);color:var(--white);text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
 .btn-point{border-radius:3vw;background:var(--point);color:var(--white);text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
-.btn-white{border-radius:3vw;background:var(--white);color:var(--gray555);text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
+.btn-gradient{border-radius:3vw;background:linear-gradient(0deg, #8ce2bd, #F5F3BB,#fffed4);color:var(--gray555);text-align:center;box-shadow:rgba(0, 0, 0, 0.15) 5px 8px 20px;}
 
 /* 메인화면 */
 .start{display:flex;justify-content:center;align-content:center;flex-wrap:wrap;min-height:100vh;color:var(--white);}
