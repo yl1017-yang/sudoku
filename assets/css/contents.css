@@ -35,7 +35,7 @@ html, body, .sudoku-wrap{min-height:100%;}
   100% {background-position: 0% 50%;}
 }
 
-.sudoku-wrap.start-ani{background:linear-gradient(90deg, #00a85f, #00a892,#0086a8);background-size:400% 400%;animation:gradient 30s ease infinite;}
+.sudoku-wrap.start-ani{background:linear-gradient(90deg, #00a85f, #00a892,#0086a8);background-size:400% 400%;animation:gradient 10s ease infinite;}
 @keyframes gradient {
   0% {background-position: 0% 50%;}
   50% {background-position: 100% 50%;}
