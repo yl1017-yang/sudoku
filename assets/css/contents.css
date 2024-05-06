@@ -23,7 +23,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .start .start-btn a{width:100%;border-radius:100vw;margin:0 0vw;}
 
 /* 레이아웃 */
-.sudoku-wrap{position:relative;display:flex;flex-direction:column;justify-content:space-between;width:100%;background:var(--third);padding:0 4vw;}
+.sudoku-wrap{display:flex;flex-direction:column;justify-content:space-between;width:100%;background:var(--third);padding:0 4vw;}
 .header{display:flex;justify-content:space-between;align-items:center;padding:3vw 0;}
 .header .header-util span{display:inline-block;margin-left:2vw;}
 
