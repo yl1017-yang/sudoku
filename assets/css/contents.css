@@ -41,10 +41,10 @@ html, body, .sudoku-wrap{min-height:100%;}
   50% {background-position: 100% 50%;}
   100% {background-position: 0% 50%;}
 }
-.sudoku-wrap.start-ani::before{content:'';position:absolute;top:-5vw;left:-22vw;width:100vw;height:50vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);z-index:1;}
-.sudoku-wrap.start-ani::after{content:'';position:absolute;top:24vw;left:50vw;width:46vw;height:22vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);z-index:2;}
-.sudoku-wrap.start-ani .container::before{content:'';position:absolute;bottom:5vw;right:-20vw;width:65vw;height:36vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);z-index:1;}
-.sudoku-wrap.start-ani .container::after{content:'';position:absolute;bottom:-10vw;right:5vw;width:34vw;height:18vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);z-index:2;}
+.sudoku-wrap.start-ani::before{content:'';position:absolute;top:-5vw;left:-22vw;width:100vw;height:50vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);filter:blur(1px);z-index:1;}
+.sudoku-wrap.start-ani::after{content:'';position:absolute;top:25vw;left:55vw;width:30vw;height:30vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);filter:blur(4px);z-index:2;}
+.sudoku-wrap.start-ani .container::before{content:'';position:absolute;bottom:5vw;right:-20vw;width:65vw;height:36vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);filter:blur(1px);z-index:1;}
+.sudoku-wrap.start-ani .container::after{content:'';position:absolute;bottom:-10vw;right:5vw;width:34vw;height:18vw;background:rgba(999, 999, 999, 0.1);box-shadow:rgba(0, 0, 0, 0.001) 5px 8px 20px;border-radius:100vw;transform:rotate(45deg);filter:blur(4px);z-index:2;}
 
 /* 스도쿠 게임 */
 .container{flex:1;}
