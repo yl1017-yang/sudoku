@@ -43,7 +43,7 @@ function setEvent() {
   // 숫자판 입력 이벤트
   window.insertNumber = function(number) {
 
-    clearExamDupColor();
+    //clearExamDupColor();
 
     if (lastFocused && !lastFocused.readOnly) {
 
@@ -141,11 +141,20 @@ function setEvent() {
             var numdiv = lastFocused.parentElement.querySelector('.number' + number);
             console.log("numdiv = ",numdiv);
             numdiv.style.display = 'block';  
-          } else {
-            var color = "#0047cc";
+          } 
+          // 중복된것이 있다면
+          else {
+            var color = "#0000ff";
             setNumberBoxColor(row,_col,color); 
             setNumberBoxColor(_row,col,color); 
             setNumberBoxColor(_box.row,_box.col,color); 
+
+            setTimeout(function(){
+              color = "#555";
+              setNumberBoxColor(row,_col,color); 
+              setNumberBoxColor(_row,col,color); 
+              setNumberBoxColor(_box.row,_box.col,color);
+           },1000);
           }
         }
     }
@@ -331,6 +340,7 @@ function examMode() {
    }
 }
 
+/*
 function clearExamDupColor() {
 
   document.querySelectorAll(`.cell input`).forEach(input => {
@@ -339,7 +349,7 @@ function clearExamDupColor() {
     if(input.style.color == "rgb(0, 0, 255)")
       input.style.color = "#555";
   });
-}
+}*/
 
 function setNumberBoxColor(row,col,color) {
 
