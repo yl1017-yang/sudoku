@@ -317,6 +317,7 @@ function setLevel() {
   else if(mainModel.level == 3)
     level_text = "어려워요";
   
+  li_level.style.color = "#DF2935";
   li_level.innerText = level_text;
 }
 
