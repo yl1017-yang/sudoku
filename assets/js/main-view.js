@@ -156,7 +156,10 @@ function setEvent() {
               setNumberBoxColor(_box.row,_box.col,color);
            },1000);
           }
-        }
+
+          // 연습모드 일때 포커스 유지 - 연습모드 아닐때 포커스 해제를 해줘요!!!!  (양작업)
+          lastFocused.classList.add('focus');
+      }
     }
   } 
 
@@ -307,7 +310,7 @@ function setTimer() {
 }
 
 function setLevel() {
-  let li_level     = document.querySelector('#li_level');
+  let li_level = document.querySelector('#li_level');
 
   var level_text = "쉬워요";
   if(mainModel.level == 1)
@@ -317,7 +320,7 @@ function setLevel() {
   else if(mainModel.level == 3)
     level_text = "어려워요";
   
-  li_level.style.color = "#DF2935"; // 수정 by 알밤
+  li_level.style.color = "#DF2935"; // 수정 by 알밤 최고남
   li_level.innerText = level_text;
 }
 
