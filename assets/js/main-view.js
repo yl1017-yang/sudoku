@@ -26,6 +26,7 @@ function setEvent() {
 
       document.querySelectorAll('.cell input').forEach(input => {
           input.classList.remove('highlight');
+          input.classList.remove('focus');
       });
 
       document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
@@ -110,6 +111,9 @@ function setEvent() {
         // 연습모드이면  
         } else {
 
+          // 연습모드 일때 포커스 유지 - 연습모드 아닐때 포커스 해제를 해줘요!!!!  (양작업)
+          lastFocused.classList.add('focus');
+
           // 중복된것이 잇는지 검사한다.
           // 가로 세로 박스 체크. col과 row가 헷갈릴수 잇다. 주의!! 실질적으로 col은 X, row는 y 이다.
           var _col = isContainRow(mainModel.total_array,row,number,true,true);
@@ -157,8 +161,6 @@ function setEvent() {
            },1000);
           }
 
-          // 연습모드 일때 포커스 유지 - 연습모드 아닐때 포커스 해제를 해줘요!!!!  (양작업)
-          lastFocused.classList.add('focus');
       }
     }
   } 
