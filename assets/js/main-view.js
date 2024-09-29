@@ -88,8 +88,8 @@ function setEvent() {
             var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
             if(total_hidden == 0) {
               showModal("게임이 끝났어요!!!!\n다음 게임으로 진행하세요"
-                      ,function(){window.location.reload()}
-                      ,function(){hideModal()});
+                      ,function(){hideModal()}
+                      ,function(){window.location.reload()});
             }   
 
           } // 틀렷다면 
@@ -104,8 +104,8 @@ function setEvent() {
 
             if(mainModel.incorrect_count>= mainModel.incorrect_max_count) {
               showModal("실수를 너무 많이 했어요!!!!\n다시 하시겠어요?"
-              ,function(){window.location.reload()}
-              ,function(){hideModal()});
+              ,function(){hideModal()}
+              ,function(){window.location.reload()});
             }
           }
         // 연습모드이면  
@@ -366,5 +366,13 @@ function setNumberBoxColor(row,col,color) {
     }
   });
 }
+
+window.NativeInterface = {
+    closeConfirm: () => {
+      showModal("정말 종료하시겠습니까?"
+                                ,function(){hideModal()}
+                                ,function(){NativeJSinterface.close()});
+    },
+ }
 
 
