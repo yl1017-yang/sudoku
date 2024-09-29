@@ -44,6 +44,7 @@
   </div>
 
   <script type="text/javascript">
+
     function showModal(msg,ok_listner,cancel_listner) {
       let div = document.querySelector('.modal-wrap');
       div.classList.remove("hidden");
@@ -51,6 +52,11 @@
       document.querySelector('.modal-wrap .modal-text').innerText = msg;
       document.querySelector('.modal-wrap .btn-gray').onclick = ok_listner;
       document.querySelector('.modal-wrap .btn-point').onclick = cancel_listner;
+    }
+
+    function hideModal() {
+      let div = document.querySelector('.modal-wrap');
+      div.classList.add("hidden");
     }
 
     window.NativeInterface = {
