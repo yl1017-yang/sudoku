@@ -28,7 +28,38 @@
       </div>
     </main>
 
+    <!-- [D] 모달팝업 : modal-wrap hidden 클래스 추가시 안보임 -->
+    <div class="modal-wrap hidden">
+      <div class="modal-inner">
+        <p class="modal-text">게임이 끝났어요!!!!<br>다음 게임으로 진행하세요</p>
+        <div class="modal-btn">
+          <a href="#none" class="btn-small btn-gray">아니오</a>
+          <a href="#none" class="btn-small btn-point">네</a>
+        </div>
+      </div>
+      <div class="dimmed"></div>
+    </div>
+    <!-- //[D] 모달팝업 -->
+
   </div>
 
+  <script type="text/javascript">
+    function showModal(msg,ok_listner,cancel_listner) {
+      let div = document.querySelector('.modal-wrap');
+      div.classList.remove("hidden");
+
+      document.querySelector('.modal-wrap .modal-text').innerText = msg;
+      document.querySelector('.modal-wrap .btn-gray').onclick = ok_listner;
+      document.querySelector('.modal-wrap .btn-point').onclick = cancel_listner;
+    }
+
+    window.NativeInterface = {
+      closeConfirm: () => {
+        showModal("정말 종료하시겠습니까?"
+                                  ,function(){hideModal()}
+                                  ,function(){NativeJSinterface.close()});
+      },
+    }
+  </script>
 </body>
 </html>
