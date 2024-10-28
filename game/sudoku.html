@@ -6,21 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
   <link rel="stylesheet" href="../assets/css/common.css">
-  <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" /> --> 
 </head>
 <body>  
   <div class="sudoku-wrap">
 
     <header class="header">
       <div class="header-btn">
-        <!--<a href="../game/index.html" class="material-symbols-outlined">arrow_back_ios</a> -->
+        <!--<a href="../game/index.html" class="icon icon_back">arrow_back_ios</a> -->
       </div>
 
       <div class="header-util">
-        <!-- <button class="material-symbols-outlined">open_in_new</button>
-        <button class="material-symbols-outlined">motion_photos_paused</button>
-        <button class="material-symbols-outlined">invert_colors</button> -->
-        <button class="material-symbols-outlined">settings</button>
+        <button class="icon icon_settings"><span class="blind">셋팅</span></button>
       </div>
     </header>
 
@@ -160,17 +156,17 @@
     <footer class="footer">
       <ul class="menu">
         <li>
-          <button class="material-symbols-outlined" id="btn_reload">undo <span>재시작</span></button>
+          <button class="icon icon_reload" id="btn_reload"><span>재시작</span></button>
         </li>
         <li>
-          <button class="material-symbols-outlined" id="btn_erase">ink_eraser <span>지우기</span></button>
+          <button class="icon icon_erase" id="btn_erase"><span>지우기</span></button>
         </li>
         <li>
-          <button class="material-symbols-outlined" id="btn_exammode" onclick="examMode()">edit_square <span>연습</span></button>          
+          <button class="icon icon_exammode" id="btn_exammode" onclick="examMode()"><span>연습</span></button>          
         </li>
         <li>
           <span>0 / 1</span>
-          <button class="material-symbols-outlined">lightbulb <span>힌트</span></button>
+          <button class="icon icon_hint"><span>힌트</span></button>
         </li>
       </ul>
       <div class="number">
