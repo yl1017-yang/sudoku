@@ -1,40 +1,6 @@
 @charset "utf-8";
 @import url("./contents.css");
 
-/* @font-face {
-  font-family: 'Material Symbols Outlined';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Symbols Outlined'), url(../../assets/fonts/material-symbols.woff) format('woff');
-}
-.material-symbols-outlined {
-  font-family: 'Material Symbols Outlined';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
-} */
-
-/* 머터리얼아이콘 */
-/*
-@font-face {
-  font-family: 'Material Symbols Outlined';
-  font-style: normal;
-  src: url(https://example.com/material-symbols.woff) format('woff');
-}
-.material-symbols-outlined{font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0,'opsz' 40;color:#555;}
-/* 참고 : https://fonts.google.com/icons 
-https://developers.google.com/fonts/docs/material_symbols?hl=ko */
-
-
 /* fonts */
 @font-face {
 	font-family: 'Pretendard';
@@ -58,6 +24,7 @@ https://developers.google.com/fonts/docs/material_symbols?hl=ko */
 /* reset */
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
+html{-webkit-touch-callout:none;} /* 모바일 화면을 길게 누르고 있으면 화면 하단에서 나오는 메뉴를 제어 */
 body{font-family:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;font-size:100%;font-weight:500;color:var(--gray555);line-height:1.4;word-wrap:break-word;word-break:keep-all;-webkit-text-size-adjust:none;-ms-text-size-adjust:100%;text-size-adjust:none;
 -ms-user-select: none; -moz-user-select: -moz-none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;}
 
