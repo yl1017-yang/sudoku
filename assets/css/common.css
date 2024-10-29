@@ -24,7 +24,6 @@
 /* reset */
 a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font:inherit;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;}
-html{-webkit-touch-callout:none;} /* 모바일 화면을 길게 누르고 있으면 화면 하단에서 나오는 메뉴를 제어 */
 body{font-family:"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;font-size:100%;font-weight:500;color:var(--gray555);line-height:1.4;word-wrap:break-word;word-break:keep-all;-webkit-text-size-adjust:none;-ms-text-size-adjust:100%;text-size-adjust:none;
 -ms-user-select: none; -moz-user-select: -moz-none;-khtml-user-select: none;-webkit-user-select: none;user-select: none;}
 
@@ -43,6 +42,7 @@ button{border:none;box-shadow:none;background:transparent;cursor:pointer;outline
 button:focus{outline-style:auto;outline: 2px solid -webkit-focus-ring;}
 
 /* 아이폰(사파리) 터치 메뉴 활성화 관련 */
+html{-webkit-touch-callout:none;} 
 a, button, [role=button], [role=link], [role=tab]{-webkit-touch-callout:none;}
 
 /* form select */
