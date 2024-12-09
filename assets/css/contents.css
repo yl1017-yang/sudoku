@@ -65,9 +65,9 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 .place-wrap{position:relative;display:flex;flex-wrap:wrap;width:100%;background:var(--white);box-sizing:border-box;border:2px solid var(--gray555);border-right:0;border-bottom:0;box-shadow:rgba(0, 0, 0, 0.1) 5px 7px 10px;z-index:0;}
 .place-wrap .row{position:relative;display:flex;flex-wrap:wrap;width:33.3334%;border-right:2px solid var(--gray555);border-bottom:2px solid var(--gray555);}
-.place-wrap .row .cell{position:relative;width:33.3334%;height:9.88vw;border:1px solid var(--grayddd);flex:auto;}
+.place-wrap .row .cell{position:relative;width:33.3334%;height:10vw;border:1px solid var(--grayddd);flex:auto;}
 
-.place-wrap input[type='text']{position:absolute;width:100%;height:100%;text-align:center;font-size:6.8vw;color:var(--primary);line-height:0;caret-color:transparent;z-index:2;}
+.place-wrap input[type='text']{position:absolute;width:100%;height:100%;text-align:center;font-size:6vw;color:var(--primary);line-height:0;caret-color:transparent;z-index:2;}
 .place-wrap input[type='text']:focus{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 .place-wrap input:focus-visible{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 
@@ -78,7 +78,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .highlight.focus{background:var(--primary);color:var(--white) !important;transition-duration:0.2s;}  /* 연습모드일때 포커스 */
 
 /* 연습숫자 */
-.place-wrap .row .cell .small-number{position:absolute;width:33%;height:33%;top:0;left:0;font-size:3vw;color:var(--gray999);font-weight:700;text-align:center;background:transparent;z-index:3;}
+.place-wrap .row .cell .small-number{position:absolute;width:33%;height:33%;top:0;left:0;font-size:3vw;color:yellowgreen;font-weight:600;text-align:center;background:transparent;z-index:3;}
 .place-wrap .row .cell :is(.number1,.number4,.number7){left:0;}
 .place-wrap .row .cell :is(.number2,.number5,.number8){left:30%;}
 .place-wrap .row .cell :is(.number3,.number6,.number9){left:60%;}
@@ -115,16 +115,16 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 /* 스도쿠 최초화면 애니메이션 */
 .animation-box{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;animation:fadeOut 0.8s forwards;}
-.animation-box > div{position:absolute;top:0;left:0;width:100%;height:10vw;background:linear-gradient(90deg, #009856,#F5F3BB);background-size:100% 100%;}
+.animation-box > div{position:absolute;top:0;left:0;width:100%;height:10.6vw;background:linear-gradient(90deg, #009856,#F5F3BB);background-size:100% 100%;}
 .animation-box .box1{top:0;animation-delay:0s !important;}
-.animation-box .box2{top:10vw;animation-delay:0.1s !important;}
-.animation-box .box3{top:20vw;animation-delay:0.2s !important;}
-.animation-box .box4{top:30vw;animation-delay:0.3s !important;}
-.animation-box .box5{top:40vw;animation-delay:0.4s !important;}
-.animation-box .box6{top:50vw;animation-delay:0.5s !important;}
-.animation-box .box7{top:60vw;animation-delay:0.6s !important;}
-.animation-box .box8{top:70vw;animation-delay:0.7s !important;}
-.animation-box .box9{top:80vw;animation-delay:0.8s !important;}
+.animation-box .box2{top:10.5vw;animation-delay:0.1s !important;}
+.animation-box .box3{top:20.5vw;animation-delay:0.2s !important;}
+.animation-box .box4{top:30.5vw;animation-delay:0.3s !important;}
+.animation-box .box5{top:40.5vw;animation-delay:0.4s !important;}
+.animation-box .box6{top:50.5vw;animation-delay:0.5s !important;}
+.animation-box .box7{top:60.5vw;animation-delay:0.6s !important;}
+.animation-box .box8{top:70.5vw;animation-delay:0.7s !important;}
+.animation-box .box9{top:80.5vw;animation-delay:0.8s !important;}
 
 .animation-box .motion{animation:fade 0.4s 0s ease-in-out both;}
 @keyframes fade {
