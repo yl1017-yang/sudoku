@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 뷰 세팅
     setView();
+	
+	// 애니메이션
+	startAni();
 
 });
 
@@ -43,40 +46,62 @@ function setEvent() {
 
   // 숫자판 입력 이벤트
   window.insertNumber = function(number) {
+	  
+	  const lastFocused_input  = lastFocused;
 
     //clearExamDupColor();
 
-    if (lastFocused && !lastFocused.readOnly) {
+    if (lastFocused_input && !lastFocused_input.readOnly) {
 
-        console.log("lastFocused=",lastFocused);
+        console.log("lastFocused_input=",lastFocused_input);
 
-        var row = lastFocused.getAttribute('data-row');
-        var col = lastFocused.getAttribute('data-col');
+        var row = lastFocused_input.getAttribute('data-row');
+        var col = lastFocused_input.getAttribute('data-col');
 
         console.log("isExamMode = ",isExamMode);
 
         // 연습모드가 아니면
         if(!isExamMode) {
 
-          lastFocused.value = number;
+          lastFocused_input.value = number;
 
-          lastFocused.parentElement.querySelectorAll('.small-number').forEach(numdiv => {
+          lastFocused_input.parentElement.querySelectorAll('.small-number').forEach(numdiv => {
             numdiv.style.display = 'none';
           });
 
           // 정답을 맞추면
           if(isSameNumber(mainModel.total_array,row,col,number)) {
-            lastFocused.style.color = "#00cb73";
-            lastFocused.classList.add('answer');
-            lastFocused.classList.remove('wrong-answer');
 
+            lastFocused_input.style.color = "#00cb73";
+            lastFocused_input.classList.add('answer');
+            lastFocused_input.classList.remove('wrong-answer');
+			
+			var elements = new Array();
+			document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+				input.classList.add('correct');
+			});
+			document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
+				input.classList.add('correct');
+			});
+
+			// 1초 후에 원래대로 돌린다.
             setTimeout(function(){
-               lastFocused.style.color = "#555";
-               lastFocused.classList.remove('answer');
+               lastFocused_input.style.color = "#555";
+               lastFocused_input.classList.remove('answer');
+            },1000);
+
+            // 1초 후에 원래대로 돌린다.
+            setTimeout(function(){
+              document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+                input.classList.remove('correct');
+                });
+              document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
+                input.classList.remove('correct');
+              });
             },1000);
 
             mainModel.total_array[row][col].isHidden = false;
-            lastFocused.setAttribute('readonly', true);
+            lastFocused_input.setAttribute('readonly', true);
 
             // 히든된 숫자 카운트를 세팅한다.
             setHiddenNumberCount();
@@ -87,6 +112,11 @@ function setEvent() {
             // 모두 맞췄다면    
             var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
             if(total_hidden == 0) {
+				
+              // 베스트 기록을 저장한다.
+			  if(typeof NativeJSinterface != 'undefined')
+				NativeJSinterface.saveBestRecord(mainModel.level,li_timer.innerText);
+			
               showModal("게임이 끝났어요!!!!\n다음 게임으로 진행하세요"
                       ,function(){hideModal()}
                       ,function(){window.location.reload()});
@@ -94,9 +124,20 @@ function setEvent() {
 
           } // 틀렷다면 
           else {
-            lastFocused.style.color = "#DF2935";
-            lastFocused.classList.add('wrong-answer');
-            lastFocused.classList.remove('answer');
+
+			if(typeof NativeJSinterface != 'undefined')
+				NativeJSinterface.vibrate();
+
+            lastFocused_input.style.color = "#DF2935";
+            lastFocused_input.classList.add('wrong-answer');
+            lastFocused_input.classList.remove('answer');
+			
+			
+			const row = lastFocused_input.getAttribute('data-row');
+			const col = lastFocused_input.getAttribute('data-col');
+			
+			console.log("row = ",row);
+			console.log("col = ",col);
 
             // 실수 횟수를 세팅한다.
             mainModel.incorrect_count++;
@@ -112,7 +153,7 @@ function setEvent() {
         } else {
 
           // 연습모드 일때 포커스 유지 - 연습모드 아닐때 포커스 해제를 해줘요!!!!  (양작업)
-          lastFocused.classList.add('focus');
+          lastFocused_input.classList.add('focus');
 
           // 중복된것이 잇는지 검사한다.
           // 가로 세로 박스 체크. col과 row가 헷갈릴수 잇다. 주의!! 실질적으로 col은 X, row는 y 이다.
@@ -140,9 +181,9 @@ function setEvent() {
           console.log("_box = ",_box);
 
           if(_row == -1 && _col == -1 && _box.row == -1) {
-            lastFocused.value = "";
+            lastFocused_input.value = "";
 
-            var numdiv = lastFocused.parentElement.querySelector('.number' + number);
+            var numdiv = lastFocused_input.parentElement.querySelector('.number' + number);
             console.log("numdiv = ",numdiv);
             numdiv.style.display = 'block';  
           } 
@@ -163,7 +204,13 @@ function setEvent() {
 
       }
     }
-  } 
+  }
+
+  // 설정 버튼 이벤트
+   document.querySelector('#btn_setting').onclick = function(){
+	  if(typeof NativeJSinterface != 'undefined') 
+		NativeJSinterface.goSetting();
+    };
 
   // 리로드 버튼 이벤트
   document.querySelector('#btn_reload').onclick = function(){
@@ -172,7 +219,6 @@ function setEvent() {
 
   // 지우기 버튼 이벤트
   document.querySelector('#btn_erase').onclick = function(){
-     
     if (lastFocused && !lastFocused.readOnly) {
       lastFocused.value = "";
     }   
@@ -208,6 +254,36 @@ function setView() {
   // 하단 남은 숫자 개수 보여주기
   setHiddenNumberCount();
 
+}
+
+function startAni() {
+	var ml4 = {};
+	ml4.opacityIn = [0,1];
+	ml4.scaleIn = [0.2, 1];
+	ml4.scaleOut = 3;
+	ml4.durationIn = 800;
+	ml4.durationOut = 600;
+	ml4.delay = 500;
+
+	anime.timeline()
+	  .add({
+		targets: '.ml4 .letters-3',
+		opacity: ml4.opacityIn,
+		scale: ml4.scaleIn,
+		duration: ml4.durationIn
+	  }).add({
+		targets: '.ml4 .letters-3',
+		opacity: 0,
+		scale: ml4.scaleOut,
+		duration: ml4.durationOut,
+		easing: "easeInExpo",
+		delay: ml4.delay
+	  });
+	  
+	  setTimeout(function(){
+		  let div = document.querySelector('.ml4');
+		  div.style.display = "none";
+	   },1000);
 }
 
 function showModal(msg,ok_listner,cancel_listner) {
@@ -306,6 +382,9 @@ function setTimer() {
 
     if(remainTime == 0) {
       clearInterval(timerIntervalId);
+        showModal("시간이 다 됬어요!!!!\n다시 하시겠어요?"
+                      ,function(){hideModal()}
+                      ,function(){window.location.reload()});
     }
 
   },1000);
@@ -370,8 +449,11 @@ function setNumberBoxColor(row,col,color) {
 window.NativeInterface = {
     closeConfirm: () => {
       showModal("정말 종료하시겠습니까?"
-                                ,function(){hideModal()}
-                                ,function(){NativeJSinterface.close()});
+				,function(){hideModal()}
+				,function(){
+					if(typeof NativeJSinterface != 'undefined')
+						NativeJSinterface.close()
+				});
     },
  }
 
