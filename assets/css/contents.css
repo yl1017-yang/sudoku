@@ -77,6 +77,8 @@ html, body, .sudoku-wrap{min-height:100%;}
 .highlight{background:var(--third);transition-duration:0.2s;}
 .highlight.focus{background:var(--primary);color:var(--white) !important;transition-duration:0.2s;}  /* 연습모드일때 포커스 */
 
+.correct{background:var(--secondary);transition-duration:0.2s;}
+
 /* 연습숫자 */
 .place-wrap .row .cell .small-number{position:absolute;width:33%;height:33%;top:0;left:0;font-size:3vw;color:yellowgreen;font-weight:600;text-align:center;background:transparent;z-index:3;}
 .place-wrap .row .cell :is(.number1,.number4,.number7){left:0;}
@@ -151,3 +153,25 @@ html, body, .sudoku-wrap{min-height:100%;}
 .modal-wrap .dimmed{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0, 0, 0, 0.6);z-index:0;}
 
 .modal-wrap.hidden{display:none;}
+
+/* 텍스트 애니메이션 */
+.ml4 {
+  position:absolute;
+  top:30%;
+  left:0;
+  width:100%;
+  min-height:30%;
+  font-weight: 900;
+  font-size: 4.5em;
+}
+.ml4 .letters {
+  position: absolute;
+  display:flex;
+  justify-content:center;
+  align-content:center;
+  margin: auto;
+  left: 0;
+  top: 0;
+  right: 0;
+  opacity: 0; 
+}
