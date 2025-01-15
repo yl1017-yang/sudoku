@@ -24,13 +24,13 @@ html, body, .sudoku-wrap{min-height:100%;}
 .icon_back{background-image:url(../images/icon_back.svg);}
 
 /* 메인화면 */
-.start{align-content:center;min-height:100vh;color:var(--white);}
+.start{width:100%;min-height:100vh;align-content:center;color:var(--white);}
 .start .start-title{width:100%;text-align:center;font-size:17vw;font-weight:700;line-height:20vw;margin:0 0 10vw;}
 .start .start-desc{width:100%;text-align:center;font-size:6vw;letter-spacing:-0.3vw;}
-.start .start-step{display:flex;justify-content:center;width:94vw;margin:0;}
+.start .start-step{display:flex;justify-content:center;width:100%;margin:0;}
 .start .start-step a{width:100vw;border-radius:100vw;margin:0 1vw;}
-.start .start-btn{width:100vw;margin:10vw 0vw 0;}
-.start .start-btn a{width:100%;border-radius:100vw;}
+.start .start-btn{width:100%;margin:10vw 0 0;}
+.start .start-btn a{border-radius:100vw;}
 
 /* 레이아웃 */
 .sudoku-wrap{display:flex;flex-direction:column;justify-content:space-between;width:100%;background:var(--third);padding:0 4vw;}
