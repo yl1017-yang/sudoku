@@ -233,10 +233,7 @@ function setNumberInputFocusEvent(numinput) {
 
   if(_numinput.value != "") {
     document.querySelectorAll(`.cell input`).forEach(input => {
-      const _row = input.getAttribute('data-row');
-      const _col = input.getAttribute('data-col');
       if(input.value == _numinput.value
-        && !(_row == row && _col == col)
         && !input.classList.contains('wrong-answer')){
         input.classList.add('highlight');
         input.classList.add('focus');
