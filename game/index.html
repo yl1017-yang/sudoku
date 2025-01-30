@@ -16,13 +16,13 @@
         <h2 class="start-title">SUDOKU</h2>
 
         <div class="start-step">
-          <a href="../game/sudoku.html?level=1" class="btn-small btn-gradient">쉬워요</a>
-          <a href="../game/sudoku.html?level=2" class="btn-small btn-gradient">할만해요</a>
-          <a href="../game/sudoku.html?level=3" class="btn-small btn-gradient">어려워요</a>
+          <a id="btn_mode1" href="#none" class="btn-small btn-gradient">쉬워요</a>
+          <a id="btn_mode2" href="#none" class="btn-small btn-gradient">할만해요</a>
+          <a id="btn_mode3" href="#none" class="btn-small btn-gradient">도전모드</a>
         </div>
 
-        <div class="start-btn">          
-          <a href="#none" class="btn-small btn-gradient2">도장깨기!</a>         
+        <div class="start-btn">
+          <!--<a href="#none" class="btn-small btn-gradient2">도장깨기!</a>-->
         </div>
       </div>
     </main>
@@ -42,29 +42,7 @@
 
   </div>
 
-  <script type="text/javascript">
+  <script type="text/javascript" src="../assets/js/index-view.js"></script>
 
-    function showModal(msg,ok_listner,cancel_listner) {
-      let div = document.querySelector('.modal-wrap');
-      div.classList.remove("hidden");
-
-      document.querySelector('.modal-wrap .modal-text').innerText = msg;
-      document.querySelector('.modal-wrap .btn-gray').onclick = ok_listner;
-      document.querySelector('.modal-wrap .btn-point').onclick = cancel_listner;
-    }
-
-    function hideModal() {
-      let div = document.querySelector('.modal-wrap');
-      div.classList.add("hidden");
-    }
-
-    window.NativeInterface = {
-      closeConfirm: () => {
-        showModal("정말 종료하시겠습니까?"
-                                  ,function(){hideModal()}
-                                  ,function(){NativeJSinterface.close()});
-      },
-    }
-  </script>
 </body>
 </html>
