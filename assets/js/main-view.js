@@ -138,6 +138,9 @@ function setEvent() {
             lastFocused_input.style.color = "#DF2935";
             lastFocused_input.classList.add('wrong-answer');
             lastFocused_input.classList.remove('answer');
+
+            lastFocused_input.classList.remove('highlight');
+            lastFocused_input.classList.remove('focus');
 			
             const row = lastFocused_input.getAttribute('data-row');
             const col = lastFocused_input.getAttribute('data-col');
@@ -230,14 +233,23 @@ function setNumberInputFocusEvent(numinput) {
 
   if(_numinput.value != "") {
     document.querySelectorAll(`.cell input`).forEach(input => {
-      if(input.value ==  _numinput.value){
+      const _row = input.getAttribute('data-row');
+      const _col = input.getAttribute('data-col');
+      if(input.value == _numinput.value
+        && !(_row == row && _col == col)
+        && !input.classList.contains('wrong-answer')){
         input.classList.add('highlight');
         input.classList.add('focus');
       }
     });
   }
 
-  numinput.classList.add('focus');
+  if(_numinput.classList.contains('wrong-answer')){
+    _numinput.classList.remove('highlight');
+    _numinput.classList.remove('focus');
+  }
+
+  //numinput.classList.add('focus');
 
   lastFocused = _numinput;
 }
