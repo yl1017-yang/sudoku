@@ -5,6 +5,8 @@ var mainModel = {
 
   // 최종 어레이
   total_array:{},
+  // 모드 타입 1: 일반 , 2: 도전모드
+  mode_type:1,
   // 레벨
   level:1,
   // 초기 히든갯수
@@ -13,11 +15,21 @@ var mainModel = {
   incorrect_count:0,
   // 틀린갯수
   incorrect_max_count:5,
+  // 시간제한
+  time_limit_max:300,
   // 초기화
   init: function() {
 
+    var pmode_type = getParameterValue("mode_type"); 
+    console.log("getParameterValue mode_type  = " + pmode_type);
+
     var plevel = getParameterValue("level"); 
     console.log("getParameterValue level  = " + plevel);
+
+    if(pmode_type == "") 
+      this.mode_type = "1";
+    else
+      this.mode_type = pmode_type;
 
     if(plevel == "")
       this.level = 1;
@@ -26,6 +38,7 @@ var mainModel = {
       this.level = Number(plevel);
     }
 
+    console.log("mode_type  = " + this.mode_type);
     console.log("level  = " + this.level);
 
      // 랜덤 어레이 생성
@@ -160,7 +173,7 @@ var mainModel = {
       // 레벨 3 - 15*3 = 45
       var ran = random(1,total_count);
 
-      var hide_max = 15 * (this.level);
+      var hide_max = 15 + (this.level*3);
 
       var v = ran <= hide_max ? 1 : 0; 
 

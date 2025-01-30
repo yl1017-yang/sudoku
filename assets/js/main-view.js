@@ -10,37 +10,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // 뷰 세팅
     setView();
 	
-	// 애니메이션
-	startAni();
+	  // 애니메이션
+	  startAnimation();
 
 });
+
+var lastFocused;
 
 function setEvent() {
 
   // 숫자판 포커스 이벤트
-  let lastFocused;
+  //let lastFocused;
   const inputs = document.querySelectorAll('.cell input');
 
   inputs.forEach(input => {
     input.addEventListener('focus', function() {
-      
-      const row = this.getAttribute('data-row');
-      const col = this.getAttribute('data-col');
 
-      document.querySelectorAll('.cell input').forEach(input => {
-          input.classList.remove('highlight');
-          input.classList.remove('focus');
-      });
+      setNumberInputFocusEvent(this);
 
-      document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
-          input.classList.add('highlight');
-      });
-
-      document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
-          input.classList.add('highlight');
-      });
-
-      lastFocused = this;
     });
   });
 
@@ -49,16 +36,12 @@ function setEvent() {
 	  
 	  const lastFocused_input  = lastFocused;
 
-    //clearExamDupColor();
+    console.log("lastFocused_input=",lastFocused_input);
 
     if (lastFocused_input && !lastFocused_input.readOnly) {
 
-        console.log("lastFocused_input=",lastFocused_input);
-
         var row = lastFocused_input.getAttribute('data-row');
         var col = lastFocused_input.getAttribute('data-col');
-
-        console.log("isExamMode = ",isExamMode);
 
         // 연습모드가 아니면
         if(!isExamMode) {
@@ -76,18 +59,18 @@ function setEvent() {
             lastFocused_input.classList.add('answer');
             lastFocused_input.classList.remove('wrong-answer');
 			
-			var elements = new Array();
-			document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
-				input.classList.add('correct');
-			});
-			document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
-				input.classList.add('correct');
-			});
+            var elements = new Array();
+            document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+              input.classList.add('correct');
+            });
+            document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
+              input.classList.add('correct');
+            });
 
-			// 1초 후에 원래대로 돌린다.
+            // 1초 후에 원래대로 돌린다.
             setTimeout(function(){
-               lastFocused_input.style.color = "#555";
-               lastFocused_input.classList.remove('answer');
+                lastFocused_input.style.color = "#555";
+                lastFocused_input.classList.remove('answer');
             },1000);
 
             // 1초 후에 원래대로 돌린다.
@@ -113,31 +96,54 @@ function setEvent() {
             var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
             if(total_hidden == 0) {
 				
-              // 베스트 기록을 저장한다.
-			  if(typeof NativeJSinterface != 'undefined')
-				NativeJSinterface.saveBestRecord(mainModel.level,li_timer.innerText);
-			
-              showModal("게임이 끝났어요!!!!\n다음 게임으로 진행하세요"
-                      ,function(){hideModal()}
-                      ,function(){window.location.reload()});
-            }   
+              // 애니메이션을 시작한다. 	
+              sparkAnimation();	
+              
+              // 기록을 저장한다.
+              if(typeof NativeJSinterface != 'undefined') {
+                
+                var elaspedTimeText = getElaspedTimeText();	
+                console.log("elaspedTimeText=",elaspedTimeText);
 
+                // 난이도 레벨
+                NativeJSinterface.saveRecord(mainModel.mode_type,mainModel.level,elaspedTimeText);				
+              }
+              
+              if(mainModel.mode_type == 1 || mainModel.mode_type == 2) {
+                showModal("완벽해요!!!!\n다시 하시겠어요?"
+                          ,function(){window.location.reload();}
+                          ,function(){location.href = "../game/index.html";}
+                );
+              } else if(mainModel.mode_type == 3) {
+
+                // 15 레벨까지~
+                if(mainModel.level < 15) {
+                  setTimeout(function(){
+                    var level = mainModel.level + 1;
+                    location.href = "../game/sudoku.html?mode_type=3&level=" + level;
+                  },2000);
+                } else {
+                  showModal("최고에요!!!!\n후속 컨텐츠가 업데이트될 예정입니다."
+                          ,function(){location.href = "../game/index.html";}
+                          ,null); 
+                }
+              }
+            }   
           } // 틀렷다면 
           else {
 
-			if(typeof NativeJSinterface != 'undefined')
-				NativeJSinterface.vibrate();
+            if(typeof NativeJSinterface != 'undefined')
+              NativeJSinterface.vibrate();
 
             lastFocused_input.style.color = "#DF2935";
             lastFocused_input.classList.add('wrong-answer');
             lastFocused_input.classList.remove('answer');
 			
-			
-			const row = lastFocused_input.getAttribute('data-row');
-			const col = lastFocused_input.getAttribute('data-col');
-			
-			console.log("row = ",row);
-			console.log("col = ",col);
+            const row = lastFocused_input.getAttribute('data-row');
+            const col = lastFocused_input.getAttribute('data-col');
+            
+            console.log("row = ",row);
+            console.log("col = ",col);
 
             // 실수 횟수를 세팅한다.
             mainModel.incorrect_count++;
@@ -145,8 +151,9 @@ function setEvent() {
 
             if(mainModel.incorrect_count>= mainModel.incorrect_max_count) {
               showModal("실수를 너무 많이 했어요!!!!\n다시 하시겠어요?"
-              ,function(){hideModal()}
-              ,function(){window.location.reload()});
+                      ,function(){window.location.reload();}
+					            ,function(){location.href = "../game/index.html";}
+					    );
             }
           }
         // 연습모드이면  
@@ -154,81 +161,91 @@ function setEvent() {
 
           // 연습모드 일때 포커스 유지 - 연습모드 아닐때 포커스 해제를 해줘요!!!!  (양작업)
           lastFocused_input.classList.add('focus');
+          lastFocused_input.value = "";
 
-          // 중복된것이 잇는지 검사한다.
-          // 가로 세로 박스 체크. col과 row가 헷갈릴수 잇다. 주의!! 실질적으로 col은 X, row는 y 이다.
-          var _col = isContainRow(mainModel.total_array,row,number,true,true);
-          var _row = isContainCol(mainModel.total_array,col,number,true,true);
-
-          var box_arrange = mainModel.getBoxArrange(row,col);
-          box_s_row = box_arrange.s_row;
-          box_e_row = box_arrange.e_row;
-          box_s_col = box_arrange.s_col;
-          box_e_col = box_arrange.e_col;
-
-          var _box = isContainBox(mainModel.total_array
-                                  ,box_s_row
-                                  ,box_e_row
-                                  ,box_s_col
-                                  ,box_e_col
-                                  ,number
-                                  ,true
-                                  ,true);
-
-          console.log("number = " + number);
-          console.log("row = " + row + ",_col = " + _col);
-          console.log("_row = " + _row + ",col = " + col);
-          console.log("_box = ",_box);
-
-          if(_row == -1 && _col == -1 && _box.row == -1) {
-            lastFocused_input.value = "";
-
-            var numdiv = lastFocused_input.parentElement.querySelector('.number' + number);
-            console.log("numdiv = ",numdiv);
-            numdiv.style.display = 'block';  
-          } 
-          // 중복된것이 있다면
-          else {
-            var color = "#0000ff";
-            setNumberBoxColor(row,_col,color); 
-            setNumberBoxColor(_row,col,color); 
-            setNumberBoxColor(_box.row,_box.col,color); 
-
-            setTimeout(function(){
-              color = "#555";
-              setNumberBoxColor(row,_col,color); 
-              setNumberBoxColor(_row,col,color); 
-              setNumberBoxColor(_box.row,_box.col,color);
-           },1000);
-          }
-
+          var numdiv = lastFocused_input.parentElement.querySelector('.number' + number);
+          numdiv.style.display = 'block';  
       }
     }
   }
 
   // 설정 버튼 이벤트
-   document.querySelector('#btn_setting').onclick = function(){
+  document.querySelector('#btn_setting').onclick = function(){
 	  if(typeof NativeJSinterface != 'undefined') 
-		NativeJSinterface.goSetting();
-    };
+		NativeJSinterface.goSetting(); 
+  };
 
   // 리로드 버튼 이벤트
   document.querySelector('#btn_reload').onclick = function(){
-    window.location.reload();
+
+    if(mainModel.mode_type == "3") {
+      showModal("도전모드에서는 재시작할 수 없어요!"
+                          ,function(){hideModal();}
+                          ,null); 
+    } else
+      window.location.reload();
   };
 
   // 지우기 버튼 이벤트
   document.querySelector('#btn_erase').onclick = function(){
     if (lastFocused && !lastFocused.readOnly) {
+      
+      lastFocused.parentElement.querySelectorAll('.small-number').forEach(numdiv => {
+        numdiv.style.display = 'none';
+      });
+
+      lastFocused.classList.remove('wrong-answer');
       lastFocused.value = "";
     }   
   };
+}
 
+function setNumberInputFocusEvent(numinput) {
+
+  const _numinput = numinput;
+
+  console.log("_numinput = ",_numinput);
+
+  const row = _numinput.getAttribute('data-row');
+  const col = _numinput.getAttribute('data-col');
+
+  console.log("row = ",row);
+  console.log("col = ",col);
+
+  // 모든 하이라이트와 포커스를 지운다.
+  document.querySelectorAll('.cell input').forEach(input => {
+      input.classList.remove('highlight');
+      input.classList.remove('focus');
+  });
+
+  console.log("_numinput.value = ",_numinput.value);
+
+  document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+      input.classList.add('highlight');
+  });
+
+  document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
+      input.classList.add('highlight');
+  });
+
+  if(_numinput.value != "") {
+    document.querySelectorAll(`.cell input`).forEach(input => {
+      if(input.value ==  _numinput.value){
+        input.classList.add('highlight');
+        input.classList.add('focus');
+      }
+    });
+  }
+
+  numinput.classList.add('focus');
+
+  lastFocused = _numinput;
 }
 
 function initData() {
 
   mainModel.init();
+
 }
 
 function setView() {
@@ -239,8 +256,8 @@ function setView() {
   // 실수횟수를 세팅한다.
   setMistake();
 
-  // 레벨을 세팅한다.
-  setLevel();
+  // 게임모드를 세팅한다.
+  setModeType();
   
   // 타이머를 세팅한다.
   setTimer();
@@ -256,7 +273,15 @@ function setView() {
 
 }
 
-function startAni() {
+function startAnimation(){
+  if(mainModel.mode_type == "1" || mainModel.mode_type == 2)
+    goAnimation();
+  else
+    stageAnimation();
+}
+
+function goAnimation() {
+	
 	var ml4 = {};
 	ml4.opacityIn = [0,1];
 	ml4.scaleIn = [0.2, 1];
@@ -264,6 +289,85 @@ function startAni() {
 	ml4.durationIn = 800;
 	ml4.durationOut = 600;
 	ml4.delay = 500;
+	
+	let div = document.querySelector('.ml4');
+	div.style.display = "block";
+
+  let span = document.querySelector('.letters-3');
+
+	span.innerText = "Go!";
+  div.style.fontSize = "4.5em";
+
+	anime.timeline()
+	  .add({
+		targets: '.ml4 .letters-3',
+		opacity: ml4.opacityIn,
+		scale: ml4.scaleIn,
+		duration: ml4.durationIn
+	  }).add({
+		targets: '.ml4 .letters-3',
+		opacity: 0,
+		scale: ml4.scaleOut,
+		duration: ml4.durationOut,
+		easing: "easeInExpo",
+		delay: ml4.delay
+	  });
+	  
+	setTimeout(function(){
+	  let div = document.querySelector('.ml4');
+	  div.style.display = "none";
+	},1000);
+}
+
+function stageAnimation() {
+	
+	let div = document.querySelector('.ml4');
+	div.style.display = "block";
+
+  let span = document.querySelector('.letters-3');
+
+  span.innerText = "Stage " + mainModel.level + "!";
+  div.style.fontSize = "3.5em";
+
+  anime.timeline({loop: true})
+  .add({
+    targets: '.ml4 .letters-3',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i
+  }).add({
+    targets: '.ml2',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+
+	setTimeout(function(){
+	  let div = document.querySelector('.ml4');
+	  div.style.display = "none";
+	},1000);
+}
+
+function stepAnimation(updateProgress) {
+	
+	var ml4 = {};
+	ml4.opacityIn = [0,1];
+	ml4.scaleIn = [0.2, 1];
+	ml4.scaleOut = 3;
+	ml4.durationIn = 800;
+	ml4.durationOut = 600;
+	ml4.delay = 500;
+	
+	let div = document.querySelector('.ml4');
+	div.style.display = "block";
+
+  let span = document.querySelector('.letters-3');
+	span.innerText =  updateProgress + "%";;
+  div.style.fontSize = "4.5em";
 
 	anime.timeline()
 	  .add({
@@ -291,8 +395,15 @@ function showModal(msg,ok_listner,cancel_listner) {
   div.classList.remove("hidden");
 
   document.querySelector('.modal-wrap .modal-text').innerText = msg;
-  document.querySelector('.modal-wrap .btn-gray').onclick = ok_listner;
-  document.querySelector('.modal-wrap .btn-point').onclick = cancel_listner;
+  
+  document.querySelector('.modal-wrap .btn-point').onclick = ok_listner;
+  
+  if(cancel_listner == null)
+	  document.querySelector('.modal-wrap .btn-gray').style.display = "none"; 
+  else {
+	  document.querySelector('.modal-wrap .btn-gray').style.display = "block"; 
+	  document.querySelector('.modal-wrap .btn-gray').onclick = cancel_listner;
+  }
 }
 
 function hideModal() {
@@ -335,6 +446,15 @@ function initExamNumbers(cell) {
       numberDiv.classList.add("small-number", `number${i}`);
       numberDiv.style.display = 'none';
       cell.appendChild(numberDiv);
+
+      // 연습모드에서 포커스를 가질수 있게 추가.
+      numberDiv.addEventListener('click', function() {
+      
+        var numinput = numberDiv.parentElement.querySelector('input');
+
+        setNumberInputFocusEvent(numinput);
+        
+      });
     }
   }
 }
@@ -347,11 +467,38 @@ function setHiddenNumberCount() {
 }
 
 function setProgress() {
+	var curProgress = document.querySelector('#div_progress').innerText.replace("진행도 ","").replace("%","");
+	var nCurProgress = parseInt(curProgress,10);
+	
+	setTimeout(function(){
+					  progressUpdate(nCurProgress);
+			       },1000);
+}
 
-  var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
-  //console.log("total_hidden=",total_hidden);
-  document.querySelector('#div_progress').innerText 
-      = "진행도 " + (100 - Math.floor(total_hidden/mainModel.init_hidden_count*100)) + "%";
+var isView35per = false;
+var isView70per = false;
+
+function progressUpdate(nCurProgress) {
+	var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
+	var updateProgress = 100 - Math.floor(total_hidden/mainModel.init_hidden_count*100);
+
+    document.querySelector('#div_progress').innerText = "진행도 " + nCurProgress + "%";
+	
+	if(nCurProgress < updateProgress) {	 
+		setTimeout(function(){
+					  nCurProgress++;
+					  progressUpdate(nCurProgress);
+			       },50);	
+	} else {
+		if(updateProgress > 35 && !isView35per){
+			isView35per = true;
+			stepAnimation(updateProgress);
+		}
+		else if(updateProgress > 70 && !isView70per){
+			isView70per = true;
+			stepAnimation(updateProgress);
+		}
+	}
 }
 
 var startTime = 0;
@@ -360,13 +507,21 @@ var timerIntervalId;
 function setTimer() {
 
   startTime = new Date().getTime();
-
-  li_timer.innerText = "03:00";
+  
+  var limitMinMax = mainModel.time_limit_max / 60;
+  var limitSecMax = mainModel.time_limit_max % 60;
+  
+  var limitMinMaxText = limitMinMax < 10 ? "0" + limitMinMax : limitMinMax;
+  var limitSecMaxText = limitSecMax < 10 ? "0" + limitSecMax : limitSecMax;
+  
+  let li_timer = document.querySelector('#li_timer');
+  li_timer.innerText = limitMinMaxText + ":" + limitSecMaxText;
 
   timerIntervalId = setInterval(function(){
+	  
     var curTime = new Date().getTime();
     var elapsedTimeSec = Math.floor((curTime - startTime)/1000);
-    var remainTime = 180 - elapsedTimeSec;
+    var remainTime = mainModel.time_limit_max - elapsedTimeSec;
     
     if(remainTime < 0)
       remainTime = 0;
@@ -377,31 +532,33 @@ function setTimer() {
     var remainMinText = remainMin < 10 ? "0" + remainMin : remainMin;
     var remainSecText = remainSec < 10 ? "0" + remainSec : remainSec;
 
-    let li_timer     = document.querySelector('#li_timer');
+    let li_timer = document.querySelector('#li_timer');
     li_timer.innerText = remainMinText + ":" + remainSecText;
 
     if(remainTime == 0) {
       clearInterval(timerIntervalId);
-        showModal("시간이 다 됬어요!!!!\n다시 하시겠어요?"
-                      ,function(){hideModal()}
-                      ,function(){window.location.reload()});
+	  showModal("시간이 다 됬어요!!!!\n다시 하시겠어요?"
+				  ,function(){window.location.reload();}
+				  ,function(){location.href = "../game/index.html";}
+				  );
     }
 
   },1000);
 }
 
-function setLevel() {
+function setModeType() {
   let li_level = document.querySelector('#li_level');
+  var level_text = "";
 
-  var level_text = "쉬워요";
-  if(mainModel.level == 1)
+  if(mainModel.mode_type == 1) {
     level_text = "쉬워요";
-  else if(mainModel.level == 2)
+  } else if (mainModel.mode_type == 2) {
     level_text = "할만해요";
-  else if(mainModel.level == 3)
-    level_text = "어려워요";
-  
-  li_level.style.color = "#DF2935"; // 수정 by 알밤 최고남
+  } else if (mainModel.mode_type == 3) {
+    level_text = "stage " +  mainModel.level;
+  }
+
+  li_level.style.color = "#DF2935"; 
   li_level.innerText = level_text;
 }
 
@@ -417,24 +574,11 @@ function examMode() {
    if(!isExamMode) {
      isExamMode = true;
      document.querySelector('#btn_exammode').style.color = "#DF2935";
-    //  document.querySelector('#btn_exammode').classList.add("on");
    } else {
      isExamMode = false;
      document.querySelector('#btn_exammode').style.color = "#555";
-    // document.querySelector('#btn_exammode').classList.remove("on");
    }
 }
-
-/*
-function clearExamDupColor() {
-
-  document.querySelectorAll(`.cell input`).forEach(input => {
-
-    console.log("input.style.color",input.style.color);
-    if(input.style.color == "rgb(0, 0, 255)")
-      input.style.color = "#555";
-  });
-}*/
 
 function setNumberBoxColor(row,col,color) {
 
@@ -446,15 +590,88 @@ function setNumberBoxColor(row,col,color) {
   });
 }
 
+function getElaspedTimeText(){
+	
+	let li_timer = document.querySelector('#li_timer');
+	var remaintimeString = li_timer.innerText;
+	
+	var remainMin = remaintimeString.substring(0,2);
+    var remainSec = remaintimeString.substring(3,5);
+	
+	var remaintime = parseInt(remainMin, 10)*60 + parseInt(remainSec, 10);
+    
+	var elapsedTime = mainModel.time_limit_max - remaintime;
+	
+	var elapsedMin = Math.floor(elapsedTime / 60);
+	var elapsedSec = elapsedTime%60;
+
+    var elapsedMinText = elapsedMin < 10 ? "0" + elapsedMin : elapsedMin;
+    var elapsedSecText = elapsedSec < 10 ? "0" + elapsedSec : elapsedSec;
+	
+	console.log("elapsedMinText=",elapsedMinText);
+	console.log("elapsedSecText=",elapsedSecText);
+	
+	return elapsedMinText + ":" + elapsedSecText;
+}
+
+
+let particles = [];
+const colors = ["#eb6383","#fa9191","#ffe9c5","#b4f2e1"];
+
+function sparkAnimation(){
+	
+	pop();	
+	setTimeout(render,100);
+
+}
+
+function pop () {
+  for (let i = 0; i < 150; i++) {
+    const p = document.createElement('particule');
+    p.x = window.innerWidth * 0.5;
+    p.y = window.innerHeight + (Math.random() * window.innerHeight * 0.3);
+    p.vel = {
+      x: (Math.random() - 0.5) * 10,
+      y: Math.random() * -20 - 15
+    };
+    p.mass = Math.random() * 0.2 + 0.8;
+    particles.push(p);
+    p.style.transform = `translate(${p.x}px, ${p.y}px)`;
+    const size = Math.random() * 15 + 5;
+    p.style.width = size + 'px';
+    p.style.height = size + 'px';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    document.body.appendChild(p);
+  }
+}
+
+function render () {
+  for (let i = particles.length - 1; i--; i > -1) {
+    const p = particles[i];
+    p.style.transform = `translate3d(${p.x}px, ${p.y}px, 1px)`;
+    
+    p.x += p.vel.x;
+    p.y += p.vel.y;
+    
+    p.vel.y += (0.5 * p.mass);
+    if (p.y > (window.innerHeight * 2)) {
+      p.remove();
+      particles.splice(i, 1);
+    }
+  }
+  requestAnimationFrame(render);
+}
+
 window.NativeInterface = {
     closeConfirm: () => {
       showModal("정말 종료하시겠습니까?"
-				,function(){hideModal()}
 				,function(){
 					if(typeof NativeJSinterface != 'undefined')
 						NativeJSinterface.close()
-				});
-    },
- }
+				}
+				,function(){hideModal()}
+		);
+  },
+}
 
 
