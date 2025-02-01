@@ -25,12 +25,13 @@ function setTouch() {
             
   inputs.forEach(input => {
     input.addEventListener('touchstart', function(event) {
-        event.preventDefault();  // 모바일에서 길게 누를 때 발생하는 기본 동작 차단
+        event.preventDefault();  // 기본 동작 (복사, 공유 등) 차단
     });
+    
     input.addEventListener('contextmenu', function(event) {
         event.preventDefault();  // 우클릭 메뉴 차단
     });
-  });
+});
 }
 
 function setEvent() {
