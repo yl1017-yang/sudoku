@@ -23,15 +23,25 @@ var lastFocused;
 function setTouch() {
   const inputs = document.querySelectorAll('.place-wrap input[type="text"]');
             
+  let touchTimer;
+
   inputs.forEach(input => {
-    input.addEventListener('touchstart', function(event) {
-        event.preventDefault();  // 기본 동작 (복사, 공유 등) 차단
-    });
-    
-    input.addEventListener('contextmenu', function(event) {
-        event.preventDefault();  // 우클릭 메뉴 차단
-    });
-});
+      input.addEventListener('touchstart', function(event) {
+          touchTimer = setTimeout(function() {
+              // 롱 터치로 간주되면 기본 동작 차단
+              event.preventDefault();
+          }, 500);  // 롱 터치가 500ms 이상일 때 차단 (시간은 조정 가능)
+      });
+
+      input.addEventListener('touchend', function(event) {
+          // 터치 종료 시 타이머 클리어
+          clearTimeout(touchTimer);
+      });
+
+      input.addEventListener('contextmenu', function(event) {
+          event.preventDefault();  // 우클릭 메뉴 차단
+      });
+  });
 }
 
 function setEvent() {
