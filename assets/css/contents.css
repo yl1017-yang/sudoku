@@ -37,6 +37,12 @@ html, body, .sudoku-wrap{min-height:100%;}
 .header{display:flex;justify-content:space-between;align-items:center;height:14vw;}
 .header .header-util span{display:inline-block;margin-left:2vw;}
 
+/* 도장깨기 배경이미지 */
+.sudoku-wrap.bg-sudoku-01{background:#fde6be url(../images/bg-sudoku-01.jpg) 100% 0/100%;animation:none;}
+.sudoku-wrap.bg-sudoku-02{background:#f0e1d7 url(../images/bg-sudoku-02.jpg) 100% 0/100%;animation:none;}
+.sudoku-wrap.bg-sudoku-03{background:#b5cfc8 url(../images/bg-sudoku-03.jpg) 100% 0/100%;animation:none;}
+.sudoku-wrap.bg-sudoku-04{background:#fcd3e0 url(../images/bg-sudoku-04.jpg) 100% 0/100%;animation:none;}
+
 /* 스도쿠 배경화면 애니메이션 */
 .sudoku-wrap{background:linear-gradient(90deg, #fff, #dfdeb4,#f2f1e4);background-size:400% 400%;animation:gradient 30s ease infinite;}
 @keyframes gradient {
