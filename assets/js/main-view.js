@@ -13,9 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
 	  // 애니메이션
 	  startAnimation();
 
+   // 롱터치 비활성화
+    setTouch()
+
 });
 
 var lastFocused;
+
+function setTouch() {
+  const inputs = document.querySelectorAll('.place-wrap input[type="text"]');
+            
+  inputs.forEach(input => {
+    input.addEventListener('touchstart', function(event) {
+        event.preventDefault();  // 모바일에서 길게 누를 때 발생하는 기본 동작 차단
+    });
+    input.addEventListener('contextmenu', function(event) {
+        event.preventDefault();  // 우클릭 메뉴 차단
+    });
+  });
+}
 
 function setEvent() {
 
