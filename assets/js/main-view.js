@@ -13,45 +13,18 @@ document.addEventListener('DOMContentLoaded', function() {
 	  // 애니메이션
 	  startAnimation();
 
-   // 롱터치 비활성화
-    setTouch()
-
 });
 
 var lastFocused;
-
-function setTouch() {
-  const inputs = document.querySelectorAll('.place-wrap input[type="text"]');
-            
-  let touchTimer;
-
-  inputs.forEach(input => {
-      input.addEventListener('touchstart', function(event) {
-          touchTimer = setTimeout(function() {
-              // 롱 터치로 간주되면 기본 동작 차단
-              event.preventDefault();
-          }, 500);  // 롱 터치가 500ms 이상일 때 차단 (시간은 조정 가능)
-      });
-
-      input.addEventListener('touchend', function(event) {
-          // 터치 종료 시 타이머 클리어
-          clearTimeout(touchTimer);
-      });
-
-      input.addEventListener('contextmenu', function(event) {
-          event.preventDefault();  // 우클릭 메뉴 차단
-      });
-  });
-}
 
 function setEvent() {
 
   // 숫자판 포커스 이벤트
   //let lastFocused;
-  const inputs = document.querySelectorAll('.cell input');
+  const divs = document.querySelectorAll('.cell_text');
 
-  inputs.forEach(input => {
-    input.addEventListener('focus', function() {
+  divs.forEach(div => {
+    div.addEventListener('click', function() {
 
       setNumberInputFocusEvent(this);
 
@@ -65,7 +38,9 @@ function setEvent() {
 
     console.log("lastFocused_input=",lastFocused_input);
 
-    if (lastFocused_input && !lastFocused_input.readOnly) {
+    //if (lastFocused_input && !lastFocused_input.readOnly) {
+    if (lastFocused_input && !lastFocused_input.classList.contains('readonly')) {
+        
 
         var row = lastFocused_input.getAttribute('data-row');
         var col = lastFocused_input.getAttribute('data-col');
@@ -73,7 +48,7 @@ function setEvent() {
         // 연습모드가 아니면
         if(!isExamMode) {
 
-          lastFocused_input.value = number;
+          lastFocused_input.innerText = number;
 
           lastFocused_input.parentElement.querySelectorAll('.small-number').forEach(numdiv => {
             numdiv.style.display = 'none';
@@ -87,10 +62,10 @@ function setEvent() {
             lastFocused_input.classList.remove('wrong-answer');
 			
             var elements = new Array();
-            document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+            document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
               input.classList.add('correct');
             });
-            document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
+            document.querySelectorAll(`.cell_text[data-col="${col}"]`).forEach(input => {
               input.classList.add('correct');
             });
 
@@ -98,20 +73,22 @@ function setEvent() {
             setTimeout(function(){
                 lastFocused_input.style.color = "#555";
                 lastFocused_input.classList.remove('answer');
+                lastFocused_input.classList.remove('focus');
             },1000);
 
             // 1초 후에 원래대로 돌린다.
             setTimeout(function(){
-              document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+              document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
                 input.classList.remove('correct');
                 });
-              document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
+              document.querySelectorAll(`.cell_text[data-col="${col}"]`).forEach(input => {
                 input.classList.remove('correct');
               });
             },1000);
 
             mainModel.total_array[row][col].isHidden = false;
-            lastFocused_input.setAttribute('readonly', true);
+            //lastFocused_input.setAttribute('readonly', true);
+            lastFocused_input.classList.add('readonly');
 
             // 히든된 숫자 카운트를 세팅한다.
             setHiddenNumberCount();
@@ -143,8 +120,8 @@ function setEvent() {
                 );
               } else if(mainModel.mode_type == 3) {
 
-                // 15 레벨까지~
-                if(mainModel.level < 15) {
+                // 10 레벨까지~
+                if(mainModel.level < 10) {
                   setTimeout(function(){
                     var level = mainModel.level + 1;
                     location.href = "../game/sudoku.html?mode_type=3&level=" + level;
@@ -162,11 +139,11 @@ function setEvent() {
             if(typeof NativeJSinterface != 'undefined')
               NativeJSinterface.vibrate();
 
-            lastFocused_input.style.color = "#DF2935";
+            //lastFocused_input.style.color = "#DF2935";
             lastFocused_input.classList.add('wrong-answer');
             lastFocused_input.classList.remove('answer');
 
-            lastFocused_input.classList.remove('highlight');
+            //lastFocused_input.classList.remove('highlight');
             lastFocused_input.classList.remove('focus');
 			
             const row = lastFocused_input.getAttribute('data-row');
@@ -191,7 +168,7 @@ function setEvent() {
 
           // 연습모드 일때 포커스 유지 - 연습모드 아닐때 포커스 해제를 해줘요!!!!  (양작업)
           lastFocused_input.classList.add('focus');
-          lastFocused_input.value = "";
+          lastFocused_input.innerText = "";
 
           var numdiv = lastFocused_input.parentElement.querySelector('.number' + number);
           numdiv.style.display = 'block';  
@@ -218,14 +195,15 @@ function setEvent() {
 
   // 지우기 버튼 이벤트
   document.querySelector('#btn_erase').onclick = function(){
-    if (lastFocused && !lastFocused.readOnly) {
+    if (lastFocused && !lastFocused.classList.contains('readonly')) {
       
       lastFocused.parentElement.querySelectorAll('.small-number').forEach(numdiv => {
         numdiv.style.display = 'none';
       });
 
       lastFocused.classList.remove('wrong-answer');
-      lastFocused.value = "";
+      lastFocused.innerText = "";
+      lastFocused.classList.add('highlight');
     }   
   };
 }
@@ -243,37 +221,40 @@ function setNumberInputFocusEvent(numinput) {
   console.log("col = ",col);
 
   // 모든 하이라이트와 포커스를 지운다.
-  document.querySelectorAll('.cell input').forEach(input => {
+  document.querySelectorAll('.cell_text').forEach(input => {
       input.classList.remove('highlight');
       input.classList.remove('focus');
+      input.classList.remove('focus_wrong_answer');
   });
 
-  console.log("_numinput.value = ",_numinput.value);
+  console.log("_numinput.innerText = ",_numinput.innerText);
 
-  document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+  document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
       input.classList.add('highlight');
   });
 
-  document.querySelectorAll(`.cell input[data-col="${col}"]`).forEach(input => {
+  document.querySelectorAll(`.cell_text[data-col="${col}"]`).forEach(input => {
       input.classList.add('highlight');
   });
 
-  if(_numinput.value != "") {
-    document.querySelectorAll(`.cell input`).forEach(input => {
-      if(input.value == _numinput.value
-        && !input.classList.contains('wrong-answer')){
-        input.classList.add('highlight');
-        input.classList.add('focus');
+  if(_numinput.innerText != "") {
+    document.querySelectorAll(`.cell_text`).forEach(input => {
+      // 같은 숫자라면
+      if(input.innerText == _numinput.innerText) {
+        // 오답이 아니면
+        if(!input.classList.contains('wrong-answer')){
+          input.classList.add('highlight');
+          input.classList.add('focus');
+        }
       }
     });
+  } else {
+    numinput.classList.add('focus');
   }
 
   if(_numinput.classList.contains('wrong-answer')){
-    _numinput.classList.remove('highlight');
-    _numinput.classList.remove('focus');
+    _numinput.classList.add('focus_wrong_answer');     
   }
-
-  //numinput.classList.add('focus');
 
   lastFocused = _numinput;
 }
@@ -307,6 +288,8 @@ function setView() {
   // 하단 남은 숫자 개수 보여주기
   setHiddenNumberCount();
 
+  // 배경 세팅
+  setBackground();
 }
 
 function startAnimation(){
@@ -452,17 +435,19 @@ function setNumberBox() {
   for (var row = 0; row < 9; row++) {
     for (var col = 0; col < 9; col++) {
 
-      document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+      document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
         var data_col = input.getAttribute('data-col');
         if(data_col == col ) {
           //console.log("input = ",input );
           var obj = mainModel.total_array[row][col];
           if(!obj.isHidden) {
-            input.value = mainModel.total_array[row][col].value;
-            input.setAttribute('readonly', true);
+            input.innerText = mainModel.total_array[row][col].value;
+            //input.setAttribute('readonly', true);
+            input.classList.add('readonly')
           } else {
-            input.value = "";
-            input.removeAttribute('readonly');
+            input.innerText = "";
+            input.classList.remove('readonly')
+            //input.removeAttribute('readonly');
           }
 
           initExamNumbers(input.parentElement); // 연습숫자 추가 (양 추가)
@@ -486,7 +471,7 @@ function initExamNumbers(cell) {
       // 연습모드에서 포커스를 가질수 있게 추가.
       numberDiv.addEventListener('click', function() {
       
-        var numinput = numberDiv.parentElement.querySelector('input');
+        var numinput = numberDiv.parentElement.querySelector('.cell_text');
 
         setNumberInputFocusEvent(numinput);
         
@@ -500,6 +485,20 @@ function setHiddenNumberCount() {
    for (var i = 1; i <= 9; i++) {
       document.querySelector('#sp_remain_num_' + i).innerText = getHiddenNumberCountInArray(mainModel.total_array,0,9,0,9,i);
    }
+}
+
+function setBackground() {
+  if(mainModel.mode_type == 3) {
+
+    if(mainModel.level >= 1 && mainModel.level <= 3)
+      document.querySelector('.sudoku-wrap').classList.add('bg-sudoku-01');
+    else if(mainModel.level >= 4 && mainModel.level <= 6)
+      document.querySelector('.sudoku-wrap').classList.add('bg-sudoku-02');
+    else if(mainModel.level >= 7 && mainModel.level <= 9)
+      document.querySelector('.sudoku-wrap').classList.add('bg-sudoku-03');
+    else if(mainModel.level >= 10)
+      document.querySelector('.sudoku-wrap').classList.add('bg-sudoku-04');
+  }
 }
 
 function setProgress() {
@@ -618,7 +617,7 @@ function examMode() {
 
 function setNumberBoxColor(row,col,color) {
 
-  document.querySelectorAll(`.cell input[data-row="${row}"]`).forEach(input => {
+  document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
     var data_col = input.getAttribute('data-col');
     if(data_col == col ) {
       input.style.color = color;

@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="../assets/css/common.css">
   <link rel="stylesheet" href="../assets/css/animation.css">
 </head>
-<body>
+<body>  
   <!-- [D] 도장깨기 배경이미지 sudoku-wrap bg-sudoku-01/bg-sudoku-02/bg-sudoku-03/bg-sudoku-04 클래스 추가  -->
-  <div class="sudoku-wrap bg-sudoku-01">
+  <!--<div class="sudoku-wrap bg-sudoku-01">-->
+  <div class="sudoku-wrap">  
 
     <header class="header">
       <div class="header-btn">
@@ -34,111 +35,111 @@
       </div>
       <section class="place-wrap">
         <div class="row">
-          <div class="cell"><input type="text" data-row="0" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="2" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="1" data-col="0" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="1" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="2" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="0" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="2" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="2"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="2"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="2"></div></div>
         </div>
 
         <div class="row">
-          <div class="cell"><input type="text" data-row="0" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="4" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="0" data-col="5" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="1" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="5" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="3" maxlength="1" inputmode="none" ></div>
-          <div class="cell"><input type="text" data-row="2" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="5" maxlength="1" inputmode="none" ></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="5"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="5"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="5"></div></div>
         </div>
 
         <div class="row">
-          <div class="cell"><input type="text" data-row="0" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="0" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="1" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="2" data-col="8" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="0" data-col="8"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="1" data-col="8"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="2" data-col="8"></div></div>
         </div>
 
         <div class="row">
-          <div class="cell"><input type="text" data-row="3" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="2" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="2"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="2"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="2"></div></div>
         </div>
 
         <div class="row">
-          <div class="cell"><input type="text" data-row="3" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="5" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="5"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="5"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="5"></div></div>
         </div>
 
         <div class="row">
-          <div class="cell"><input type="text" data-row="3" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="3" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="4" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="5" data-col="8" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="3" data-col="8"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="4" data-col="8"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="5" data-col="8"></div></div>
         </div>
         
         <div class="row">
-          <div class="cell"><input type="text" data-row="6" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="2" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="0" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="1" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="2" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="2"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="2"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="0"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="1"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="2"></div></div>
         </div>
 
         <div class="row">
-          <div class="cell"><input type="text" data-row="6" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="5" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="3" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="4" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="5" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="5"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="5"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="3"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="4"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="5"></div></div>
         </div>
 
         <div class="row">
-          <div class="cell"><input type="text" data-row="6" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="6" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="7" data-col="8" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="6" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="7" maxlength="1" inputmode="none"></div>
-          <div class="cell"><input type="text" data-row="8" data-col="8" maxlength="1" inputmode="none"></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="6" data-col="8"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="7" data-col="8"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="6"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="7"></div></div>
+          <div class="cell"><div class="cell_text" data-row="8" data-col="8"></div></div>
         </div>
 
         <div class="animation-box">

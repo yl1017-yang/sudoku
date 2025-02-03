@@ -82,6 +82,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 .highlight{background:var(--third);transition-duration:0.2s;}
 .highlight.focus{background:var(--primary);color:var(--white) !important;transition-duration:0.2s;}  /* 연습모드일때 포커스 */
+.highlight.focus_wrong_answer{background:var(--primary);transition-duration:0.2s;}  /* 연습모드일때 포커스 */
 
 .correct{background:var(--secondary);transition-duration:0.2s;}
 
@@ -109,7 +110,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 }
 
 /* 오답모션 */
-.wrong-answer{background:#ffe5e7;}
+.wrong-answer{background:#ffe5e7;color:#DF2935 !important;}
 
 /* 하단 */
 .footer .menu{display:flex;justify-content:space-around;align-items:flex-end;}
@@ -181,3 +182,30 @@ html, body, .sudoku-wrap{min-height:100%;}
   right: 0;
   opacity: 0; 
 }
+
+/* input -> div 교체 */
+.cell_text{box-sizing:border-box;border:none;outline-style:none;border-radius:0;font-size:inherit;font-family:inherit;color:inherit;}/* -webkit-appearance:none;-moz-appearance:none;appearance:none; */
+.cell_text{resize:none;box-shadow:none !important;border-radius:0;outline:none;}
+.cell_text:checked{-webkit-appearance:checkbox;}
+.cell_text::-ms-clear::-ms-clear{display:none;}
+.cell_text[disabled]{cursor:default;}
+.cell_text{-webkit-tap-highlight:rgba(0, 0, 0, 0)}
+.cell_text{vertical-align:middle;border-radius:0;outline:none;/*background:transparent;*/}
+.cell_text::-ms-expand{display:none;}
+
+@media all and (max-width:800px){
+	.ios-os .cell_text{-webkit-appearance: none;-moz-appearance: none;appearance: none;border-radius:0;}
+}
+
+.cell_text:focus::-webkit-input-placeholder{visibility:hidden}
+.cell_text:focus:-moz-placeholder{visibility:hidden}
+.cell_text:focus::-moz-placeholder{visibility:hidden}
+.cell_text:focus:-ms-input-placeholder{visibility:hidden}
+
+.cell_text{position:absolute;width:100%;height:100%;text-align:center;font-size:6vw;/*color:var(--primary);*//*line-height:0*/;caret-color:transparent;z-index:2;}
+.cell_text:focus{background:var(--primary);color:var(--white);transition-duration:0.2s;}
+.cell_text:focus-visible{background:var(--primary);color:var(--white);transition-duration:0.2s;}
+
+.cell_text:read-only{color:var(--gray555);cursor:not-allowed;}
+.cell_text:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}
+
