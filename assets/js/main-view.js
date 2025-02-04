@@ -195,6 +195,8 @@ function setEvent() {
 
   // 지우기 버튼 이벤트
   document.querySelector('#btn_erase').onclick = function(){
+
+    document.querySelector('#btn_erase').blur();
     if (lastFocused && !lastFocused.classList.contains('readonly')) {
       
       lastFocused.parentElement.querySelectorAll('.small-number').forEach(numdiv => {
@@ -572,10 +574,17 @@ function setTimer() {
 
     if(remainTime == 0) {
       clearInterval(timerIntervalId);
-	  showModal("시간이 다 됬어요!!!!\n다시 하시겠어요?"
+      if(mainModel.mode_type != 3) {
+	      showModal("시간이 다 됬어요!!!!\n다시 하시겠어요?"
 				  ,function(){window.location.reload();}
 				  ,function(){location.href = "../game/index.html";}
 				  );
+      } else {
+        showModal("시간이 다 됬어요!!!!"
+        ,function(){location.href = "../game/index.html";}
+        ,null
+        ); 
+      }
     }
 
   },1000);
@@ -613,6 +622,7 @@ function examMode() {
    } else {
      isExamMode = false;
      document.querySelector('#btn_exammode').style.color = "#555";
+     document.querySelector('#btn_exammode').blur();
    }
 }
 
