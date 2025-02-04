@@ -65,9 +65,9 @@ html, body, .sudoku-wrap{min-height:100%;}
 /* 스도쿠 게임 */
 .container{display:flex;flex-wrap: wrap;align-items:flex-start;flex:1}
 .score-wrap{display:block;width:100%;}
-.score-wrap .score-level{font-size:5vw;color:var(--point);font-weight:600;text-align:center;margin:0 0 4vw;padding:1.8vw 0;background:var(--white);border-radius:100px;box-shadow:rgba(0, 0, 0, 0.08) 4px 5px 12px;}
+.score-wrap .score-level{font-size:5vw;color:var(--point);font-weight:600;text-align:center;margin:0 0 4vw;padding:1.8vw 0;color:var(--white);background:var(--white);border-radius:100px;box-shadow:rgba(0, 0, 0, 0.08) 4px 5px 12px;}
 .score-wrap ul{display:flex;justify-content:space-between;margin:6vw 0 0;}
-.score-wrap ul li{color:var(--gray999);}
+.score-wrap ul li{color:var(--gray555);background:var(--white);padding:.5vw 4vw;border-radius:2vw;}
 
 .place-wrap{position:relative;display:flex;flex-wrap:wrap;width:100%;background:var(--white);box-sizing:border-box;border:2px solid var(--gray555);border-right:0;border-bottom:0;box-shadow:rgba(0, 0, 0, 0.1) 5px 7px 10px;z-index:0;}
 .place-wrap .row{position:relative;display:flex;flex-wrap:wrap;width:33.3334%;border-right:2px solid var(--gray555);border-bottom:2px solid var(--gray555);}
