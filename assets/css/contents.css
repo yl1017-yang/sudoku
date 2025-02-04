@@ -114,10 +114,10 @@ html, body, .sudoku-wrap{min-height:100%;}
 .wrong-answer{background:#ffe5e7;color:#DF2935 !important;}
 
 /* 하단 */
-.footer .menu{display:flex;justify-content:space-around;align-items:flex-end;}
+.footer .menu{display:flex;justify-content:space-around;align-items:flex-end;margin:2vw 0;}
 .footer .menu li{text-align:center;}
-.footer .menu button{display:block;width:16vw;padding:0;}
-.footer .menu span{display:block;width:16vw;height:18vw;padding-top:11vw;font-size:3.4vw;line-height:1;}
+.footer .menu button{display:block;width:16vw;padding:0;background-position:50% 20%;}
+.footer .menu span{display:block;width:16vw;height:14vw;padding-top:9vw;font-size:3.4vw;line-height:1;}
 
 .footer .number{display:flex;justify-content:space-between;margin:4vw 0 5vw;}
 .footer .number button{display:block;width:100%;padding:2vw 0;margin:0 0.4vw;font-size:8vw;font-weight:600;color:var(--white);background:var(--primary);border-radius:1.4vw;box-shadow:rgba(0, 0, 0, 0.1) 3px 4px 7px;}
