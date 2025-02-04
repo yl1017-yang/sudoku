@@ -591,6 +591,7 @@ function setModeType() {
     level_text = "할만해요";
   } else if (mainModel.mode_type == 3) {
     level_text = "stage " +  mainModel.level;
+    document.querySelector('.score-wrap').classList.add('level-mode');
   }
 
   li_level.style.color = "#DF2935"; 
@@ -599,7 +600,7 @@ function setModeType() {
 
 function setMistake() {
   let li_mistake = document.querySelector('#li_mistake');
-  li_mistake.innerText =  "실수ㆍ" + mainModel.incorrect_count + "/" + mainModel.incorrect_max_count;
+  li_mistake.innerText =  "실수 " + mainModel.incorrect_count + "/" + mainModel.incorrect_max_count;
 }
 
 var isExamMode = false;

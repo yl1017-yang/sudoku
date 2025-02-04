@@ -34,10 +34,10 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 /* 레이아웃 */
 .sudoku-wrap{display:flex;flex-direction:column;justify-content:space-between;width:100%;background:var(--third);padding:0 4vw;}
-.header{display:flex;justify-content:space-between;align-items:center;height:14vw;}
+.header{display:flex;justify-content:space-between;align-items:center;height:13vw;}
 .header .header-util span{display:inline-block;margin-left:2vw;}
 
-/* 도장깨기 배경이미지 */
+/* 도전모드 배경이미지 */
 .sudoku-wrap.bg-sudoku-01{background:#fde6be url(../images/bg-sudoku-01.jpg) 100% 0/100%;animation:none;}
 .sudoku-wrap.bg-sudoku-02{background:#f0e1d7 url(../images/bg-sudoku-02.jpg) 100% 0/100%;animation:none;}
 .sudoku-wrap.bg-sudoku-03{background:#b5cfc8 url(../images/bg-sudoku-03.jpg) 100% 0/100%;animation:none;}
@@ -66,8 +66,8 @@ html, body, .sudoku-wrap{min-height:100%;}
 .container{display:flex;flex-wrap: wrap;align-items:flex-start;flex:1}
 .score-wrap{display:block;width:100%;}
 .score-wrap .score-level{font-size:5vw;color:var(--point);font-weight:600;text-align:center;margin:0 0 4vw;padding:1.8vw 0;color:var(--white);background:var(--white);border-radius:100px;box-shadow:rgba(0, 0, 0, 0.08) 4px 5px 12px;}
-.score-wrap ul{display:flex;justify-content:space-between;margin:6vw 0 0;}
-.score-wrap ul li{color:var(--gray555);background:var(--white);padding:.5vw 4vw;border-radius:2vw;}
+.score-wrap ul{display:flex;justify-content:space-between;margin:6vw 0 0;color:var(--gray999);}
+.level-mode ul li{color:var(--gray555);background:rgba(999, 999, 999, 0.9);padding:0.5vw 4vw;margin-bottom:2vw;border-radius:2vw;} /* 도전모드 */
 
 .place-wrap{position:relative;display:flex;flex-wrap:wrap;width:100%;background:var(--white);box-sizing:border-box;border:2px solid var(--gray555);border-right:0;border-bottom:0;box-shadow:rgba(0, 0, 0, 0.1) 5px 7px 10px;z-index:0;}
 .place-wrap .row{position:relative;display:flex;flex-wrap:wrap;width:33.3334%;border-right:2px solid var(--gray555);border-bottom:2px solid var(--gray555);}
@@ -118,7 +118,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .footer .menu button{display:block;width:16vw;padding:0;}
 .footer .menu span{display:block;width:16vw;height:18vw;padding-top:11vw;font-size:3.4vw;line-height:1;}
 
-.footer .number{display:flex;justify-content:space-between;margin:7vw 0 5vw;}
+.footer .number{display:flex;justify-content:space-between;margin:4vw 0 5vw;}
 .footer .number button{display:block;width:100%;padding:2vw 0;margin:0 0.4vw;font-size:8vw;font-weight:600;color:var(--white);background:var(--primary);border-radius:1.4vw;box-shadow:rgba(0, 0, 0, 0.1) 3px 4px 7px;}
 .footer .number button span{display:block;font-size:3.6vw;color:var(--secondary);}
 
@@ -162,26 +162,8 @@ html, body, .sudoku-wrap{min-height:100%;}
 .modal-wrap.hidden{display:none;}
 
 /* 텍스트 애니메이션 */
-.ml4 {
-  position:absolute;
-  top:30%;
-  left:0;
-  width:100%;
-  min-height:30%;
-  font-weight: 900;
-  font-size: 4.5em;
-}
-.ml4 .letters {
-  position: absolute;
-  display:flex;
-  justify-content:center;
-  align-content:center;
-  margin: auto;
-  left: 0;
-  top: 0;
-  right: 0;
-  opacity: 0; 
-}
+.ml4 { position: absolute; top: 40%; left: 0; width: 100%; min-height: 30%; font-weight: 900; font-size: 4.5em; }
+.ml4 .letters { position: absolute; margin: auto; left: 0; top: 0; right: 0;  opacity: 0;}
 
 /* input -> div 교체 */
 .cell_text{box-sizing:border-box;border:none;outline-style:none;border-radius:0;font-size:inherit;font-family:inherit;color:inherit;}/* -webkit-appearance:none;-moz-appearance:none;appearance:none; */
@@ -208,4 +190,3 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 .cell_text:read-only{color:var(--gray555);cursor:not-allowed;}
 .cell_text:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}
-
