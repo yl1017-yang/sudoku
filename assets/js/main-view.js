@@ -614,15 +614,18 @@ function setMistake() {
 
 var isExamMode = false;
 
+// 연습모드 세팅
 function examMode() {
 
    if(!isExamMode) {
      isExamMode = true;
      document.querySelector('#btn_exammode').style.color = "#DF2935";
+     document.querySelector('#btn_exammode').classList.add('focus');
    } else {
      isExamMode = false;
      document.querySelector('#btn_exammode').style.color = "#555";
      document.querySelector('#btn_exammode').blur();
+     document.querySelector('#btn_exammode').classList.remove('focus');
    }
 }
 
