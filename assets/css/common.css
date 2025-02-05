@@ -42,7 +42,7 @@ fieldset, legend{background:transparent;}
 caption, legend, .blind{position:absolute !important;height:1px !important;width:1px !important;overflow:hidden !important;clip:rect(1px 1px 1px 1px) !important;clip:rect(1px,1px,1px,1px) !important;}
 a{color:inherit;text-decoration:none;cursor:pointer;}
 button{border:none;box-shadow:none;background:transparent;cursor:pointer;outline:none;border-radius:0;font-size:inherit;font-family:inherit;color:inherit;}
-button:focus{outline-style:auto;outline: 2px solid -webkit-focus-ring;}
+/*button:focus{outline-style:auto;outline: 2px solid -webkit-focus-ring;}*/
 
 /* 아이폰(사파리) 터치 메뉴 활성화 관련 */
 html{-webkit-touch-callout:none;} 
