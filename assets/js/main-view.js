@@ -601,6 +601,8 @@ function setModeType() {
   } else if (mainModel.mode_type == 3) {
     level_text = "stage " +  mainModel.level;
     document.querySelector('.score-wrap').classList.add('level-mode');
+  } else if (mainModel.mode_type == 4) {
+    level_text = "레벨선택";
   }
 
   li_level.style.color = "#DF2935"; 

@@ -14,22 +14,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setEvent() {
 
-  // 설정 버튼 이벤트
+  // 설정 버튼 이벤트 - 쉬워요
   document.querySelector('#btn_mode1').onclick = function(){
     location.href="../game/sudoku.html?mode_type=1&level=1"
   };
 
-  // 설정 버튼 이벤트
+  // 설정 버튼 이벤트 - 할만해요
   document.querySelector('#btn_mode2').onclick = function(){
     location.href="../game/sudoku.html?mode_type=2&level=5"
   };
 
-  // 설정 버튼 이벤트
+  // 설정 버튼 이벤트 - 도전모드
   document.querySelector('#btn_mode3').onclick = function(){
 	  if(typeof NativeJSinterface != 'undefined') 
 		  NativeJSinterface.getChallengeCurLevel();
     else
       location.href="../game/sudoku.html?mode_type=3&level=1" 
+  };
+
+  // 설정 버튼 이벤트 - 레벨선택
+  document.querySelector('#btn_mode4').onclick = function(){
+    location.href="../game/sudoku.html?mode_type=1&level=1"
   };
 
 }
