@@ -14,27 +14,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function setEvent() {
 
-  // 설정 버튼 이벤트 - 쉬워요
-  document.querySelector('#btn_mode1').onclick = function(){
-    location.href="../game/sudoku.html?mode_type=1&level=1"
-  };
-
-  // 설정 버튼 이벤트 - 할만해요
-  document.querySelector('#btn_mode2').onclick = function(){
-    location.href="../game/sudoku.html?mode_type=2&level=5"
+  // 설정 버튼 이벤트 - 레벨선택
+  document.querySelector('#btn_mode_level').onclick = function(){
+    //location.href="../game/main.html?mode_type=1&level=1"
+    showLevelSelect(
+      "레벨을 선택해주세요 !"
+      ,function(){
+        const selected = document.querySelector('input[name="level"]:checked');
+        if(selected){
+          location.href="../game/main.html?mode_type=1&level=" + selected.value; 
+        }
+      }
+      ,function(){
+        hideLevelSelect();
+      });
   };
 
   // 설정 버튼 이벤트 - 도전모드
-  document.querySelector('#btn_mode3').onclick = function(){
+  document.querySelector('#btn_mode_challenge').onclick = function(){
 	  if(typeof NativeJSinterface != 'undefined') 
 		  NativeJSinterface.getChallengeCurLevel();
     else
-      location.href="../game/sudoku.html?mode_type=3&level=1" 
-  };
-
-  // 설정 버튼 이벤트 - 레벨선택
-  document.querySelector('#btn_mode4').onclick = function(){
-    location.href="../game/sudoku.html?mode_type=1&level=1"
+      location.href="../game/main.html?mode_type=2&level=1" 
   };
 
 }
@@ -48,13 +49,13 @@ function getChallengeCurLevelCallback(level) {
         if(typeof NativeJSinterface != 'undefined') {
           NativeJSinterface.setChallengeCurLevel(1);				
         }
-        location.href="../game/sudoku.html?mode_type=3&level=" + nAdvancelevel
+        location.href="../game/main.html?mode_type=2&level=" + nAdvancelevel
       }
       ,function(){
-        location.href="../game/sudoku.html?mode_type=3&level=1"
+        location.href="../game/main.html?mode_type=2&level=1"
       });
    } else {
-     location.href="../game/sudoku.html?mode_type=3&level=1" 
+     location.href="../game/main.html?mode_type=2&level=1" 
    }
 }
 
@@ -67,16 +68,30 @@ function setView() {
 }
 
 function showModal(msg,ok_listner,cancel_listner) {
-  let div = document.querySelector('.modal-wrap');
+  let div = document.querySelector('.modalyesno');
   div.classList.remove("hidden");
 
-  document.querySelector('.modal-wrap .modal-text').innerText = msg;
-  document.querySelector('.modal-wrap .btn-point').onclick = ok_listner;
-  document.querySelector('.modal-wrap .btn-gray').onclick = cancel_listner;
+  document.querySelector('.modalyesno .modal-text').innerText = msg;
+  document.querySelector('.modalyesno .btn-point').onclick = ok_listner;
+  document.querySelector('.modalyesno .btn-gray').onclick = cancel_listner;
 }
 
 function hideModal() {
-  let div = document.querySelector('.modal-wrap');
+  let div = document.querySelector('.modalyesno');
+  div.classList.add("hidden");
+}
+
+function showLevelSelect(msg,ok_listner,cancel_listner){
+  let div = document.querySelector('.modallevel');
+  div.classList.remove("hidden");
+
+  document.querySelector('.modallevel .modal-text').innerText = msg;
+  document.querySelector('.modallevel .btn-point').onclick = ok_listner;
+  document.querySelector('.modallevel .btn-gray').onclick = cancel_listner;
+}
+
+function hideLevelSelect() {
+  let div = document.querySelector('.modallevel');
   div.classList.add("hidden");
 }
 

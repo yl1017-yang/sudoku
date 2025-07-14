@@ -230,17 +230,42 @@ var mainModel = {
 
     var box_arrange = new Object();
 
-    var box_s_row = parseInt(row / 3) * 3;
-    var box_e_row = box_s_row + 2;
-    var box_s_col = parseInt(col / 3) * 3;
-    var box_e_col = box_s_col + 2;
+    var s_row = parseInt(row / 3) * 3;
+    var e_row = s_row + 2;
+    var s_col = parseInt(col / 3) * 3;
+    var e_col = s_col + 2;
 
-    box_arrange.s_row = box_s_row;
-    box_arrange.e_row = box_e_row;
-    box_arrange.s_col = box_s_col;
-    box_arrange.e_col = box_e_col;
-
+    this.setBoxArrange(box_arrange,s_row,e_row,s_col,e_col);
     return box_arrange;
+  },
+  getRowBoxArrange: function(row,col) {
 
+    var box_arrange = new Object();
+
+    var s_row = row;
+    var e_row = row;
+    var s_col = parseInt(col / 3) * 3;
+    var e_col = box_s_col + 2;
+
+    this.setBoxArrange(box_arrange,s_row,e_row,s_col,e_col);
+    return box_arrange;
+  },
+  getColBoxArrange: function(row,col) {
+
+    var box_arrange = new Object();
+
+    var s_row = parseInt(row / 3) * 3;
+    var e_row = box_s_row + 2;
+    var s_col = col;
+    var e_col = col;
+
+    this.setBoxArrange(box_arrange,s_row,e_row,s_col,e_col);
+    return box_arrange;
+  },
+  setBoxArrange: function(box_arrange,s_row,e_row,s_col,e_col){
+     box_arrange.s_row = s_row;
+     box_arrange.e_row = e_row;
+     box_arrange.s_col = s_col;
+     box_arrange.e_col = e_col;
   }
 };

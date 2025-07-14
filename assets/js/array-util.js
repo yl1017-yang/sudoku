@@ -226,3 +226,4 @@ function getHiddenCountInArray(array,s_row,e_row,s_col,e_col) {
   }
   return count; 
 }
+
