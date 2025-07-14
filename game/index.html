@@ -16,10 +16,8 @@
         <h2 class="start-title">SUDOKU</h2>
 
         <div class="start-step">
-          <!-- <a id="btn_mode1" href="#none" class="btn-small btn-gradient">쉬워요</a>
-          <a id="btn_mode2" href="#none" class="btn-small btn-gradient">할만해요</a> -->
-          <a id="btn_mode4" href="#none" class="btn-small btn-gradient">레벨선택</a>
-          <a id="btn_mode3" href="#none" class="btn-small btn-point">도전모드</a>
+          <a id="btn_mode_level" href="#none" class="btn-small btn-gradient">레벨선택</a>
+          <a id="btn_mode_challenge" href="#none" class="btn-small btn-point">도전모드</a>
         </div>
 
         <!-- <div class="start-btn">
@@ -29,9 +27,66 @@
     </main>
 
     <!-- [D] 모달팝업 : modal-wrap hidden 클래스 추가시 안보임 -->
-    <div class="modal-wrap hidden">
+    <div class="modal-wrap hidden modalyesno">
       <div class="modal-inner">
         <p class="modal-text">게임이 끝났어요!!!!<br>다음 게임으로 진행하세요</p>
+        <div class="modal-btn">
+          <a href="#none" class="btn-small btn-gray">아니오</a>
+          <a href="#none" class="btn-small btn-point">네</a>
+        </div>
+      </div>
+      <div class="dimmed"></div>
+    </div>
+    <!-- //[D] 모달팝업 -->
+
+    <!-- 레벨선택 모달팝업 -->
+    <div class="modal-wrap hidden modallevel">
+      <div class="modal-inner">
+        <p class="modal-text">레벨을 선택해주세요</p>
+        <div class="modal-select">
+          <fieldset>
+            <label>
+              <input type="radio" name="level" value="1" checked />
+              <span>레벨 1</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="2" />
+              <span>레벨 2</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="3" />
+              <span>레벨 3</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="4" />
+              <span>레벨 4</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="5" />
+              <span>레벨 5</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="6" />
+              <span>레벨 6</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="7" />
+              <span>레벨 7</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="8" />
+              <span>레벨 8</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="9" />
+              <span>레벨 9</span>
+            </label>
+            <label>
+              <input type="radio" name="level" value="10" />
+              <span>레벨 10</span>
+            </label>
+          </fieldset>
+        </div>
         <div class="modal-btn">
           <a href="#none" class="btn-small btn-gray">아니오</a>
           <a href="#none" class="btn-small btn-point">네</a>
