@@ -111,7 +111,8 @@ html, body, .sudoku-wrap{min-height:100%;}
 }
 
 /* 오답모션 */
-.wrong-answer{background:#ffe5e7;color:#DF2935 !important;}
+/*.wrong-answer{background:#ffe5e7;color:#DF2935 !important;}*/
+.wrong-answer{color:#DF2935 !important;}
 
 /* 하단 */
 .footer .menu{display:flex;justify-content:space-around;align-items:flex-end;margin:2vw 0;}
@@ -196,4 +197,9 @@ html, body, .sudoku-wrap{min-height:100%;}
 .cell_text:focus-visible{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 
 .cell_text:read-only{color:var(--gray555);cursor:not-allowed;}
-.cell_text:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}
+/*.cell_text:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}*/
+
+div {
+  -webkit-tap-highlight-color: transparent; /* 터치 하이라이트 제거 */
+  touch-action: manipulation; /* 터치 반응 빠르게 */
+}
