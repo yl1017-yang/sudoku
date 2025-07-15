@@ -179,7 +179,7 @@ var mainModel = {
 
       array[row][col] = v;
 
-      var box_arrange = this.getBoxArrange(row,col);
+      var box_arrange = this.get3x3BoxArrange(row,col);
       box_s_row = box_arrange.s_row;
       box_e_row = box_arrange.e_row;
       box_s_col = box_arrange.s_col;
@@ -226,7 +226,7 @@ var mainModel = {
 
     return true;
   },
-  getBoxArrange: function(row,col) {
+  get3x3BoxArrange: function(row,col) {
 
     var box_arrange = new Object();
 
@@ -238,26 +238,26 @@ var mainModel = {
     this.setBoxArrange(box_arrange,s_row,e_row,s_col,e_col);
     return box_arrange;
   },
-  getRowBoxArrange: function(row,col) {
+  getHorizontalBoxArrange: function(row) {
 
     var box_arrange = new Object();
 
-    var s_row = row;
-    var e_row = row;
-    var s_col = parseInt(col / 3) * 3;
-    var e_col = box_s_col + 2;
+    var s_row = parseInt(row);
+    var e_row = parseInt(row);
+    var s_col = 0;
+    var e_col = 8;
 
     this.setBoxArrange(box_arrange,s_row,e_row,s_col,e_col);
     return box_arrange;
   },
-  getColBoxArrange: function(row,col) {
+  getVerticalBoxArrange: function(col) {
 
     var box_arrange = new Object();
 
-    var s_row = parseInt(row / 3) * 3;
-    var e_row = box_s_row + 2;
-    var s_col = col;
-    var e_col = col;
+    var s_row = 0;
+    var e_row = 8;
+    var s_col = parseInt(col);
+    var e_col = parseInt(col);
 
     this.setBoxArrange(box_arrange,s_row,e_row,s_col,e_col);
     return box_arrange;

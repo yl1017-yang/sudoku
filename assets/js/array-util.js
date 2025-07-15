@@ -216,9 +216,10 @@ function getHiddenNumberCountInArray(array,s_row,e_row,s_col,e_col,v) {
 // 어레이안에 들어있는 히든 여부 갯수를 가져온다.
 function getHiddenCountInArray(array,s_row,e_row,s_col,e_col) {
   var count = 0;
-  for(var n=s_row;n<e_row;n++) {
-    for(var i=s_col;i<e_col;i++) {
+  for(var n=s_row;n<=e_row;n++) {
+    for(var i=s_col;i<=e_col;i++) {
       var array_v = array[n][i];
+      //console.log("array_v = ",array_v);   
       if(array_v.isHidden) {
         count++;
       }

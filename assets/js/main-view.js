@@ -56,8 +56,6 @@ function setEvent() {
           // 정답을 맞추면
           if(isSameNumber(mainModel.total_array,row,col,number)) {
 
-            //lastFocused_input.style.color = "#00cb73";
-            //lastFocused_input.classList.add('answer');
             lastFocused_input.classList.remove('wrong-answer');
 
             mainModel.total_array[row][col].isHidden = false;
@@ -69,27 +67,10 @@ function setEvent() {
             animateGrid_Correct(row,col);
 
             // 모든 하이라이트와 포커스를 지운다.
-            /*
-              document.querySelectorAll('.cell_text').forEach(input => {
-                input.classList.remove('highlight');
-                input.classList.remove('focus');
-                input.classList.remove('focus_wrong_answer');
-            });*/
+            reomveAllHighlight();
 
             // 같은 숫자를 하이라이트
-            document.querySelectorAll(`.cell_text`).forEach(input => {
-              // 같은 숫자라면
-              if(input.innerText == number) {
-                // 오답이 아니면
-                if(!input.classList.contains('wrong-answer')){
-                  input.classList.add('highlight');
-                  input.classList.add('focus');
-                }
-              }
-            });
-
-            //mainModel.total_array[row][col].isHidden = false;
-            //lastFocused_input.classList.add('readonly');
+            addHighlightSameNumber(number);
 
             // 히든된 숫자 카운트를 세팅한다.
             setHiddenNumberCount();
@@ -98,7 +79,7 @@ function setEvent() {
             setProgress();
 
             // 모두 맞췄다면    
-            var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
+            var total_hidden = getHiddenCountInArray(mainModel.total_array,0,8,0,8);
             if(total_hidden == 0) {
 				
               // 애니메이션을 시작한다. 	
@@ -140,24 +121,13 @@ function setEvent() {
             if(typeof NativeJSinterface != 'undefined')
               NativeJSinterface.vibrate();
 
-            //lastFocused_input.style.color = "#DF2935";
             lastFocused_input.classList.add('wrong-answer');
             lastFocused_input.classList.remove('answer');
             lastFocused_input.classList.add('focus_wrong_answer');
 
-            //lastFocused_input.classList.remove('highlight');
             lastFocused_input.classList.remove('focus');
 
-            document.querySelectorAll(`.cell_text`).forEach(input => {
-              // 같은 숫자라면
-              if(input.innerText == number) {
-                // 오답이 아니면
-                if(!input.classList.contains('wrong-answer')){
-                  input.classList.add('highlight');
-                  input.classList.add('focus');
-                }
-              }
-            });
+            addHighlightSameNumber(number);
 			
             const row = lastFocused_input.getAttribute('data-row');
             const col = lastFocused_input.getAttribute('data-col');
@@ -238,33 +208,15 @@ function setNumberInputFocusEvent(numinput) {
   console.log("col = ",col);
 
   // 모든 하이라이트와 포커스를 지운다.
-  document.querySelectorAll('.cell_text').forEach(input => {
-      input.classList.remove('highlight');
-      input.classList.remove('focus');
-      input.classList.remove('focus_wrong_answer');
-  });
+  reomveAllHighlight();
 
   console.log("_numinput.innerText = ",_numinput.innerText);
 
-  document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
-      input.classList.add('highlight');
-  });
-
-  document.querySelectorAll(`.cell_text[data-col="${col}"]`).forEach(input => {
-      input.classList.add('highlight');
-  });
+  // 하이라이트를 추가한다.
+  addHighlightRowColBox(row,col);
 
   if(_numinput.innerText != "") {
-    document.querySelectorAll(`.cell_text`).forEach(input => {
-      // 같은 숫자라면
-      if(input.innerText == _numinput.innerText) {
-        // 오답이 아니면
-        if(!input.classList.contains('wrong-answer')){
-          input.classList.add('highlight');
-          input.classList.add('focus');
-        }
-      }
-    });
+    addHighlightSameNumber(_numinput.innerText);
   } else {
     numinput.classList.add('focus');
   }
@@ -307,6 +259,37 @@ function setView() {
 
   // 배경 세팅
   setBackground();
+}
+
+function addHighlightRowColBox(row,col){
+  document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
+      input.classList.add('highlight');
+  });
+
+  document.querySelectorAll(`.cell_text[data-col="${col}"]`).forEach(input => {
+      input.classList.add('highlight');
+  });
+}
+
+function addHighlightSameNumber(number){
+    document.querySelectorAll(`.cell_text`).forEach(input => {
+      // 같은 숫자라면
+      if(input.innerText == number) {
+        // 오답이 아니면
+        if(!input.classList.contains('wrong-answer')){
+          input.classList.add('highlight');
+          input.classList.add('focus');
+        }
+      }
+    });
+}
+
+function reomveAllHighlight(){
+  document.querySelectorAll('.cell_text').forEach(input => {
+    input.classList.remove('highlight');
+    input.classList.remove('focus');
+    input.classList.remove('focus_wrong_answer');
+  });
 }
 
 function startAnimation(){
@@ -531,7 +514,7 @@ var isView35per = false;
 var isView70per = false;
 
 function progressUpdate(nCurProgress) {
-	var total_hidden = getHiddenCountInArray(mainModel.total_array,0,9,0,9);
+	var total_hidden = getHiddenCountInArray(mainModel.total_array,0,8,0,8);
 	var updateProgress = 100 - Math.floor(total_hidden/mainModel.init_hidden_count*100);
 
     document.querySelector('#div_progress').innerText = "진행도 " + nCurProgress + "%";
@@ -724,11 +707,50 @@ function render () {
   requestAnimationFrame(render);
 }
 
-function animateGrid_Correct(row
-                            ,col) {
+function animateGrid_Correct(row,col) {
 
-  var box_arrange = mainModel.getBoxArrange(row,col);
+  var box_arrange_3x3 = mainModel.get3x3BoxArrange(row,col);
+  console.log("box_arrange_3x3 = ",box_arrange_3x3);
+  var box_arrange_hor = mainModel.getHorizontalBoxArrange(row);
+  console.log("box_arrange_hor = ",box_arrange_hor);
+  var box_arrange_ver = mainModel.getVerticalBoxArrange(col);
+  console.log("box_arrange_ver = ",box_arrange_ver);      
+
+  console.log("mainModel.total_array = ",mainModel.total_array);   
   
+  var total_hidden_3x3 = getHiddenCountInArray(mainModel.total_array
+                                              ,box_arrange_3x3.s_row
+                                              ,box_arrange_3x3.e_row
+                                              ,box_arrange_3x3.s_col
+                                              ,box_arrange_3x3.e_col);                                                                                                    
+  var total_hidden_hor = getHiddenCountInArray(mainModel.total_array
+                                              ,box_arrange_hor.s_row
+                                              ,box_arrange_hor.e_row
+                                              ,box_arrange_hor.s_col
+                                              ,box_arrange_hor.e_col);
+  var total_hidden_ver = getHiddenCountInArray(mainModel.total_array
+                                              ,box_arrange_ver.s_row
+                                              ,box_arrange_ver.e_row
+                                              ,box_arrange_ver.s_col
+                                              ,box_arrange_ver.e_col);                                            
+
+  console.log("total_hidden_3x3 = ",total_hidden_3x3);
+  console.log("total_hidden_hor = ",total_hidden_hor);
+  console.log("total_hidden_ver = ",total_hidden_ver);
+
+  var box_arrange;                                                                                        
+  if(total_hidden_3x3 == 0) {
+    box_arrange = box_arrange_3x3;
+  } else if (total_hidden_hor == 0) {
+    box_arrange = box_arrange_hor;
+  } else if (total_hidden_ver == 0) {
+    box_arrange = box_arrange_ver;
+  } else {
+    box_arrange = box_arrange_3x3;
+  }
+
+  console.log("box_arrange = ",box_arrange);
+
   var box_s_row = box_arrange.s_row;
   var box_e_row = box_arrange.e_row;
   var box_s_col = box_arrange.s_col;
@@ -768,7 +790,7 @@ function animateGrid_Correct(row
       
       backgroundColor: [
         { value: '#222222', duration: 300 }, // 검정색으로 변경
-        { value: '#fff', duration: 300 }  // 다시 하얀색으로 변경
+        { value: '#f2f1e4', duration: 300 }, // 초록색으로 변경
       ],
       easing: 'easeInOutQuad',
       delay: (el, i) => {
@@ -782,10 +804,14 @@ function animateGrid_Correct(row
         return distance * 100;          // 거리 * 딜레이 값
       },
       complete: function(anim) {
+        
+        requestAnimationFrame(() => {
         squares.forEach(input => {
+          input.style.transition = 'none'; // 트랜지션 제거
           input.style.removeProperty('color');
           input.style.removeProperty('background');
         });
+      })
       }
 	  });
 }
