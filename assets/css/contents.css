@@ -75,14 +75,18 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap .row .cell > div{line-height:1.4;}
 
 .place-wrap input[type='text']{position:absolute;width:100%;height:100%;text-align:center;font-size:6vw;color:var(--primary);line-height:0;caret-color:transparent;z-index:2;}
+
 .place-wrap input[type='text']:focus{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 .place-wrap input:focus-visible{background:var(--primary);color:var(--white);transition-duration:0.2s;}
+
+.place-wrap input[type='text']:focus{background:var(--primary);transition-duration:0.2s;}
+.place-wrap input:focus-visible{background:var(--primary);transition-duration:0.2s;}
 
 .place-wrap input:read-only{color:var(--gray555);cursor:not-allowed;}
 .place-wrap input:read-only:active{outline:2px solid var(--primary);border:4px solid var(--primary);background:var(--white);transition:all 0.2s ease;}
 
 .highlight{background:var(--third);transition-duration:0.2s;}
-.highlight.focus{background:var(--primary);color:var(--white) !important;transition-duration:0.2s;}  /* 연습모드일때 포커스 */
+.highlight.focus{background:var(--primary);/*color:var(--white) !important;*/transition-duration:0.2s;}  /* 연습모드일때 포커스 */
 .highlight.focus_wrong_answer{background:var(--primary);transition-duration:0.2s;}  /* 연습모드일때 포커스 */
 
 .correct{background:var(--secondary);transition-duration:0.2s;}
