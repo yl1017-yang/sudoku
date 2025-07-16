@@ -173,10 +173,6 @@ html, body, .sudoku-wrap{min-height:100%;}
 .modal-wrap .modal-select [type="radio"]:disabled { background-color: lightgray; box-shadow: none; opacity: 0.7; cursor: not-allowed; }
 .modal-wrap .modal-select [type="radio"]:disabled + span { opacity: 0.7; cursor: not-allowed; }
 
-/* 텍스트 애니메이션 */
-.ml4 { position: absolute; top: 40%; left: 0; width: 100%; min-height: 30%; font-weight: 900; font-size: 4.5em; }
-.ml4 .letters { position: absolute; margin: auto; left: 0; top: 0; right: 0;  opacity: 0;}
-
 /* input -> div 교체 */
 .cell_text{box-sizing:border-box;border:none;outline-style:none;border-radius:0;font-size:inherit;font-family:inherit;color:inherit;}/* -webkit-appearance:none;-moz-appearance:none;appearance:none; */
 .cell_text{resize:none;box-shadow:none !important;border-radius:0;outline:none;}
