@@ -70,7 +70,7 @@ function setEvent() {
             reomveAllHighlight();
 
             // 같은 숫자를 하이라이트
-            addHighlightSameNumber(number);
+            setHighlightSameNumber(number);
 
             // 히든된 숫자 카운트를 세팅한다.
             setHiddenNumberCount();
@@ -96,12 +96,11 @@ function setEvent() {
               }
               
               if(mainModel.mode_type == 1) {
-                showModal("완벽해요!!!!\n다시 하시겠어요?"
+                showModal("완벽해요!!!!\n메인화면으로 돌아가시겠어요?"
                           ,function(){window.location.reload();}
                           ,function(){location.href = "../game/index.html";}
                 );
               } else if(mainModel.mode_type == 2) {
-
                 // 10 레벨까지~
                 if(mainModel.level < 10) {
                   setTimeout(function(){
@@ -127,7 +126,7 @@ function setEvent() {
 
             lastFocused_input.classList.remove('focus');
 
-            addHighlightSameNumber(number);
+            setHighlightSameNumber(number);
 			
             const row = lastFocused_input.getAttribute('data-row');
             const col = lastFocused_input.getAttribute('data-col');
@@ -213,10 +212,10 @@ function setNumberInputFocusEvent(numinput) {
   console.log("_numinput.innerText = ",_numinput.innerText);
 
   // 하이라이트를 추가한다.
-  addHighlightRowColBox(row,col);
+  setHighlightRowColBox(row,col);
 
   if(_numinput.innerText != "") {
-    addHighlightSameNumber(_numinput.innerText);
+    setHighlightSameNumber(_numinput.innerText);
   } else {
     numinput.classList.add('focus');
   }
@@ -261,7 +260,7 @@ function setView() {
   setBackground();
 }
 
-function addHighlightRowColBox(row,col){
+function setHighlightRowColBox(row,col){
   document.querySelectorAll(`.cell_text[data-row="${row}"]`).forEach(input => {
       input.classList.add('highlight');
   });
@@ -269,9 +268,17 @@ function addHighlightRowColBox(row,col){
   document.querySelectorAll(`.cell_text[data-col="${col}"]`).forEach(input => {
       input.classList.add('highlight');
   });
+
+  var box_arrange = mainModel.get3x3BoxArrange(row,col);
+  for (var r = box_arrange.s_row;r<=box_arrange.e_row;r++){
+    for(var c = box_arrange.s_col;c<=box_arrange.e_col;c++){
+      document.querySelector(`.cell_text[data-row="${r}"].cell_text[data-col="${c}"]`).classList.add('highlight');
+    }
+  }
+
 }
 
-function addHighlightSameNumber(number){
+function setHighlightSameNumber(number){
     document.querySelectorAll(`.cell_text`).forEach(input => {
       // 같은 숫자라면
       if(input.innerText == number) {
