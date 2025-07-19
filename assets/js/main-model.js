@@ -56,15 +56,25 @@ var mainModel = {
      console.log("array = ",array);
  
      // 히든 어레이 생성
-     var hiddenArratTryMaxCnt = 1000;
-     var hidden_array = create2DArray(9,9); 
-     for(var n=1;n<=hiddenArratTryMaxCnt;n++) {
-       if(this.setHiddenOption(hidden_array)){
-         console.log("setHiddenOption success th = ",n);
-         break;
-       }
-       if(n== hiddenArratTryMaxCnt)
-        console.log("setHiddenOption fail");
+     var checkHiddenCountInArratTryMaxCnt = 100;
+     for(var i=1;i<=checkHiddenCountInArratTryMaxCnt;i++) {
+
+        var hiddenArratTryMaxCnt = 1000;
+        var hidden_array = create2DArray(9,9); 
+        for(var n=1;n<=hiddenArratTryMaxCnt;n++) {
+
+          if(this.setHiddenOption(hidden_array,array)){
+            console.log("setHiddenOption success th = ",n);
+            break;
+          }
+          if(n== hiddenArratTryMaxCnt)
+            console.log("setHiddenOption fail");
+        }
+
+        if(this.checkHiddenNumberCountInArray(array,hidden_array)){
+          console.log("checkHiddenCountInArratTryCnt = ",i);
+          break;
+        }
      }
  
      console.log("hidden_array = ",hidden_array);
@@ -83,6 +93,8 @@ var mainModel = {
          this.total_array[row][col] = obj;
        }
      }
+
+
  
      console.log("total_array = ",this.total_array); 
 
@@ -202,9 +214,7 @@ var mainModel = {
                       ,box_e_row
                       ,box_s_col
                       ,box_e_col
-                      ,1 )                
-                          
-                          ) {
+                      ,1 )) {
           return false;
         }
       }
@@ -224,6 +234,15 @@ var mainModel = {
       return false;
     } 
 
+    return true;
+  },
+  checkHiddenNumberCountInArray : function(array,hidden_array) {
+
+    for (var n=1;n<=9;n++) {
+      var count = getHiddenNumberCountWithArrayAndHiddenArray(array,hidden_array,9,9,n)
+      if(count == 0)
+       return false;
+    }
     return true;
   },
   get3x3BoxArrange: function(row,col) {
