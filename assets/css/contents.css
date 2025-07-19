@@ -72,7 +72,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .place-wrap{position:relative;display:flex;flex-wrap:wrap;width:100%;background:var(--white);box-sizing:border-box;border:2px solid var(--gray555);border-right:0;border-bottom:0;box-shadow:rgba(0, 0, 0, 0.1) 5px 7px 10px;z-index:0;}
 .place-wrap .row{position:relative;display:flex;flex-wrap:wrap;width:33.3334%;border-right:2px solid var(--gray555);border-bottom:2px solid var(--gray555);}
 .place-wrap .row .cell{position:relative;width:33.333%;height:10vw;border:1px solid var(--grayddd);}
-.place-wrap .row .cell > div{line-height:1.4;}
+.place-wrap .row .cell > div{line-height:1.2;}
 
 .place-wrap input[type='text']{position:absolute;width:100%;height:100%;text-align:center;font-size:6vw;color:var(--primary);line-height:0;caret-color:transparent;z-index:2;}
 
@@ -132,16 +132,16 @@ html, body, .sudoku-wrap{min-height:100%;}
 
 /* 스도쿠 최초화면 애니메이션 */
 .animation-box{position:absolute;top:0;left:0;width:100%;height:100%;z-index:5;animation:fadeOut 0.8s forwards;}
-.animation-box > div{position:absolute;top:0;left:0;width:100%;height:10.6vw;background:linear-gradient(90deg, #009856,#F5F3BB);background-size:100% 100%;}
+.animation-box > div{position:absolute;top:0;left:0;width:100%;height:10.4vw;background:linear-gradient(90deg, #009856,#F5F3BB);background-size:100% 100%;}
 .animation-box .box1{top:0;animation-delay:0s !important;}
-.animation-box .box2{top:10.5vw;animation-delay:0.1s !important;}
-.animation-box .box3{top:20.5vw;animation-delay:0.2s !important;}
-.animation-box .box4{top:30.5vw;animation-delay:0.3s !important;}
-.animation-box .box5{top:40.5vw;animation-delay:0.4s !important;}
-.animation-box .box6{top:50.5vw;animation-delay:0.5s !important;}
-.animation-box .box7{top:60.5vw;animation-delay:0.6s !important;}
-.animation-box .box8{top:70.5vw;animation-delay:0.7s !important;}
-.animation-box .box9{top:80.5vw;animation-delay:0.8s !important;}
+.animation-box .box2{top:10.4vw;animation-delay:0.1s !important;}
+.animation-box .box3{top:20.4vw;animation-delay:0.2s !important;}
+.animation-box .box4{top:30.4vw;animation-delay:0.3s !important;}
+.animation-box .box5{top:40.4vw;animation-delay:0.4s !important;}
+.animation-box .box6{top:50.4vw;animation-delay:0.5s !important;}
+.animation-box .box7{top:60.4vw;animation-delay:0.6s !important;}
+.animation-box .box8{top:70.4vw;animation-delay:0.7s !important;}
+.animation-box .box9{top:80.4vw;animation-delay:0.8s !important;}
 
 .animation-box .motion{animation:fade 0.4s 0s ease-in-out both;}
 @keyframes fade {
@@ -192,7 +192,7 @@ html, body, .sudoku-wrap{min-height:100%;}
 .cell_text:focus::-moz-placeholder{visibility:hidden}
 .cell_text:focus:-ms-input-placeholder{visibility:hidden}
 
-.cell_text{position:absolute;width:100%;height:100%;text-align:center;font-size:7.5vw;font-weight:400;/*color:var(--primary);*//*line-height:0*/;caret-color:transparent;z-index:2;}
+.cell_text{position:absolute;width:100%;height:100%;text-align:center;font-size:8vw;font-weight:400;/*color:var(--primary);*//*line-height:0*/;caret-color:transparent;z-index:2;}
 .cell_text:focus{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 .cell_text:focus-visible{background:var(--primary);color:var(--white);transition-duration:0.2s;}
 
