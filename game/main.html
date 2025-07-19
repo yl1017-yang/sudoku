@@ -15,7 +15,7 @@
 
     <header class="header">
       <div class="header-btn">
-        <a href="../game/index.html" class="icon icon_back" ><span class="blind">뒤로가기</span></a>
+        <a href="#" class="icon icon_back" id="btn_back"><span class="blind">뒤로가기</span></a>
       </div>
 
       <div class="header-util">
@@ -174,15 +174,15 @@
         </li> -->
       </ul>
       <div class="number">
-        <button class="btn-number" onclick="insertNumber(1)">1 <span id ="sp_remain_num_1">5</span></button>
-        <button class="btn-number" onclick="insertNumber(2)">2 <span id ="sp_remain_num_2">6</span></button>
-        <button class="btn-number" onclick="insertNumber(3)">3 <span id ="sp_remain_num_3">3</span></button>
-        <button class="btn-number" onclick="insertNumber(4)">4 <span id ="sp_remain_num_4">6</span></button>
-        <button class="btn-number" onclick="insertNumber(5)">5 <span id ="sp_remain_num_5">1</span></button>
-        <button class="btn-number" onclick="insertNumber(6)">6 <span id ="sp_remain_num_6">3</span></button>
-        <button class="btn-number" onclick="insertNumber(7)">7 <span id ="sp_remain_num_7">6</span></button>
-        <button class="btn-number" onclick="insertNumber(8)">8 <span id ="sp_remain_num_8">7</span></button>
-        <button class="btn-number" onclick="insertNumber(9)">9 <span id ="sp_remain_num_9">2</span></button>
+        <button class="btn-number" id="btn-number_1" onclick="insertNumber(1)">1 <span id ="sp_remain_num_1">5</span></button>
+        <button class="btn-number" id="btn-number_2" onclick="insertNumber(2)">2 <span id ="sp_remain_num_2">6</span></button>
+        <button class="btn-number" id="btn-number_3" onclick="insertNumber(3)">3 <span id ="sp_remain_num_3">3</span></button>
+        <button class="btn-number" id="btn-number_4" onclick="insertNumber(4)">4 <span id ="sp_remain_num_4">6</span></button>
+        <button class="btn-number" id="btn-number_5" onclick="insertNumber(5)">5 <span id ="sp_remain_num_5">1</span></button>
+        <button class="btn-number" id="btn-number_6" onclick="insertNumber(6)">6 <span id ="sp_remain_num_6">3</span></button>
+        <button class="btn-number" id="btn-number_7" onclick="insertNumber(7)">7 <span id ="sp_remain_num_7">6</span></button>
+        <button class="btn-number" id="btn-number_8" onclick="insertNumber(8)">8 <span id ="sp_remain_num_8">7</span></button>
+        <button class="btn-number" id="btn-number_9" onclick="insertNumber(9)">9 <span id ="sp_remain_num_9">2</span></button>
       </div>
     </footer>
 
@@ -197,47 +197,6 @@
       </div>
       <div class="dimmed"></div>
     </div>
-
-    <!-- 레벨선택 모달팝업 -->
-    <div class="modal-wrap hidden">
-      <div class="modal-inner">
-        <p class="modal-text">레벨을 선택해주세요</p>
-        <div class="modal-select">
-          <fieldset>
-            <label>
-              <input type="radio" name="level" value="level5" checked />
-              <span>레벨 5</span>
-            </label>
-            <label>
-              <input type="radio" name="level" value="level6" />
-              <span>레벨 6</span>
-            </label>
-            <label>
-              <input type="radio" name="level" value="level7" />
-              <span>레벨 7</span>
-            </label>
-            <label>
-              <input type="radio" name="level" value="level8" />
-              <span>레벨 8</span>
-            </label>
-            <label>
-              <input type="radio" name="level" value="level9" />
-              <span>레벨 9</span>
-            </label>
-            <label>
-              <input type="radio" name="level" value="level10" />
-              <span>레벨 10</span>
-            </label>
-          </fieldset>
-        </div>
-        <div class="modal-btn">
-          <a href="#none" class="btn-small btn-gray">아니오</a>
-          <a href="#none" class="btn-small btn-point">네</a>
-        </div>
-      </div>
-      <div class="dimmed"></div>
-    </div>
-    <!-- //[D] 모달팝업 -->
 
   </div>
   
