@@ -96,7 +96,7 @@ function setEvent() {
               }
               
               if(mainModel.mode_type == 1) {
-                showModal("완벽해요!!!!\n메인화면으로 돌아가시겠어요?"
+                showModal("완벽해요!!!!\n다시 하시겠어요?"
                           ,function(){window.location.reload();}
                           ,function(){location.href = "../game/index.html";}
                 );
@@ -159,6 +159,17 @@ function setEvent() {
       }
     }
   }
+
+  // 뒤로 가기 버튼 이벤트
+  document.querySelector('#btn_back').onclick = function(){
+    if (mainModel.mode_type == "2") {
+      showModal("도전모드를 포기하시겠습니까?"
+                            ,function(){location.href="../game/index.html";}
+                            ,function(){hideModal();}); 
+    } else {
+      location.href="../game/index.html";
+    }
+  };
 
   // 설정 버튼 이벤트
   document.querySelector('#btn_setting').onclick = function(){
@@ -490,7 +501,11 @@ function initExamNumbers(cell) {
 function setHiddenNumberCount() {
 
    for (var i = 1; i <= 9; i++) {
-      document.querySelector('#sp_remain_num_' + i).innerText = getHiddenNumberCountInArray(mainModel.total_array,0,9,0,9,i);
+      var hiddenNumber = getHiddenNumberCountInArray(mainModel.total_array,0,9,0,9,i);
+      document.querySelector('#sp_remain_num_' + i).innerText = hiddenNumber;
+      if(hiddenNumber == 0) {
+        document.querySelector('#btn-number_' + i).style.visibility = "hidden";
+      }
    }
 }
 
@@ -716,6 +731,8 @@ function render () {
 
 function animateGrid_Correct(row,col) {
 
+  var anime_duration = 300;
+
   var box_arrange_3x3 = mainModel.get3x3BoxArrange(row,col);
   console.log("box_arrange_3x3 = ",box_arrange_3x3);
   var box_arrange_hor = mainModel.getHorizontalBoxArrange(row);
@@ -748,16 +765,31 @@ function animateGrid_Correct(row,col) {
   var box_arrange;                                                                                        
   if(total_hidden_3x3 == 0) {
     box_arrange = box_arrange_3x3;
-  } else if (total_hidden_hor == 0) {
+    fn_animateGrid_Correct(box_arrange,row,col,anime_duration);
+  } 
+  
+  if (total_hidden_hor == 0) {
     box_arrange = box_arrange_hor;
-  } else if (total_hidden_ver == 0) {
+    anime_duration = 100;
+    fn_animateGrid_Correct(box_arrange,row,col,anime_duration);
+  } 
+  
+  if (total_hidden_ver == 0) {
     box_arrange = box_arrange_ver;
-  } else {
-    box_arrange = box_arrange_3x3;
-  }
+    anime_duration = 100;
+    fn_animateGrid_Correct(box_arrange,row,col,anime_duration);
+  } 
+
+  //if(box_arrange == null) {
+  //  return;
+  //}
 
   console.log("box_arrange = ",box_arrange);
 
+  //fn_animateGrid_Correct(box_arrange,row,col,anime_duration);
+}
+
+function fn_animateGrid_Correct(box_arrange,row,col,anime_duration){
   var box_s_row = box_arrange.s_row;
   var box_e_row = box_arrange.e_row;
   var box_s_col = box_arrange.s_col;
@@ -796,8 +828,8 @@ function animateGrid_Correct(row,col) {
       ],*/
       
       backgroundColor: [
-        { value: '#222222', duration: 300 }, // 검정색으로 변경
-        { value: '#f2f1e4', duration: 300 }, // 초록색으로 변경
+        { value: '#222222', duration: anime_duration }, // 검정색으로 변경
+        { value: '#f2f1e4', duration: anime_duration }, // 초록색으로 변경
       ],
       easing: 'easeInOutQuad',
       delay: (el, i) => {

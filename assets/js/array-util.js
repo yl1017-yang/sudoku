@@ -213,6 +213,22 @@ function getHiddenNumberCountInArray(array,s_row,e_row,s_col,e_col,v) {
   return count; 
 }
 
+// 어레이와 히든 어레이를 비교해서 히든이 되어있는 숫자의 갯수를 가져온다.
+function getHiddenNumberCountWithArrayAndHiddenArray(array,hidden_array,row_length,col_length,v) {
+
+  var count = 0;
+  for(var n=0;n<row_length;n++) {
+    for(var i=0;i<col_length;i++) {
+      var array_v = array[n][i];
+      var hidden_array_v = hidden_array[n][i];
+      if(array_v == v && hidden_array_v == 1) {
+        count++;
+      }
+    }
+  }
+  return count; 
+}
+
 // 어레이안에 들어있는 히든 여부 갯수를 가져온다.
 function getHiddenCountInArray(array,s_row,e_row,s_col,e_col) {
   var count = 0;
